@@ -15,6 +15,7 @@ public class CondoManager {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        // TESTE COMMIT
     }
     
 }
