@@ -1,0 +1,3 @@
+<config>        
+    <database url="jdbc:mysql://localhost:3306/condomanager" user="root" password="root"/>
+</config>
