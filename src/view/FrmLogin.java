@@ -62,19 +62,17 @@ public class FrmLogin extends javax.swing.JFrame {
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jSeparator1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jSeparator1.setPreferredSize(new java.awt.Dimension(0, 1));
         jSeparator1.setRequestFocusEnabled(false);
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 240, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 240, 10));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jSeparator2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jSeparator2.setPreferredSize(new java.awt.Dimension(0, 1));
         jSeparator2.setRequestFocusEnabled(false);
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 183, 240, -1));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 183, 240, 10));
 
         jButtonLogin.setBackground(new java.awt.Color(0, 0, 0));
         jButtonLogin.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
@@ -103,7 +101,6 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 48)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Sign In");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 27, -1, -1));
 
