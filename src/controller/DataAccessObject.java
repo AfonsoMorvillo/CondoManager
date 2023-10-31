@@ -210,7 +210,7 @@ public abstract class DataAccessObject {
     * @param valor
     *           = Valor que foi alterado/adicionado
     */
-   protected void addChage( String campoTabela, Object valor ) {
+   protected void addChange( String campoTabela, Object valor ) {
       dirty.put( campoTabela, valor );
       this.changed = true;
    }
