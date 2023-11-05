@@ -96,4 +96,9 @@ public class StringUtils {
           return null; // Ou retorne uma mensagem de erro, se preferir
       }
   }
+   
+   public static boolean isEmpty(String str) {
+      return str == null || str.isEmpty();
+   }
+
 }

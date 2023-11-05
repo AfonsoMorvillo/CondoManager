@@ -44,10 +44,10 @@ public class FrmLogin extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(null);
 
         jTextFieldUser.setBackground(new java.awt.Color(153, 204, 255));
         jTextFieldUser.setForeground(new java.awt.Color(204, 204, 204));
@@ -58,21 +58,24 @@ public class FrmLogin extends javax.swing.JFrame {
                 jTextFieldUserActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextFieldUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 240, 20));
+        jPanel1.add(jTextFieldUser);
+        jTextFieldUser.setBounds(90, 160, 240, 20);
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jSeparator1.setPreferredSize(new java.awt.Dimension(0, 1));
         jSeparator1.setRequestFocusEnabled(false);
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 240, 10));
+        jPanel1.add(jSeparator1);
+        jSeparator1.setBounds(90, 250, 240, 10);
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jSeparator2.setPreferredSize(new java.awt.Dimension(0, 1));
         jSeparator2.setRequestFocusEnabled(false);
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 183, 240, 10));
+        jPanel1.add(jSeparator2);
+        jSeparator2.setBounds(90, 183, 240, 10);
 
         jButtonLogin.setBackground(new java.awt.Color(0, 0, 0));
         jButtonLogin.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
@@ -84,25 +87,32 @@ public class FrmLogin extends javax.swing.JFrame {
                 jButtonLoginActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 272, 250, 35));
+        jPanel1.add(jButtonLogin);
+        jButtonLogin.setBounds(85, 272, 250, 35);
 
         IconUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/usuario.png"))); // NOI18N
-        jPanel1.add(IconUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 154, -1, -1));
+        jPanel1.add(IconUser);
+        IconUser.setBounds(41, 154, 32, 32);
 
         IconPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/senha.png"))); // NOI18N
-        jPanel1.add(IconPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 222, -1, -1));
+        jPanel1.add(IconPassword);
+        IconPassword.setBounds(41, 222, 32, 32);
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jLabel1.setText("User");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, -1));
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(90, 140, 29, 19);
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jLabel2.setText(" Password");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(90, 210, 65, 19);
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Sign In");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 27, -1, -1));
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(137, 27, 148, 62);
 
         jButtonSair.setFont(new java.awt.Font("DejaVu Sans", 1, 16)); // NOI18N
         jButtonSair.setText("X");
@@ -112,14 +122,17 @@ public class FrmLogin extends javax.swing.JFrame {
                 jButtonSairMouseClicked(evt);
             }
         });
-        jPanel1.add(jButtonSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(403, 6, -1, 15));
+        jPanel1.add(jButtonSair);
+        jButtonSair.setBounds(403, 6, 11, 15);
 
         jPasswordField1.setBackground(new java.awt.Color(153, 204, 255));
         jPasswordField1.setText("jPasswordField1");
         jPasswordField1.setBorder(null);
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 240, -1));
+        jPanel1.add(jPasswordField1);
+        jPasswordField1.setBounds(90, 230, 240, 16);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 330));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 420, 330);
 
         setSize(new java.awt.Dimension(420, 330));
         setLocationRelativeTo(null);

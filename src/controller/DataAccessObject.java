@@ -59,14 +59,14 @@ public abstract class DataAccessObject {
             if( value instanceof String ){
                values += "'" + value + "'";
             }
-            
+
             else if( value instanceof Date ){
 
                SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd" );
                String formattedDate = sdf.format( (Date)value );
                values += "'" + formattedDate + "'";
             }
-            
+
             else{
                values += value;
             }
@@ -92,7 +92,7 @@ public abstract class DataAccessObject {
 
          String set = "";
          boolean first = true;
-         
+
          for( String key : dirty.keySet() ){
 
             if( first ){
@@ -216,12 +216,12 @@ public abstract class DataAccessObject {
    }
 
 
-   public <T> T teste( String query, Class<T> clazz ) {
+   public <T> void fill( String query, T instance ) {
 
       String sql;
       sql = query + " FROM " + this.table + " WHERE " + getWhereClauseForOneEntry();
       System.out.println( sql );
-      
+
       try{
          dbConnection.executeSelect( sql );
          boolean status = dbConnection.getResultset().next();
@@ -234,25 +234,20 @@ public abstract class DataAccessObject {
                }
             }
 
-            T instance = preencheObjeto( data, clazz );
-            return instance;
+            preencheObjeto( data, instance );
          }
 
       }
       catch( SQLException e ){
          e.printStackTrace();
       }
-
-      return null;
-
    }
 
 
-   public <T> T preencheObjeto( HashMap<String, Object> data, Class<T> clazz ) {
+   private <T> void preencheObjeto( HashMap<String, Object> data, T instance ) {
 
       try{
-         T instance = clazz.newInstance();
-         List<Field> declaredFields = Arrays.asList( clazz.getDeclaredFields() );
+         List<Field> declaredFields = Arrays.asList( instance.getClass().getDeclaredFields() );
 
          for( String campo : data.keySet() ){
             Field field = declaredFields.stream().filter( variavel -> variavel.getName().equals( campo ) ).findFirst().orElse( null );
@@ -261,26 +256,25 @@ public abstract class DataAccessObject {
                String fieldName = field.getName(); // nome do atributo
                String setterName = "set" + fieldName.substring( 0, 1 ).toUpperCase() + fieldName.substring( 1 ); // método set
 
-               Method setterMethod = clazz.getMethod( setterName, field.getType() );
+               Method setterMethod = instance.getClass().getMethod( setterName, field.getType() );
                if( setterMethod != null ){
                   if( data.get( campo ) instanceof Date ){
                      Date date = (Date)data.get( campo );
-                     SimpleDateFormat dateFormat = new SimpleDateFormat( "yyyy-MM-dd" ); // Defina o formato desejado
+                     SimpleDateFormat dateFormat = new SimpleDateFormat( "yyyy-MM-dd" ); 
                      String formattedDate = dateFormat.format( date );
                      setterMethod.invoke( instance, formattedDate );
                      continue;
                   }
-                  setterMethod.invoke( instance, data.get( campo ) ); 
+                  setterMethod.invoke( instance, data.get( campo ) );
                }
             }
          }
-         Method clear = clazz.getMethod( "limpa", null );
+         Method clear = instance.getClass().getMethod( "limpa", null );
          clear.invoke( instance, null );
-         return instance;
       }
       catch( Exception e ){
+         e.printStackTrace();
       }
-      return null;
    }
 
 
