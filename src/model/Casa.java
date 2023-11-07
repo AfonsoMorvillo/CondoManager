@@ -10,7 +10,7 @@ public class Casa extends DataAccessObject{
     private String dependentesTitular;
     
     public Casa() {
-        super("casa");
+        super("Casa");
     }
 
     public int getNumeroCasa() {

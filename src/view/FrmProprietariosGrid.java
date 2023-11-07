@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.ProprietarioListener;
 import java.sql.SQLException;
 
 import controller.ResultSetTableModel;
@@ -18,6 +19,7 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
    private Proprietario        data = new Proprietario();
    private boolean             select;
    private boolean             disconnectOnClose;
+   private ProprietarioListener       listener;
 
    private ResultSetTableModel result;
 
@@ -35,65 +37,128 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
 
 
    @SuppressWarnings( "unchecked" )
-   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-   private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-      btnEditar = new utils.CMButton();
-      jScrollPane1 = new javax.swing.JScrollPane();
-      jTableProprietarios = new javax.swing.JTable();
-      btnAdicionar = new utils.CMButton();
-      btnExcluir = new utils.CMButton();
+        btnEditar = new utils.CMButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableProprietarios = new javax.swing.JTable();
+        btnAdicionar = new utils.CMButton();
+        btnExcluir = new utils.CMButton();
+        jButton1 = new javax.swing.JButton();
 
-      setDefaultCloseOperation( javax.swing.WindowConstants.EXIT_ON_CLOSE );
-      setTitle( "Consulta de Casas" );
-      setResizable( false );
-      addWindowListener( new java.awt.event.WindowAdapter() {
-         public void windowClosing( java.awt.event.WindowEvent evt ) {
-            formWindowClosing( evt );
-         }
-      } );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Consulta de Casas");
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-      btnEditar.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/editar-texto.png" ) ) ); // NOI18N
-      btnEditar.setRadius( 25 );
-      btnEditar.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnEditarActionPerformed( evt );
-         }
-      } );
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar-texto.png"))); // NOI18N
+        btnEditar.setRadius(25);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
-      jTableProprietarios.setModel( new javax.swing.table.DefaultTableModel( new Object[][] { { null, null, null, null }, { null, null, null, null }, { null, null, null, null }, { null, null, null, null } }, new String[] { "Title 1", "Title 2", "Title 3", "Title 4" } ) );
-      jScrollPane1.setViewportView( jTableProprietarios );
+        jTableProprietarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableProprietarios);
 
-      btnAdicionar.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/adicionar.png" ) ) ); // NOI18N
-      btnAdicionar.setRadius( 25 );
-      btnAdicionar.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnAdicionarActionPerformed( evt );
-         }
-      } );
+        btnAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/adicionar.png"))); // NOI18N
+        btnAdicionar.setRadius(25);
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
 
-      btnExcluir.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/lixeira.png" ) ) ); // NOI18N
-      btnExcluir.setRadius( 25 );
-      btnExcluir.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnExcluirActionPerformed( evt );
-         }
-      } );
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lixeira.png"))); // NOI18N
+        btnExcluir.setRadius(25);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
-      javax.swing.GroupLayout layout = new javax.swing.GroupLayout( getContentPane() );
-      getContentPane().setLayout( layout );
-      layout.setHorizontalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addContainerGap().addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addComponent( btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 18, 18, 18 ).addComponent( btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 18, 18, 18 ).addComponent( btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 0, 0, Short.MAX_VALUE ) ).addComponent( jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE ) ).addContainerGap() ) );
-      layout.setVerticalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addGap( 90, 90, 90 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addGap( 12, 12, 12 ).addComponent( jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE ).addContainerGap() ) );
+        jButton1.setText("selecionar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-      pack();
-      setLocationRelativeTo( null );
-   }// </editor-fold>//GEN-END:initComponents
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(420, 420, 420))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int linhaSelecionada = jTableProprietarios.getSelectedRow();
+        
+         if( linhaSelecionada != -1 ){
+
+         int codigo = (int)result.getValueAt( linhaSelecionada, 0 );
+          }
+        listener.getLinhaSelecionadaProprietario();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void setListener( ProprietarioListener l ) {
+      listener = l;
+   }
+    
    private void formWindowClosing( java.awt.event.WindowEvent evt ) {// GEN-FIRST:event_formWindowClosing
       if( this.disconnectOnClose ){
          result.disconnectFromDatabase();
       }
+      
+      
    }// GEN-LAST:event_formWindowClosing
 
 
@@ -132,7 +197,23 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
 
 
    private void btnAdicionarActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnAdicionarActionPerformed
-      // TODO add your handling code here:
+       
+      FrmProprietarioForm formularioProprietario;
+      formularioProprietario = new FrmProprietarioForm( null, false, false );
+      formularioProprietario.setVisible( true );
+      // ATUALIZAR APENAS SE HOUVE ALTERACAO/EDICAO
+
+      formularioProprietario.addWindowListener( new java.awt.event.WindowAdapter() {
+         @Override
+         public void windowClosed( java.awt.event.WindowEvent evt ) {
+            try{
+               result.setQuery( getSelect() );
+            }
+            catch( Exception e ){
+               e.printStackTrace();
+            }
+         }
+      } );
    }// GEN-LAST:event_btnAdicionarActionPerformed
 
 
@@ -142,7 +223,7 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
 
 
    private String getSelect() {
-      Select select = new Select( "proprietario" );
+      Select select = new Select( "Proprietario" );
 
       select.add( "idProprietario", "ID" );
       select.add( "nome", "Nome" );
@@ -202,11 +283,12 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
       } );
    }
 
-   // Variables declaration - do not modify//GEN-BEGIN:variables
-   private utils.CMButton          btnAdicionar;
-   private utils.CMButton          btnEditar;
-   private utils.CMButton          btnExcluir;
-   private javax.swing.JScrollPane jScrollPane1;
-   private javax.swing.JTable      jTableProprietarios;
-   // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private utils.CMButton btnAdicionar;
+    private utils.CMButton btnEditar;
+    private utils.CMButton btnExcluir;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableProprietarios;
+    // End of variables declaration//GEN-END:variables
 }
