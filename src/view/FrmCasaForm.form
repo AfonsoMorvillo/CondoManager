@@ -50,9 +50,6 @@
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Propriet&#xe1;rio"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField1ActionPerformed"/>
-      </Events>
     </Component>
     <Component class="utils.CMButton" name="cMButton1">
       <Properties>
@@ -61,6 +58,9 @@
         </Property>
         <Property name="radius" type="int" value="25"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cMButton1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

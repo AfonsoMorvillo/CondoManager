@@ -29,12 +29,11 @@ public class FrmCasasGrid extends javax.swing.JFrame {
         cMButton1 = new utils.CMButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        cMButton2 = new utils.CMButton();
+        btnAdicionar = new utils.CMButton();
         cMButton3 = new utils.CMButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consulta de Casas");
-        setPreferredSize(new java.awt.Dimension(1252, 773));
         setResizable(false);
 
         cMButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar-texto.png"))); // NOI18N
@@ -58,11 +57,11 @@ public class FrmCasasGrid extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        cMButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/adicionar.png"))); // NOI18N
-        cMButton2.setRadius(25);
-        cMButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/adicionar.png"))); // NOI18N
+        btnAdicionar.setRadius(25);
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cMButton2ActionPerformed(evt);
+                btnAdicionarActionPerformed(evt);
             }
         });
 
@@ -82,7 +81,7 @@ public class FrmCasasGrid extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cMButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cMButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -96,7 +95,7 @@ public class FrmCasasGrid extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(90, 90, 90)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cMButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cMButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cMButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
@@ -112,9 +111,25 @@ public class FrmCasasGrid extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cMButton1ActionPerformed
 
-    private void cMButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cMButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cMButton2ActionPerformed
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+        
+              FrmCasaForm formularioCasa;
+      formularioCasa = new FrmCasaForm();
+      formularioCasa.setVisible( true );
+      // ATUALIZAR APENAS SE HOUVE ALTERACAO/EDICAO
+
+      formularioCasa.addWindowListener( new java.awt.event.WindowAdapter() {
+         @Override
+         public void windowClosed( java.awt.event.WindowEvent evt ) {
+            try{
+//               result.setQuery( getSelect() );
+            }
+            catch( Exception e ){
+               e.printStackTrace();
+            }
+         }
+      } );
+    }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void cMButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cMButton3ActionPerformed
         // TODO add your handling code here:
@@ -156,8 +171,8 @@ public class FrmCasasGrid extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private utils.CMButton btnAdicionar;
     private utils.CMButton cMButton1;
-    private utils.CMButton cMButton2;
     private utils.CMButton cMButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
