@@ -10,5 +10,5 @@ package controller;
  */
 public interface ProprietarioListener {
     
-    public void getLinhaSelecionadaProprietario(int codigo ); 
+    public void getLinhaSelecionadaProprietario(int codigo, String nome ); 
 }
