@@ -9,21 +9,21 @@ import java.sql.SQLException;
 
 import controller.ResultSetTableModel;
 import model.Proprietario;
+import model.Veiculos;
 import utils.Select;
 
 /**
  * @author aluno
  */
-public class FrmProprietariosGrid extends javax.swing.JFrame {
+public class FrmVeiculosGrid extends javax.swing.JFrame {
 
-   private Proprietario         data = new Proprietario();
+   private Veiculos         data = new Veiculos();
    private boolean              select;
    private boolean              disconnectOnClose;
-   private ProprietarioListener listener;
 
    private ResultSetTableModel  result;
 
-   public FrmProprietariosGrid( boolean select, boolean disconnectOnClose ) throws SQLException {
+   public FrmVeiculosGrid( boolean select, boolean disconnectOnClose ) throws SQLException {
       initComponents();
 
       this.select = select;
@@ -45,7 +45,6 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
         jTableProprietarios = new javax.swing.JTable();
         btnAdicionar = new utils.CMButton();
         btnExcluir = new utils.CMButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta de Casas");
@@ -93,13 +92,6 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("selecionar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,9 +108,7 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(420, 420, 420))))
+                        .addGap(420, 1000, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,8 +117,7 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
                 .addContainerGap())
@@ -138,24 +127,6 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-
-   private void jButton1ActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_jButton1ActionPerformed
-      // TODO add your handling code here:
-      int linhaSelecionada = jTableProprietarios.getSelectedRow();
-
-      if( linhaSelecionada != -1 ){
-
-         int codigo = (int)result.getValueAt( linhaSelecionada, 0 );
-         String nome = (String)result.getValueAt( linhaSelecionada, 1 );
-         listener.getLinhaSelecionadaProprietario( codigo, nome );
-         dispose();
-      }
-   }// GEN-LAST:event_jButton1ActionPerformed
-
-
-   public void setListener( ProprietarioListener l ) {
-      listener = l;
-   }
 
 
    private void formWindowClosing( java.awt.event.WindowEvent evt ) {// GEN-FIRST:event_formWindowClosing
@@ -172,12 +143,12 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
 
       if( linhaSelecionada != -1 ){
 
-         int codigo = (int)result.getValueAt( linhaSelecionada, 0 );
+         String placa = (String)result.getValueAt( linhaSelecionada, 0 );
 
          try{
-            data.carregar( data, codigo );
+            data.carregar( data, placa );
             System.out.println( data );
-            FrmProprietarioForm crud = new FrmProprietarioForm( data, false, true );
+            FrmVeiculoForm crud = new FrmVeiculoForm( data, false, true );
             crud.setVisible( true );
             crud.addWindowListener( new java.awt.event.WindowAdapter() {
                @Override
@@ -202,12 +173,12 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
 
    private void btnAdicionarActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnAdicionarActionPerformed
 
-      FrmProprietarioForm formularioProprietario;
-      formularioProprietario = new FrmProprietarioForm( null, false, false );
-      formularioProprietario.setVisible( true );
+      FrmVeiculoForm formularioVeiculo;
+      formularioVeiculo = new FrmVeiculoForm( null, false, false );
+      formularioVeiculo.setVisible( true );
       // ATUALIZAR APENAS SE HOUVE ALTERACAO/EDICAO
 
-      formularioProprietario.addWindowListener( new java.awt.event.WindowAdapter() {
+      formularioVeiculo.addWindowListener( new java.awt.event.WindowAdapter() {
          @Override
          public void windowClosed( java.awt.event.WindowEvent evt ) {
             try{
@@ -227,15 +198,15 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
 
 
    private String getSelect() {
-      Select select = new Select( "Proprietario" );
+      Select select = new Select( "Veículos" );
 
-      select.add( "idProprietario", "ID" );
-      select.add( "nome", "Nome" );
-      select.add( "email", "Email" );
-      select.add( "dataNascimento", "Nascimento" );
-      select.add( "cpf", "CPF" );
-      select.add( "rg", "RG" );
-      select.add( "telefone", "Telefone" );
+      select.add( "placaCarro", "Placa" );
+      select.add( "modelo", "Nome" );
+      select.add( "marca", "Email" );
+      select.add( "tipo", "Tipo" );
+      select.add( "cor", "Cor" );
+      select.add( "ano", "Ano" );
+      select.add( "casa", "Casa" );
 
       return select.build();
    }
@@ -260,25 +231,27 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
          }
       }
       catch( ClassNotFoundException ex ){
-         java.util.logging.Logger.getLogger( FrmProprietariosGrid.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
+         java.util.logging.Logger.getLogger(FrmVeiculosGrid.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
       }
       catch( InstantiationException ex ){
-         java.util.logging.Logger.getLogger( FrmProprietariosGrid.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
+         java.util.logging.Logger.getLogger(FrmVeiculosGrid.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
       }
       catch( IllegalAccessException ex ){
-         java.util.logging.Logger.getLogger( FrmProprietariosGrid.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
+         java.util.logging.Logger.getLogger(FrmVeiculosGrid.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
       }
       catch( javax.swing.UnsupportedLookAndFeelException ex ){
-         java.util.logging.Logger.getLogger( FrmProprietariosGrid.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
+         java.util.logging.Logger.getLogger(FrmVeiculosGrid.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
       }
+      // </editor-fold>
+      // </editor-fold>
       // </editor-fold>
       // </editor-fold>
 
       /* Create and display the form */
-      java.awt.EventQueue.invokeLater( new Runnable() {
+      java.awt.EventQueue.invokeLater(new Runnable() {
          public void run() {
             try{
-               new FrmProprietariosGrid( false, true ).setVisible( true );
+               new FrmVeiculosGrid( false, true ).setVisible( true );
             }
             catch( SQLException e ){
                e.printStackTrace();
@@ -291,7 +264,6 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
     private utils.CMButton btnAdicionar;
     private utils.CMButton btnEditar;
     private utils.CMButton btnExcluir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableProprietarios;
     // End of variables declaration//GEN-END:variables

@@ -7,18 +7,49 @@ package view;
 import java.sql.SQLException;
 
 import controller.ProprietarioListener;
+import java.awt.event.WindowEvent;
+import model.Casa;
+import model.Proprietario;
+import utils.StringUtils;
 
 /**
  * @author Afonso
  */
 public class FrmCasaForm extends javax.swing.JFrame {
 
-   /**
-    * Creates new form FrmCasaForm
-    */
-   public FrmCasaForm() {
+   private Casa data;
+   private boolean      disconnectOnClose;
+   private boolean      formEdicao;
+   
+   private int idProprietario;
+  
+   public FrmCasaForm(Casa data, boolean disconnectOnClose, boolean formEdicao) {
       initComponents();
-      textFieldProprietario.setEditable(false);
+      fieldProprietario.setEditable(false);
+      
+      formataCampos();
+      
+      if( this.formEdicao ){
+         // this.jTextFieldCpf.setEnabled( false );
+      }
+      else{
+         this.btnSalvar.setText( "Incluir" );
+      }
+
+      if( data == null ){
+         this.data = new Casa();
+      }
+      else{
+         this.data = data;
+         fillFields();
+      }
+      this.disconnectOnClose = disconnectOnClose;
+   }
+
+   private void formataCampos() {
+//      fieldNome.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.NOME ) );
+//      fieldEmail.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.EMAIL ) );
+
    }
 
 
@@ -29,12 +60,16 @@ public class FrmCasaForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        textFieldProprietario = new utils.TextField();
+        fieldProprietario = new utils.TextField();
         cMButton1 = new utils.CMButton();
+        fieldNumero = new utils.TextField();
+        fieldVagas = new utils.TextField();
+        fieldBloco = new utils.TextField();
+        btnSalvar = new utils.CMButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        textFieldProprietario.setLabelText("Proprietário");
+        fieldProprietario.setLabelText("Proprietário");
 
         cMButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pesquisa.png"))); // NOI18N
         cMButton1.setRadius(25);
@@ -44,31 +79,94 @@ public class FrmCasaForm extends javax.swing.JFrame {
             }
         });
 
+        fieldNumero.setLabelText("Número");
+
+        fieldVagas.setLabelText("Vagas");
+
+        fieldBloco.setLabelText("Bloco");
+
+        btnSalvar.setText("Salvar");
+        btnSalvar.setRadius(25);
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(textFieldProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cMButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(589, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(fieldProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cMButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(fieldBloco, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(fieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(fieldVagas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cMButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textFieldProprietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(418, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cMButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fieldProprietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(fieldBloco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldVagas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
+                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+       
+         try{
+         dataDown();
+         data.save();
+         this.dispatchEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
+      }
+      catch( Exception e ){
+         e.printStackTrace();
+      }
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+     private void fillFields() {
+
+      fieldBloco.setText(data.getBloco());
+      fieldNumero.setText( String.valueOf(data.getNumero()));
+      fieldProprietario.setText( String.valueOf(data.getIdProprietario()));
+      fieldVagas.setText(String.valueOf( data.getVagas()));
+   }
+
+
+   private void dataDown() {
+
+      data.setBloco(fieldBloco.getText() );
+      data.setNumero(Integer.parseInt(fieldNumero.getText()) );
+      data.setVagas(Integer.parseInt(fieldVagas.getText()) );
+      data.setIdProprietario( idProprietario );
+      
+      if (!formEdicao){
+           data.setDataRegistro(StringUtils.getCurrentDateMySQLFormat() );
+      }
+     
+   }
 
    private void cMButton1ActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_cMButton1ActionPerformed
       // TODO add your handling code here:
@@ -79,7 +177,8 @@ public class FrmCasaForm extends javax.swing.JFrame {
          grid.setListener( new ProprietarioListener() {
             @Override
             public void getLinhaSelecionadaProprietario( int codigo, String nome ) {
-               textFieldProprietario.setText(codigo + " - " + nome);
+               idProprietario = codigo;
+               fieldProprietario.setText(codigo + " - " + nome);
             }
          } );
 
@@ -89,49 +188,12 @@ public class FrmCasaForm extends javax.swing.JFrame {
       }
    }// GEN-LAST:event_cMButton1ActionPerformed
 
-
-   /**
-    * @param args
-    *           the command line arguments
-    */
-   public static void main( String args[] ) {
-      /* Set the Nimbus look and feel */
-      // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-      /*
-       * If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel. For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-       */
-      try{
-         for( javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels() ){
-            if( "Nimbus".equals( info.getName() ) ){
-               javax.swing.UIManager.setLookAndFeel( info.getClassName() );
-               break;
-            }
-         }
-      }
-      catch( ClassNotFoundException ex ){
-         java.util.logging.Logger.getLogger( FrmCasaForm.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
-      }
-      catch( InstantiationException ex ){
-         java.util.logging.Logger.getLogger( FrmCasaForm.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
-      }
-      catch( IllegalAccessException ex ){
-         java.util.logging.Logger.getLogger( FrmCasaForm.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
-      }
-      catch( javax.swing.UnsupportedLookAndFeelException ex ){
-         java.util.logging.Logger.getLogger( FrmCasaForm.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
-      }
-      // </editor-fold>
-
-      /* Create and display the form */
-      java.awt.EventQueue.invokeLater( new Runnable() {
-         public void run() {
-            new FrmCasaForm().setVisible( true );
-         }
-      } );
-   }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private utils.CMButton btnSalvar;
     private utils.CMButton cMButton1;
-    private utils.TextField textFieldProprietario;
+    private utils.TextField fieldBloco;
+    private utils.TextField fieldNumero;
+    private utils.TextField fieldProprietario;
+    private utils.TextField fieldVagas;
     // End of variables declaration//GEN-END:variables
 }

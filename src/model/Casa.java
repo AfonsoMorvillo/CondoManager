@@ -3,32 +3,43 @@ package model;
 
 import controller.DataAccessObject;
 import java.util.ArrayList;
+import utils.Select;
 
 public class Casa extends DataAccessObject{
-    private int numeroCasa;
+    private int numero;
     private String bloco;
-    private String dependentesTitular;
+    private int idProprietario;
+    private int vagas;
+    private String dataRegistro;
     
     public Casa() {
         super("Casa");
     }
 
-    public int getNumeroCasa() {
-        return numeroCasa;
+    public int getNumero() {
+        return numero;
     }
 
     public String getBloco() {
         return bloco;
     }
-
-    public String getDependentesTitular() {
-        return dependentesTitular;
+    
+    public int getIdProprietario() {
+        return idProprietario;
+    }
+    
+    public int getVagas() {
+        return vagas;
     }
 
-    public void setNumeroCasa(int numeroCasa) {
-        if(numeroCasa != this.numeroCasa){
-        this.numeroCasa = numeroCasa;
-        addChange("numeroCasa", this.numeroCasa);
+    public String getDataRegistro() {
+        return dataRegistro;
+    }
+
+    public void setNumero(int numero) {
+        if(numero != this.numero){
+        this.numero = numero;
+        addChange("numero", this.numero);
         }
     }
 
@@ -39,25 +50,50 @@ public class Casa extends DataAccessObject{
         }
     }
 
-    public void setDependentesTitular(String dependentesTitular) {
-        if(!dependentesTitular.equals((this.dependentesTitular))){
-        this.dependentesTitular = dependentesTitular;
-        addChange("dependentesTitular", this.dependentesTitular);
+    
+     public void setIdProprietario(int idProprietario) {
+        if(idProprietario != this.idProprietario){
+        this.idProprietario = idProprietario;
+        addChange("idProprietario", this.idProprietario);
         }
     }
     
-    
+      public void setVagas(int vagas) {
+         if(vagas != this.vagas){
+        this.vagas = vagas;
+        addChange("vagas", this.vagas);
+        }
+    }
+      
+      public void setDataRegistro(String dataRegistro) {
+        if( !dataRegistro.equals((this.dataRegistro))){
+        this.dataRegistro = dataRegistro;
+        addChange("dataRegistro", this.dataRegistro);
+        }
+    }
 
     @Override
     protected String getWhereClauseForOneEntry() {
-        return " numeroCasa = " +this.numeroCasa;
+        return " numero = " +this.numero;
     }
 
     @Override
     protected void fill(ArrayList<Object> data) {
-        this.numeroCasa = (int)data.get(0);
-        this.bloco=(String) data.get(1);
-        this.dependentesTitular=(String) data.get(2);
+       
     }
+    
+     public void carregar( Casa instance, int whereClause ) {
+      setNumero(whereClause );
+
+      Select select = new Select();
+
+      select.add( "numero" );
+      select.add( "bloco" );
+      select.add( "dataRegistro" );
+      select.add( "vagas" );
+      select.add( "idProprietario" );
+
+      instance.fill( select.build(), instance );
+   }
     
 }

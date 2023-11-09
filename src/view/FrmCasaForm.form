@@ -23,12 +23,23 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-              <Component id="textFieldProprietario" min="-2" pref="219" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="cMButton1" min="-2" pref="40" max="-2" attributes="0"/>
-              <EmptySpace pref="589" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnSalvar" min="-2" pref="163" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="fieldProprietario" min="-2" pref="219" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="cMButton1" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="fieldBloco" min="-2" pref="152" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="fieldNumero" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="fieldVagas" min="-2" pref="100" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="157" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -36,17 +47,26 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="cMButton1" max="32767" attributes="0"/>
-                  <Component id="textFieldProprietario" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="cMButton1" max="32767" attributes="0"/>
+                      <Component id="fieldProprietario" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="fieldBloco" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fieldNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fieldVagas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="418" max="32767" attributes="0"/>
+              <EmptySpace pref="299" max="32767" attributes="0"/>
+              <Component id="btnSalvar" min="-2" pref="37" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="utils.TextField" name="textFieldProprietario">
+    <Component class="utils.TextField" name="fieldProprietario">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Propriet&#xe1;rio"/>
       </Properties>
@@ -60,6 +80,30 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cMButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="utils.TextField" name="fieldNumero">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="N&#xfa;mero"/>
+      </Properties>
+    </Component>
+    <Component class="utils.TextField" name="fieldVagas">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Vagas"/>
+      </Properties>
+    </Component>
+    <Component class="utils.TextField" name="fieldBloco">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Bloco"/>
+      </Properties>
+    </Component>
+    <Component class="utils.CMButton" name="btnSalvar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Salvar"/>
+        <Property name="radius" type="int" value="25"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

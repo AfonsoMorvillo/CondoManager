@@ -4,19 +4,56 @@
  */
 package view;
 
+import controller.CasaListener;
+import controller.ProprietarioListener;
+import controller.ResultSetTableModel;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Casa;
+import model.Proprietario;
+import utils.Select;
+
 /**
  *
  * @author aluno
  */
 public class FrmCasasGrid extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmCasasGrid
-     */
-    public FrmCasasGrid() {
+     private Casa         data = new Casa();
+   private boolean              select;
+   private boolean              disconnectOnClose;
+   private CasaListener    listener;
+
+
+   private ResultSetTableModel  result;
+    
+    public FrmCasasGrid( boolean select, boolean disconnectOnClose  ) throws SQLException {
         initComponents();
+        
+         this.select = select;
+      // jButtonSelecionar.setEnabled( this.select );
+      this.disconnectOnClose = disconnectOnClose;
+
+      result = new ResultSetTableModel( getSelect() );
+
+      jTableCasas.setModel( result );
     }
 
+      private String getSelect() {
+      Select select = new Select( "Casa c" );
+
+      select.add( "numero", "Número" );
+      select.add( "bloco", "Bloco" );
+      select.add( "nome", "Proprietário" );
+      select.add( "p.idProprietario", "ID" );
+      select.add( "dataRegistro", "Registro" );
+      select.add( "vagas", "Vagas" );
+      select.addLeftJoin("Proprietario p", "p.idProprietario = c.idProprietario");
+
+      return select.build();
+   }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,25 +63,26 @@ public class FrmCasasGrid extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cMButton1 = new utils.CMButton();
+        btnEditar = new utils.CMButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableCasas = new javax.swing.JTable();
         btnAdicionar = new utils.CMButton();
-        cMButton3 = new utils.CMButton();
+        btnExcluir = new utils.CMButton();
+        btnSelecionar = new utils.CMButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consulta de Casas");
         setResizable(false);
 
-        cMButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar-texto.png"))); // NOI18N
-        cMButton1.setRadius(25);
-        cMButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar-texto.png"))); // NOI18N
+        btnEditar.setRadius(25);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cMButton1ActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCasas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -55,7 +93,7 @@ public class FrmCasasGrid extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableCasas);
 
         btnAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/adicionar.png"))); // NOI18N
         btnAdicionar.setRadius(25);
@@ -65,11 +103,18 @@ public class FrmCasasGrid extends javax.swing.JFrame {
             }
         });
 
-        cMButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lixeira.png"))); // NOI18N
-        cMButton3.setRadius(25);
-        cMButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lixeira.png"))); // NOI18N
+        btnExcluir.setRadius(25);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cMButton3ActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        btnSelecionar.setText("Selecionar");
+        btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarActionPerformed(evt);
             }
         });
 
@@ -83,9 +128,11 @@ public class FrmCasasGrid extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cMButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cMButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(257, 257, 257)
+                        .addComponent(btnSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE))
                 .addContainerGap())
@@ -96,10 +143,11 @@ public class FrmCasasGrid extends javax.swing.JFrame {
                 .addGap(90, 90, 90)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cMButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cMButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSelecionar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -107,14 +155,47 @@ public class FrmCasasGrid extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cMButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cMButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cMButton1ActionPerformed
+    public void setListener( CasaListener l ) {
+      listener = l;
+   }
+    
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+       
+         int linhaSelecionada = jTableCasas.getSelectedRow();
+
+      if( linhaSelecionada != -1 ){
+
+         int numero = (int)result.getValueAt( linhaSelecionada, 0 );
+
+         try{
+            data.carregar( data, numero );
+            
+            FrmCasaForm crud = new FrmCasaForm( data, false, true );
+            crud.setVisible( true );
+            crud.addWindowListener( new java.awt.event.WindowAdapter() {
+               @Override
+               public void windowClosed( java.awt.event.WindowEvent evt ) {
+                  try{
+                     System.out.println( "atualizar" );
+                     result.setQuery( getSelect() );
+                  }
+                  catch( Exception e ){
+                     e.printStackTrace();
+                  }
+               }
+            } );
+
+         }
+         catch( Exception e ){
+            e.printStackTrace();
+         }
+      }
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         
               FrmCasaForm formularioCasa;
-      formularioCasa = new FrmCasaForm();
+      formularioCasa = new FrmCasaForm(null, false, false);
       formularioCasa.setVisible( true );
       // ATUALIZAR APENAS SE HOUVE ALTERACAO/EDICAO
 
@@ -131,9 +212,21 @@ public class FrmCasasGrid extends javax.swing.JFrame {
       } );
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
-    private void cMButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cMButton3ActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cMButton3ActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
+        // TODO add your handling code here:
+         int linhaSelecionada = jTableCasas.getSelectedRow();
+
+      if( linhaSelecionada != -1 ){
+
+         int numero = (int)result.getValueAt( linhaSelecionada, 0 );
+         listener.getLinhaSelecionadaCasa(numero );
+         dispose();
+      }
+    }//GEN-LAST:event_btnSelecionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,16 +258,21 @@ public class FrmCasasGrid extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmCasasGrid().setVisible(true);
+                try {
+                    new FrmCasasGrid(false,true).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(FrmCasasGrid.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private utils.CMButton btnAdicionar;
-    private utils.CMButton cMButton1;
-    private utils.CMButton cMButton3;
+    private utils.CMButton btnEditar;
+    private utils.CMButton btnExcluir;
+    private utils.CMButton btnSelecionar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableCasas;
     // End of variables declaration//GEN-END:variables
 }

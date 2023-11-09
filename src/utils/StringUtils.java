@@ -2,6 +2,7 @@ package utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class StringUtils {
@@ -100,5 +101,15 @@ public class StringUtils {
    public static boolean isEmpty(String str) {
       return str == null || str.isEmpty();
    }
+   
+   public static String getCurrentDateMySQLFormat() {
+        // Obtém a data atual
+        Calendar calendar = Calendar.getInstance();
+        Date currentDate = new Date(calendar.getTime().getTime());
+
+        // Formata a data para o formato do banco de dados MySQL
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(currentDate);
+    }
 
 }
