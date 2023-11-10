@@ -70,8 +70,8 @@ public class CMButton extends JButton {
         //  Init Color
 
         setColor(Color.WHITE);
-        colorOver = new Color(179, 250, 160);
-        colorClick = new Color(152, 184, 144);
+        colorOver = new Color(102,204,255);
+        colorClick = new Color(3,155,216);
         borderColor = new Color(187,187,187);
         setContentAreaFilled(false);
         //  Add event mouse

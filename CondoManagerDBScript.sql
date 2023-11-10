@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `condoManager`.`Entregas` (
   `idEntrega` INT NOT NULL,
   `produto` VARCHAR(45) NULL,
   `transportadora` VARCHAR(45) NULL,
-  `data` DATETIME(20) NULL,
+  `data` DATETIME(6) NULL,
   `nomeEntregador` VARCHAR(45) NULL,
   `casa_numeroCasa` INT NOT NULL,
   PRIMARY KEY (`idEntrega`, `casa_numeroCasa`),
@@ -165,3 +165,49 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO `condoManager`.`Proprietario`
+(
+`nome`,
+`email`,
+`telefone`,
+`dataNascimento`,
+`dataAquisicao`,
+`cpf`,
+`rg`)
+VALUES
+('Vitor','vitorhugo@emai.com','16 99321-21354','2004-01-10','2022-10-10','1472853692','656512135');
+
+INSERT INTO `condoManager`.`Casa`
+(`numero`,
+`bloco`,
+`dataRegistro`,
+`vagas`,
+`idProprietario`)
+VALUES
+(44,
+'Bloco A-3',
+'2022-10-10',
+4,
+1);
+
+INSERT INTO `condoManager`.`Veículos`
+(`placaCarro`,
+`modelo`,
+`marca`,
+`tipo`,
+`cor`,
+`ano`,
+`casa`)
+VALUES
+('FEP-0955',
+'Focus',
+'Ford',
+'Carro',
+'Preto',
+'2024',
+44);
+
+
+
+

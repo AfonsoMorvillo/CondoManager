@@ -54,6 +54,8 @@ public class TextField extends JTextField{
     public TextField() {
         setBorder(new EmptyBorder(20, 3, 5, 3));
         setSelectionColor(new Color(76, 204, 255));
+        Color myColor = Color.decode("#d6d9df");
+        setBackground(myColor);
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent me) {

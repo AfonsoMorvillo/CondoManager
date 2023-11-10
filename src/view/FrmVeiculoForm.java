@@ -30,6 +30,7 @@ public class FrmVeiculoForm extends javax.swing.JFrame {
       fieldCasa.setEditable(false);
       
       formataCampos();
+      this.formEdicao = formEdicao;
       
       if( this.formEdicao ){
          // this.jTextFieldCpf.setEnabled( false );
@@ -72,7 +73,8 @@ public class FrmVeiculoForm extends javax.swing.JFrame {
         fieldTipo = new utils.TextField();
         fieldCor = new utils.TextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro Veículos");
 
         fieldCasa.setLabelText("Casa");
 
@@ -203,7 +205,7 @@ public class FrmVeiculoForm extends javax.swing.JFrame {
       FrmCasasGrid grid;
       try{
          grid = new FrmCasasGrid( true, false );
-         grid.setVisible( true );
+         grid.showDialog(this);
          grid.setListener( new CasaListener() {
        
              @Override

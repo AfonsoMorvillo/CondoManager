@@ -67,7 +67,7 @@ public class FrmProprietarioForm extends javax.swing.JFrame {
         fieldTelefone = new utils.TextField();
         btnSalvar = new utils.CMButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         fieldNome.setLabelText("Nome");
 

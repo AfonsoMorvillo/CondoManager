@@ -28,6 +28,7 @@ public class FrmCasaForm extends javax.swing.JFrame {
       fieldProprietario.setEditable(false);
       
       formataCampos();
+      this.formEdicao = formEdicao;
       
       if( this.formEdicao ){
          // this.jTextFieldCpf.setEnabled( false );
@@ -160,10 +161,11 @@ public class FrmCasaForm extends javax.swing.JFrame {
       data.setBloco(fieldBloco.getText() );
       data.setNumero(Integer.parseInt(fieldNumero.getText()) );
       data.setVagas(Integer.parseInt(fieldVagas.getText()) );
-      data.setIdProprietario( idProprietario );
       
       if (!formEdicao){
            data.setDataRegistro(StringUtils.getCurrentDateMySQLFormat() );
+      }else {
+    	  data.setIdProprietario( idProprietario );
       }
      
    }
