@@ -12,276 +12,261 @@ import java.util.List;
 
 public abstract class DataAccessObject {
 
-   private DataBaseConnection      dbConnection;
+	private DataBaseConnection dbConnection;
 
-   private String                  table;
-   private boolean                 novel;
-   private boolean                 changed;
+	private String table;
+	private boolean novel;
+	private boolean changed;
 
-   private HashMap<String, Object> dirty;
+	private HashMap<String, Object> dirty;
 
-   public DataAccessObject( String table ) {
+	public DataAccessObject(String table) {
 
-      dbConnection = DataBaseConnection.getInstance();
-      this.table = table;
-      this.novel = true;
-      this.changed = false;
-      dirty = new HashMap<String, Object>();
-   }
+		dbConnection = DataBaseConnection.getInstance();
+		this.table = table;
+		this.novel = true;
+		this.changed = false;
+		dirty = new HashMap<String, Object>();
+	}
 
+	public void insert() throws SQLException {
 
-   public void insert() throws SQLException {
+		if (this.novel && this.changed) {
 
-      if( this.novel && this.changed ){
+			String sql;
 
-         String sql;
+			sql = "INSERT INTO " + this.table;
 
-         sql = "INSERT INTO " + this.table;
+			String fields = "";
+			String values = "";
+			boolean first = true;
 
-         String fields = "";
-         String values = "";
-         boolean first = true;
+			for (String key : dirty.keySet()) {
 
-         for( String key : dirty.keySet() ){
+				if (first) {
+					first = false;
+				} else {
 
-            if( first ){
-               first = false;
-            }
-            else{
+					fields += ",";
+					values += ",";
+				}
 
-               fields += ",";
-               values += ",";
-            }
+				fields += key;
+				Object value = dirty.get(key);
 
-            fields += key;
-            Object value = dirty.get( key );
+				if (value instanceof String) {
+					values += "'" + value + "'";
+				}
 
-            if( value instanceof String ){
-               values += "'" + value + "'";
-            }
+				else if (value instanceof Date) {
 
-            else if( value instanceof Date ){
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					String formattedDate = sdf.format((Date) value);
+					values += "'" + formattedDate + "'";
+				}
 
-               SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd" );
-               String formattedDate = sdf.format( (Date)value );
-               values += "'" + formattedDate + "'";
-            }
+				else {
+					values += value;
+				}
+			}
 
-            else{
-               values += value;
-            }
-         }
+			sql += " (" + fields + ")";
+			sql += " VALUES ";
+			sql += " (" + values + ")";
 
-         sql += " (" + fields + ")";
-         sql += " VALUES ";
-         sql += " (" + values + ")";
+			dbConnection.execute(sql);
 
-         dbConnection.execute( sql );
+			limpa();
+		}
 
-         limpa();
-      }
+	}
 
-   }
+	public void update() throws SQLException {
 
+		if (!this.novel && this.changed) {
+			String sql;
+			sql = "UPDATE " + this.table + " SET ";
 
-   public void update() throws SQLException {
+			String set = "";
+			boolean first = true;
 
-      if( !this.novel && this.changed ){
-         String sql;
-         sql = "UPDATE " + this.table + " SET ";
+			for (String key : dirty.keySet()) {
 
-         String set = "";
-         boolean first = true;
+				if (first) {
+					first = false;
+				} else {
+					set += ",";
+				}
 
-         for( String key : dirty.keySet() ){
+				set += key + "=";
+				Object value = dirty.get(key);
 
-            if( first ){
-               first = false;
-            }
-            else{
-               set += ",";
-            }
+				if (value instanceof String) {
+					set += "'" + value + "'";
+				} else {
+					set += value;
+				}
 
-            set += key + "=";
-            Object value = dirty.get( key );
+			}
+			sql += set;
+			sql += " WHERE ";
+			sql += getWhereClauseForOneEntry();
 
-            if( value instanceof String ){
-               set += "'" + value + "'";
-            }
-            else{
-               set += value;
-            }
+			dbConnection.execute(sql);
 
-         }
-         sql += set;
-         sql += " WHERE ";
-         sql += getWhereClauseForOneEntry();
+			this.changed = false;
+			dirty.clear();
+		}
+	}
 
-         dbConnection.execute( sql );
+	public void delete() throws SQLException {
+		String sql;
 
-         this.changed = false;
-         dirty.clear();
-      }
-   }
+		sql = "DELETE FROM " + this.table;
+		sql += " WHERE ";
+		sql += getWhereClauseForOneEntry();
+		dbConnection.execute(sql);
+	}
 
+	public void load() throws SQLException {
 
-   public void delete() throws SQLException {
-      String sql;
+		String sql;
 
-      sql = "DELETE FROM " + this.table;
-      sql += " WHERE ";
-      sql += getWhereClauseForOneEntry();
-      dbConnection.execute( sql );
-   }
+		sql = "SELECT * FROM " + this.table + " WHERE " + getWhereClauseForOneEntry();
+		dbConnection.executeSelect(sql);
 
+		boolean status = dbConnection.getResultset().next();
 
-   public void load() throws SQLException {
+		if (status) {
+			ArrayList<Object> data = new ArrayList<Object>();
 
-      String sql;
+			for (int i = 1; i <= dbConnection.getMetaData().getColumnCount(); i++) {
+				data.add(dbConnection.getResultset().getObject(i));
+			}
 
-      sql = "SELECT * FROM " + this.table + " WHERE " + getWhereClauseForOneEntry();
-      dbConnection.executeSelect( sql );
+			fill(data);
+			limpa();
+		}
 
-      boolean status = dbConnection.getResultset().next();
+	}
 
-      if( status ){
-         ArrayList<Object> data = new ArrayList<Object>();
+	public void save() throws SQLException {
 
-         for( int i = 1; i <= dbConnection.getMetaData().getColumnCount(); i++ ){
-            data.add( dbConnection.getResultset().getObject( i ) );
-         }
+		if (this.novel && this.changed) {
+			insert();
+		}
 
-         fill( data );
-         limpa();
-      }
+		if (!this.novel && this.changed) {
+			update();
+		}
+	}
 
-   }
+	public void disconnectFromDatabase() throws SQLException {
+		dbConnection.disconnectFromDatabase();
+	}
 
+	protected List<List<Object>> getAll(String order) throws SQLException {
 
-   public void save() throws SQLException {
+		List<List<Object>> all = new ArrayList<>();
 
-      if( this.novel && this.changed ){
-         insert();
-      }
+		String query = "SELECT * FROM " + this.table + " ORDER BY " + order;
 
-      if( !this.novel && this.changed ){
-         update();
-      }
-   }
+		dbConnection.executeSelect(query);
 
+		while (dbConnection.getResultset().next()) {
 
-   public void disconnectFromDatabase() throws SQLException {
-      dbConnection.disconnectFromDatabase();
-   }
+			ArrayList<Object> data = new ArrayList<Object>();
 
+			for (int i = 1; i <= dbConnection.getMetaData().getColumnCount(); i++) {
+				data.add(dbConnection.getResultset().getObject(i));
+			}
 
-   protected List<List<Object>> getAll( String order ) throws SQLException {
+			all.add(data);
+		}
 
-      List<List<Object>> all = new ArrayList<>();
+		return all;
+	}
 
-      String query = "SELECT * FROM " + this.table + " ORDER BY " + order;
+	protected abstract String getWhereClauseForOneEntry();
 
-      dbConnection.executeSelect( query );
+	protected abstract void fill(ArrayList<Object> data);
 
-      while( dbConnection.getResultset().next() ){
+	/**
+	 * @param campoTabela = Campo da tabela que a varaivel se refere
+	 * @param valor       = Valor que foi alterado/adicionado
+	 */
+	protected void addChange(String campoTabela, Object valor) {
+		dirty.put(campoTabela, valor);
+		this.changed = true;
+	}
 
-         ArrayList<Object> data = new ArrayList<Object>();
+	public <T> void fill(String query, T instance) {
 
-         for( int i = 1; i <= dbConnection.getMetaData().getColumnCount(); i++ ){
-            data.add( dbConnection.getResultset().getObject( i ) );
-         }
+		String sql;
+		sql = query + " FROM " + this.table + " WHERE " + getWhereClauseForOneEntry();
 
-         all.add( data );
-      }
+		try {
+			dbConnection.executeSelect(sql);
+			boolean status = dbConnection.getResultset().next();
+			if (status) {
+				HashMap<String, Object> data = new HashMap<>();
 
-      return all;
-   }
+				for (int i = 1; i <= dbConnection.getMetaData().getColumnCount(); i++) {
+					if (dbConnection.getResultset().getObject(i) != null) {
+						data.put(dbConnection.getMetaData().getColumnLabel(i),
+								dbConnection.getResultset().getObject(i));
+					}
+				}
 
+				preencheObjeto(data, instance);
+			}
 
-   protected abstract String getWhereClauseForOneEntry();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
+	private <T> void preencheObjeto(HashMap<String, Object> data, T instance) {
 
-   protected abstract void fill( ArrayList<Object> data );
+		try {
+			List<Field> declaredFields = Arrays.asList(instance.getClass().getDeclaredFields());
 
+			for (String campo : data.keySet()) {
+				Field field = declaredFields.stream().filter(variavel -> variavel.getName().equals(campo)).findFirst().orElse(null);
 
-   /**
-    * @param campoTabela
-    *           = Campo da tabela que a varaivel se refere
-    * @param valor
-    *           = Valor que foi alterado/adicionado
-    */
-   protected void addChange( String campoTabela, Object valor ) {
-      dirty.put( campoTabela, valor );
-      this.changed = true;
-   }
+				String setterName = "set" + campo.substring(0, 1).toUpperCase() + campo.substring(1); // método set
 
+				Method setterMethod;
+				
+				if ( field != null ) {
+					 setterMethod = instance.getClass().getMethod(setterName, field.getType());
+				}else {
+					 setterMethod = instance.getClass().getMethod(setterName, int.class);
+				}
+				
+				
+				if (setterMethod != null) {
+					if (data.get(campo) instanceof Date) {
+						Date date = (Date) data.get(campo);
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String formattedDate = dateFormat.format(date);
+						setterMethod.invoke(instance, formattedDate);
+						continue;
+					}
+					setterMethod.invoke(instance, data.get(campo));
+				}
+			}
+			Method clear = instance.getClass().getMethod("limpa", null);
+			clear.invoke(instance, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-   public <T> void fill( String query, T instance ) {
-
-      String sql;
-      sql = query + " FROM " + this.table + " WHERE " + getWhereClauseForOneEntry();
-      System.out.println( sql );
-
-      try{
-         dbConnection.executeSelect( sql );
-         boolean status = dbConnection.getResultset().next();
-         if( status ){
-            HashMap<String, Object> data = new HashMap<>();
-
-            for( int i = 1; i <= dbConnection.getMetaData().getColumnCount(); i++ ){
-               if( dbConnection.getResultset().getObject( i ) != null ){
-                  data.put( dbConnection.getMetaData().getColumnLabel( i ), dbConnection.getResultset().getObject( i ) );
-               }
-            }
-
-            preencheObjeto( data, instance );
-         }
-
-      }
-      catch( SQLException e ){
-         e.printStackTrace();
-      }
-   }
-
-
-   private <T> void preencheObjeto( HashMap<String, Object> data, T instance ) {
-
-      try{
-         List<Field> declaredFields = Arrays.asList( instance.getClass().getDeclaredFields() );
-
-         for( String campo : data.keySet() ){
-            Field field = declaredFields.stream().filter( variavel -> variavel.getName().equals( campo ) ).findFirst().orElse( null );
-
-            if( field != null ){
-               String fieldName = field.getName(); // nome do atributo
-               String setterName = "set" + fieldName.substring( 0, 1 ).toUpperCase() + fieldName.substring( 1 ); // método set
-
-               Method setterMethod = instance.getClass().getMethod( setterName, field.getType() );
-               if( setterMethod != null ){
-                  if( data.get( campo ) instanceof Date ){
-                     Date date = (Date)data.get( campo );
-                     SimpleDateFormat dateFormat = new SimpleDateFormat( "yyyy-MM-dd" ); 
-                     String formattedDate = dateFormat.format( date );
-                     setterMethod.invoke( instance, formattedDate );
-                     continue;
-                  }
-                  setterMethod.invoke( instance, data.get( campo ) );
-               }
-            }
-         }
-         Method clear = instance.getClass().getMethod( "limpa", null );
-         clear.invoke( instance, null );
-      }
-      catch( Exception e ){
-         e.printStackTrace();
-      }
-   }
-
-
-   public void limpa() {
-      this.novel = false;
-      this.changed = false;
-      dirty.clear();
-   }
+	public void limpa() {
+		this.novel = false;
+		this.changed = false;
+		dirty.clear();
+	}
 
 }

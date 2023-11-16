@@ -8,7 +8,7 @@ import utils.Select;
 public class Casa extends DataAccessObject{
     private int numero;
     private String bloco;
-    private int idProprietario;
+    private Proprietario proprietario;
     private int vagas;
     private String dataRegistro;
     
@@ -24,8 +24,8 @@ public class Casa extends DataAccessObject{
         return bloco;
     }
     
-    public int getIdProprietario() {
-        return idProprietario;
+    public Proprietario getProprietario() {
+        return proprietario;
     }
     
     public int getVagas() {
@@ -52,10 +52,15 @@ public class Casa extends DataAccessObject{
 
     
      public void setIdProprietario(int idProprietario) {
-        if(idProprietario != this.idProprietario){
-        this.idProprietario = idProprietario;
-        addChange("idProprietario", this.idProprietario);
-        }
+        
+    	 if( proprietario == null ) {
+    		 proprietario = new Proprietario();
+         }           
+         
+    	 proprietario.setIdProprietario(
+    			 idProprietario );
+         proprietario.carregar(this.proprietario, idProprietario);;
+    	 
     }
     
       public void setVagas(int vagas) {
@@ -71,6 +76,40 @@ public class Casa extends DataAccessObject{
         addChange("dataRegistro", this.dataRegistro);
         }
     }
+      
+      public void setProprietario(Proprietario proprietario) {
+    	  
+    	  if( this.proprietario  == null ) {
+              
+              if( proprietario != null ) {
+                  
+                  this.proprietario = new Proprietario();
+                  this.proprietario.setIdProprietario(proprietario.getIdProprietario());
+                  this.proprietario.carregar(this.proprietario, proprietario.getIdProprietario());
+                  addChange("idProprietario", this.proprietario.getIdProprietario());
+                  
+              }
+              
+          } else {
+              
+              if( proprietario == null ) {
+                  
+                  this.proprietario = null;
+                  addChange("idProprietario", null );
+                  
+              } else {
+                  
+                  if( !this.proprietario.equals( proprietario ) ) {
+                      
+                      this.proprietario.setIdProprietario(proprietario.getIdProprietario());
+                      this.proprietario.carregar(this.proprietario, proprietario.getIdProprietario());
+                      addChange("idProprietario", this.proprietario.getIdProprietario());
+                      
+                  }
+                  
+              }
+          }
+      }
 
     @Override
     protected String getWhereClauseForOneEntry() {

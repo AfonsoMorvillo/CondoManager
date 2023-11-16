@@ -4,9 +4,10 @@
  */
 package view;
 
-import controller.ProprietarioListener;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
+import controller.ProprietarioListener;
 import controller.ResultSetTableModel;
 import model.Proprietario;
 import utils.Select;
@@ -23,10 +24,11 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
 
    private ResultSetTableModel  result;
 
-   public FrmProprietariosGrid( boolean select, boolean disconnectOnClose ) throws SQLException {
+   public FrmProprietariosGrid(Proprietario data, boolean select, boolean disconnectOnClose ) throws SQLException {
       initComponents();
 
       this.select = select;
+      this.data = data;
       // jButtonSelecionar.setEnabled( this.select );
       this.disconnectOnClose = disconnectOnClose;
 
@@ -141,15 +143,23 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
 
    private void jButton1ActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_jButton1ActionPerformed
       // TODO add your handling code here:
-      int linhaSelecionada = jTableProprietarios.getSelectedRow();
-
-      if( linhaSelecionada != -1 ){
-
-         int codigo = (int)result.getValueAt( linhaSelecionada, 0 );
-         String nome = (String)result.getValueAt( linhaSelecionada, 1 );
-         listener.getLinhaSelecionadaProprietario( codigo, nome );
-         dispose();
-      }
+	   int row = jTableProprietarios.getSelectedRow();
+       if( row != -1 ) {
+           
+           System.out.println("Selecionar");
+           
+           int codigo = (int) result.getValueAt( row, 0 );
+           
+           this.data.setIdProprietario(codigo);
+           
+           try {
+               this.data.carregar(data, codigo);
+               this.dispatchEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
+           } catch( Exception ex ) {
+               ex.printStackTrace();
+           }
+           
+       }
    }// GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -278,7 +288,7 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
       java.awt.EventQueue.invokeLater( new Runnable() {
          public void run() {
             try{
-               new FrmProprietariosGrid( false, true ).setVisible( true );
+               new FrmProprietariosGrid( null,false, true ).setVisible( true );
             }
             catch( SQLException e ){
                e.printStackTrace();

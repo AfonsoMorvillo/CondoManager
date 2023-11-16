@@ -7,149 +7,145 @@ import utils.Select;
 
 public class Proprietario extends DataAccessObject {
 
-   private int    idProprietario;
-   private String nome;
-   private String email;
-   private String telefone;
-   private String dataNascimento;
-   private String cpf;
-   private String rg;
+	private int idProprietario;
+	private String nome;
+	private String email;
+	private String telefone;
+	private String dataNascimento;
+	private String cpf;
+	private String rg;
 
-   public Proprietario() {
-      super( "Proprietario" );
-   }
+	public Proprietario() {
+		super("Proprietario");
+	}
 
+	public int getIdProprietario() {
+		return idProprietario;
+	}
 
-   public int getIdProprietario() {
-      return idProprietario;
-   }
+	public void setIdProprietario(int idProprietario) {
 
+		if (idProprietario != this.idProprietario) {
 
-   public void setIdProprietario( int idProprietario ) {
+			this.idProprietario = idProprietario;
+			// addChange( "idProprietario", this.idProprietario );
+		}
+	}
 
-      if( idProprietario != this.idProprietario ){
+	public String getNome() {
+		return nome;
+	}
 
-         this.idProprietario = idProprietario;
-         // addChange( "idProprietario", this.idProprietario );
-      }
-   }
+	public void setNome(String nome) {
 
+		if (!nome.equals(this.nome)) {
 
-   public String getNome() {
-      return nome;
-   }
+			this.nome = nome;
+			addChange("nome", this.nome);
+		}
+	}
 
+	public String getEmail() {
+		return email;
+	}
 
-   public void setNome( String nome ) {
+	public void setEmail(String email) {
 
-      if( !nome.equals( this.nome ) ){
+		if (!email.equals(this.email)) {
 
-         this.nome = nome;
-         addChange( "nome", this.nome );
-      }
-   }
+			this.email = email;
+			addChange("email", this.email);
+		}
+	}
 
+	public String getTelefone() {
+		return telefone;
+	}
 
-   public String getEmail() {
-      return email;
-   }
+	public void setTelefone(String telefone) {
 
+		if (!telefone.equals(this.telefone)) {
 
-   public void setEmail( String email ) {
+			this.telefone = telefone;
+			addChange("telefone", this.telefone);
+		}
+	}
 
-      if( !email.equals( this.email ) ){
+	public String getDataNascimento() {
+		return dataNascimento;
+	}
 
-         this.email = email;
-         addChange( "email", this.email );
-      }
-   }
+	public void setDataNascimento(String dataNascimento) {
 
+		if (!dataNascimento.equals(this.dataNascimento)) {
 
-   public String getTelefone() {
-      return telefone;
-   }
+			this.dataNascimento = dataNascimento;
+			addChange("dataNascimento", this.dataNascimento);
+		}
+	}
 
+	public String getCpf() {
+		return cpf;
+	}
 
-   public void setTelefone( String telefone ) {
+	public void setCpf(String cpf) {
 
-      if( !telefone.equals( this.telefone ) ){
+		if (!cpf.equals(this.cpf)) {
 
-         this.telefone = telefone;
-         addChange( "telefone", this.telefone );
-      }
-   }
+			this.cpf = cpf;
+			addChange("cpf", this.cpf);
+		}
+	}
 
+	public String getRg() {
+		return rg;
+	}
 
-   public String getDataNascimento() {
-      return dataNascimento;
-   }
+	public void setRg(String rg) {
 
+		if (!rg.equals(this.rg)) {
 
-   public void setDataNascimento( String dataNascimento ) {
+			this.rg = rg;
+			addChange("rg", this.rg);
+		}
+	}
 
-      if( !dataNascimento.equals( this.dataNascimento ) ){
+	@Override
+	protected String getWhereClauseForOneEntry() {
+		return "idProprietario = " + this.idProprietario;
+	}
 
-         this.dataNascimento = dataNascimento;
-         addChange( "dataNascimento", this.dataNascimento );
-      }
-   }
+	@Override
+	protected void fill(ArrayList<Object> data) {
 
+	}
 
-   public String getCpf() {
-      return cpf;
-   }
+	@Override
+	public boolean equals(Object obj) {
 
+		if (obj instanceof Proprietario) {
+			Proprietario aux = (Proprietario) obj;
 
-   public void setCpf( String cpf ) {
+			if (idProprietario == aux.getIdProprietario()) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-      if( !cpf.equals( this.cpf ) ){
+	public void carregar(Proprietario instance, int whereClause) {
+		setIdProprietario(whereClause);
 
-         this.cpf = cpf;
-         addChange( "cpf", this.cpf );
-      }
-   }
+		Select select = new Select();
 
+		select.add("idProprietario");
+		select.add("nome");
+		select.add("email");
+		select.add("dataNascimento");
+		select.add("cpf");
+		select.add("rg");
+		select.add("telefone");
 
-   public String getRg() {
-      return rg;
-   }
-
-
-   public void setRg( String rg ) {
-
-      if( !rg.equals( this.rg ) ){
-
-         this.rg = rg;
-         addChange( "rg", this.rg );
-      }
-   }
-
-
-   @Override
-   protected String getWhereClauseForOneEntry() {
-      return "idProprietario = " + this.idProprietario;
-   }
-
-
-   @Override
-   protected void fill( ArrayList<Object> data ) {
-
-   }
-
-
-   public void carregar( Proprietario instance, int whereClause ) {
-      setIdProprietario( whereClause );
-
-      Select select = new Select();
-
-      select.add( "idProprietario" );
-      select.add( "nome" );
-      select.add( "email" );
-      select.add( "dataNascimento" );
-      select.add( "cpf" );
-      select.add( "rg" );
-      select.add( "telefone" );
-
-      instance.fill( select.build(), instance );
-   }
+		instance.fill(select.build(), instance);
+	}
 }

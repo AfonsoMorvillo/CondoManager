@@ -4,10 +4,8 @@
  */
 package view;
 
-import java.sql.SQLException;
-
-import controller.ProprietarioListener;
 import java.awt.event.WindowEvent;
+
 import model.Casa;
 import model.Proprietario;
 import utils.StringUtils;
@@ -20,6 +18,8 @@ public class FrmCasaForm extends javax.swing.JFrame {
    private Casa data;
    private boolean      disconnectOnClose;
    private boolean      formEdicao;
+   
+   private Proprietario proprietario;
    
    private int idProprietario;
   
@@ -43,6 +43,7 @@ public class FrmCasaForm extends javax.swing.JFrame {
       else{
          this.data = data;
          fillFields();
+         
       }
       this.disconnectOnClose = disconnectOnClose;
    }
@@ -151,8 +152,19 @@ public class FrmCasaForm extends javax.swing.JFrame {
 
       fieldBloco.setText(data.getBloco());
       fieldNumero.setText( String.valueOf(data.getNumero()));
-      fieldProprietario.setText( String.valueOf(data.getIdProprietario()));
       fieldVagas.setText(String.valueOf( data.getVagas()));
+      
+      if (data.getProprietario() != null) {
+    	  proprietario = new Proprietario();
+    	  proprietario.setIdProprietario(data.getProprietario().getIdProprietario());
+    	  proprietario.carregar(proprietario, proprietario.getIdProprietario());
+    	  
+    	  if (data.getProprietario().getNome() != null) {
+              fieldProprietario.setText(data.getProprietario().getNome());
+          }
+      }
+      
+     
    }
 
 
@@ -164,30 +176,39 @@ public class FrmCasaForm extends javax.swing.JFrame {
       
       if (!formEdicao){
            data.setDataRegistro(StringUtils.getCurrentDateMySQLFormat() );
-      }else {
-    	  data.setIdProprietario( idProprietario );
       }
+      data.setProprietario(proprietario);
      
    }
 
    private void cMButton1ActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_cMButton1ActionPerformed
-      // TODO add your handling code here:
-      FrmProprietariosGrid grid;
-      try{
-         grid = new FrmProprietariosGrid( true, false );
-         grid.setVisible( true );
-         grid.setListener( new ProprietarioListener() {
-            @Override
-            public void getLinhaSelecionadaProprietario( int codigo, String nome ) {
-               idProprietario = codigo;
-               fieldProprietario.setText(codigo + " - " + nome);
-            }
-         } );
 
-      }
-      catch( SQLException e ){
-         e.printStackTrace();
-      }
+	   
+	   try {
+
+           if (proprietario == null) {
+        	   proprietario = new Proprietario();
+           }
+
+           FrmProprietariosGrid jFrameConsulta;
+           jFrameConsulta = new FrmProprietariosGrid(proprietario, true, false);
+
+           jFrameConsulta.addWindowListener(new java.awt.event.WindowAdapter() {
+               @Override
+               public void windowClosed(java.awt.event.WindowEvent evt) {
+                   if (proprietario.getNome() != null) {
+                       fieldProprietario.setText(proprietario.getNome());
+                   }
+               }
+           });
+
+           jFrameConsulta.setVisible(true);
+       } catch (Exception ex) {
+           ex.printStackTrace();
+           proprietario = null;
+       }
+	   
+	 
    }// GEN-LAST:event_cMButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
