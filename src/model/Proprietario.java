@@ -3,149 +3,176 @@ package model;
 import java.util.ArrayList;
 
 import controller.DataAccessObject;
-import utils.Select;
 
 public class Proprietario extends DataAccessObject {
 
-	private int idProprietario;
-	private String nome;
-	private String email;
-	private String telefone;
-	private String dataNascimento;
-	private String cpf;
-	private String rg;
+   private int    idProprietario;
+   private String nome;
+   private String email;
+   private String telefone;
+   private String dataNascimento;
+   private String dataAquisicao;
+   private String cpf;
+   private String rg;
 
-	public Proprietario() {
-		super("Proprietario");
-	}
+   public Proprietario() {
+      super( "Proprietario" );
+   }
 
-	public int getIdProprietario() {
-		return idProprietario;
-	}
 
-	public void setIdProprietario(int idProprietario) {
+   public int getIdProprietario() {
+      return idProprietario;
+   }
 
-		if (idProprietario != this.idProprietario) {
 
-			this.idProprietario = idProprietario;
-			// addChange( "idProprietario", this.idProprietario );
-		}
-	}
+   public void setIdProprietario( int idProprietario ) {
 
-	public String getNome() {
-		return nome;
-	}
+      if( idProprietario != this.idProprietario ){
 
-	public void setNome(String nome) {
+         this.idProprietario = idProprietario;
+      }
+   }
 
-		if (!nome.equals(this.nome)) {
 
-			this.nome = nome;
-			addChange("nome", this.nome);
-		}
-	}
+   public String getNome() {
+      return nome;
+   }
 
-	public String getEmail() {
-		return email;
-	}
 
-	public void setEmail(String email) {
+   public void setNome( String nome ) {
 
-		if (!email.equals(this.email)) {
+      if( !nome.equals( this.nome ) ){
 
-			this.email = email;
-			addChange("email", this.email);
-		}
-	}
+         this.nome = nome;
+         addChange( "nome", this.nome );
+      }
+   }
 
-	public String getTelefone() {
-		return telefone;
-	}
 
-	public void setTelefone(String telefone) {
+   public String getEmail() {
+      return email;
+   }
 
-		if (!telefone.equals(this.telefone)) {
 
-			this.telefone = telefone;
-			addChange("telefone", this.telefone);
-		}
-	}
+   public void setEmail( String email ) {
 
-	public String getDataNascimento() {
-		return dataNascimento;
-	}
+      if( !email.equals( this.email ) ){
 
-	public void setDataNascimento(String dataNascimento) {
+         this.email = email;
+         addChange( "email", this.email );
+      }
+   }
 
-		if (!dataNascimento.equals(this.dataNascimento)) {
 
-			this.dataNascimento = dataNascimento;
-			addChange("dataNascimento", this.dataNascimento);
-		}
-	}
+   public String getTelefone() {
+      return telefone;
+   }
 
-	public String getCpf() {
-		return cpf;
-	}
 
-	public void setCpf(String cpf) {
+   public void setTelefone( String telefone ) {
 
-		if (!cpf.equals(this.cpf)) {
+      if( !telefone.equals( this.telefone ) ){
 
-			this.cpf = cpf;
-			addChange("cpf", this.cpf);
-		}
-	}
+         this.telefone = telefone;
+         addChange( "telefone", this.telefone );
+      }
+   }
 
-	public String getRg() {
-		return rg;
-	}
 
-	public void setRg(String rg) {
+   public String getDataNascimento() {
+      return dataNascimento;
+   }
 
-		if (!rg.equals(this.rg)) {
 
-			this.rg = rg;
-			addChange("rg", this.rg);
-		}
-	}
+   public void setDataNascimento( String dataNascimento ) {
 
-	@Override
-	protected String getWhereClauseForOneEntry() {
-		return "idProprietario = " + this.idProprietario;
-	}
+      if( !dataNascimento.equals( this.dataNascimento ) ){
 
-	@Override
-	protected void fill(ArrayList<Object> data) {
+         this.dataNascimento = dataNascimento;
+         addChange( "dataNascimento", this.dataNascimento );
+      }
+   }
 
-	}
 
-	@Override
-	public boolean equals(Object obj) {
+   public String getdataAquisicao() {
+      return dataAquisicao;
+   }
 
-		if (obj instanceof Proprietario) {
-			Proprietario aux = (Proprietario) obj;
 
-			if (idProprietario == aux.getIdProprietario()) {
-				return true;
-			}
-		}
-		return false;
-	}
+   public void setDataAquisicao( String dataAquisicao ) {
 
-	public void carregar(Proprietario instance, int whereClause) {
-		setIdProprietario(whereClause);
+      if( !dataAquisicao.equals( this.dataAquisicao ) ){
 
-		Select select = new Select();
+         this.dataAquisicao = dataAquisicao;
+         addChange( "dataAquisicao", this.dataAquisicao );
+      }
+   }
 
-		select.add("idProprietario");
-		select.add("nome");
-		select.add("email");
-		select.add("dataNascimento");
-		select.add("cpf");
-		select.add("rg");
-		select.add("telefone");
 
-		instance.fill(select.build(), instance);
-	}
+   public String getCpf() {
+      return cpf;
+   }
+
+
+   public void setCpf( String cpf ) {
+
+      if( !cpf.equals( this.cpf ) ){
+
+         this.cpf = cpf;
+         addChange( "cpf", this.cpf );
+      }
+   }
+
+
+   public String getRg() {
+      return rg;
+   }
+
+
+   public void setRg( String rg ) {
+
+      if( !rg.equals( this.rg ) ){
+
+         this.rg = rg;
+         addChange( "rg", this.rg );
+      }
+   }
+
+
+   @Override
+   protected String getWhereClauseForOneEntry() {
+      return "idProprietario = " + this.idProprietario;
+   }
+
+
+   @Override
+   protected void fill( ArrayList<Object> data ) {
+      this.idProprietario = (int)data.get( 0 );
+      this.nome = (String)data.get( 1 );
+      this.email = (String)data.get( 2 );
+      this.telefone = (String)data.get( 3 );
+      if (data.get(4) != null){
+          this.dataNascimento = (String) data.get(4).toString();
+      }
+       if (data.get(5) != null){
+          this.dataAquisicao = (String) data.get(5).toString();
+      }
+      
+      this.cpf = (String)data.get( 6 );
+      this.rg = (String)data.get( 7 );
+   }
+
+
+   @Override
+   public boolean equals( Object obj ) {
+
+      if( obj instanceof Proprietario ){
+         Proprietario aux = (Proprietario)obj;
+
+         if( idProprietario == aux.getIdProprietario() ){
+            return true;
+         }
+      }
+      return false;
+   }
 }

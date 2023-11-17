@@ -39,8 +39,6 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `condoManager`.`Casa` (
   `numero` INT NOT NULL,
   `bloco` VARCHAR(45) NULL,
-  `titular` DATE NULL,
-  `dataAtualizacao` DATE NULL,
   `dataRegistro` DATE NULL,
   `vagas` INT NULL,
   `idProprietario` INT NOT NULL,
@@ -58,7 +56,7 @@ ENGINE = InnoDB;
 -- Table `condoManager`.`Morador`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `condoManager`.`Morador` (
-  `codigo` BIGINT NOT NULL AUTO_INCREMENT,
+  `codigo` INT AUTO_INCREMENT,
   `nome` VARCHAR(50) NULL,
   `dataNascimento` DATE NULL,
   `rg` VARCHAR(11) NULL,

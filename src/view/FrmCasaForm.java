@@ -5,6 +5,7 @@
 package view;
 
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 
 import model.Casa;
 import model.Proprietario;
@@ -15,21 +16,20 @@ import utils.StringUtils;
  */
 public class FrmCasaForm extends javax.swing.JFrame {
 
-   private Casa data;
+   private Casa         casa;
    private boolean      disconnectOnClose;
    private boolean      formEdicao;
-   
+
    private Proprietario proprietario;
-   
-   private int idProprietario;
-  
-   public FrmCasaForm(Casa data, boolean disconnectOnClose, boolean formEdicao) {
+
+   public FrmCasaForm( Casa casa, boolean disconnectOnClose, boolean formEdicao ) throws SQLException, Exception {
       initComponents();
-      fieldProprietario.setEditable(false);
-      
+
       formataCampos();
+      fieldProprietario.setEditable( false );
+
       this.formEdicao = formEdicao;
-      
+
       if( this.formEdicao ){
          // this.jTextFieldCpf.setEnabled( false );
       }
@@ -37,20 +37,28 @@ public class FrmCasaForm extends javax.swing.JFrame {
          this.btnSalvar.setText( "Incluir" );
       }
 
-      if( data == null ){
-         this.data = new Casa();
+      if( casa == null ){
+         this.casa = new Casa();
       }
       else{
-         this.data = data;
+         this.casa = casa;
+
+         if( this.casa.getProprietario() != null ){
+            this.proprietario = new Proprietario();
+            this.proprietario.setIdProprietario( casa.getProprietario().getIdProprietario() );
+            this.proprietario.load();
+         }
+
          fillFields();
-         
+
       }
       this.disconnectOnClose = disconnectOnClose;
    }
 
+
    private void formataCampos() {
-//      fieldNome.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.NOME ) );
-//      fieldEmail.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.EMAIL ) );
+      // fieldNome.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.NOME ) );
+      // fieldEmail.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.EMAIL ) );
 
    }
 
@@ -69,7 +77,7 @@ public class FrmCasaForm extends javax.swing.JFrame {
         fieldBloco = new utils.TextField();
         btnSalvar = new utils.CMButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         fieldProprietario.setLabelText("Proprietário");
 
@@ -136,79 +144,74 @@ public class FrmCasaForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-       
-         try{
+
+   private void btnSalvarActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnSalvarActionPerformed
+
+      try{
          dataDown();
-         data.save();
+         casa.save();
          this.dispatchEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
       }
       catch( Exception e ){
          e.printStackTrace();
       }
-    }//GEN-LAST:event_btnSalvarActionPerformed
-
-     private void fillFields() {
-
-      fieldBloco.setText(data.getBloco());
-      fieldNumero.setText( String.valueOf(data.getNumero()));
-      fieldVagas.setText(String.valueOf( data.getVagas()));
-      
-      if (data.getProprietario() != null) {
-    	  proprietario = new Proprietario();
-    	  proprietario.setIdProprietario(data.getProprietario().getIdProprietario());
-    	  proprietario.carregar(proprietario, proprietario.getIdProprietario());
-    	  
-    	  if (data.getProprietario().getNome() != null) {
-              fieldProprietario.setText(data.getProprietario().getNome());
-          }
-      }
-      
-     
    }
 
 
-   private void dataDown() {
+   private void fillFields() {
 
-      data.setBloco(fieldBloco.getText() );
-      data.setNumero(Integer.parseInt(fieldNumero.getText()) );
-      data.setVagas(Integer.parseInt(fieldVagas.getText()) );
-      
-      if (!formEdicao){
-           data.setDataRegistro(StringUtils.getCurrentDateMySQLFormat() );
+      fieldBloco.setText( casa.getBloco() );
+      fieldNumero.setText( String.valueOf( casa.getNumero() ) );
+      fieldVagas.setText( String.valueOf( casa.getVagas() ) );
+
+      if( casa.getProprietario().getNome() != null ){
+         fieldProprietario.setText( casa.getProprietario().getNome() );
       }
-      data.setProprietario(proprietario);
-     
+
    }
+
+
+   private void dataDown() throws Exception {
+
+      casa.setBloco( fieldBloco.getText() );
+      casa.setNumero( Integer.parseInt( fieldNumero.getText() ) );
+      casa.setVagas( Integer.parseInt( fieldVagas.getText() ) );
+      casa.setProprietario( proprietario );
+      
+      if( !formEdicao ){
+         casa.setDataRegistro( StringUtils.getCurrentDateMySQLFormat() );
+      }
+
+   }
+
 
    private void cMButton1ActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_cMButton1ActionPerformed
 
-	   
-	   try {
+      try{
 
-           if (proprietario == null) {
-        	   proprietario = new Proprietario();
-           }
+         if( proprietario == null ){
+            proprietario = new Proprietario();
+         }
 
-           FrmProprietariosGrid jFrameConsulta;
-           jFrameConsulta = new FrmProprietariosGrid(proprietario, true, false);
+         FrmProprietariosGrid jFrameConsulta;
+         jFrameConsulta = new FrmProprietariosGrid( proprietario, true, false );
 
-           jFrameConsulta.addWindowListener(new java.awt.event.WindowAdapter() {
-               @Override
-               public void windowClosed(java.awt.event.WindowEvent evt) {
-                   if (proprietario.getNome() != null) {
-                       fieldProprietario.setText(proprietario.getNome());
-                   }
+         jFrameConsulta.addWindowListener( new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed( java.awt.event.WindowEvent evt ) {
+               if( proprietario.getNome() != null ){
+                  fieldProprietario.setText( proprietario.getNome() );
                }
-           });
+            }
+         } );
 
-           jFrameConsulta.setVisible(true);
-       } catch (Exception ex) {
-           ex.printStackTrace();
-           proprietario = null;
-       }
-	   
-	 
+         jFrameConsulta.setVisible( true );
+      }
+      catch( Exception ex ){
+         ex.printStackTrace();
+         proprietario = null;
+      }
+
    }// GEN-LAST:event_cMButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
