@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.LogTracker;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
@@ -61,6 +62,7 @@ public class FrmEntregaForm extends javax.swing.JFrame {
       // fieldEmail.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.EMAIL ) );
 
    }
+   
 
 
    /**
@@ -148,7 +150,7 @@ public class FrmEntregaForm extends javax.swing.JFrame {
          casasConsulta.setVisible( true );
       }
       catch( Exception ex ){
-         ex.printStackTrace();
+         LogTracker.getInstance().addException(ex,true,null);
          casa = null;
       }
    }// GEN-LAST:event_btnSelecionarCasaActionPerformed
@@ -162,7 +164,8 @@ public class FrmEntregaForm extends javax.swing.JFrame {
          this.dispatchEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
       }
       catch( Exception e ){
-         e.printStackTrace();
+         LogTracker.getInstance().addException(e,true,null);
+         
       }
    }// GEN-LAST:event_btnSalvarActionPerformed
 

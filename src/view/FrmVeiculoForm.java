@@ -4,8 +4,10 @@
  */
 package view;
 
+import controller.LogTracker;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 import model.Casa;
 import model.Veiculos;
@@ -51,7 +53,13 @@ public class FrmVeiculoForm extends javax.swing.JFrame {
       }
       this.disconnectOnClose = disconnectOnClose;
    }
-
+   private void checkInput () throws Exception {
+        if (!fieldAno.getText().trim().matches("\\d{4}")) {
+            JOptionPane.showMessageDialog(null, "“O formato da ano deve ser ex:2004 ou seja apenas o anoo", "Erro", JOptionPane.ERROR_MESSAGE);
+            throw new Exception("erro");
+        }
+     
+    }
 
    private void formataCampos() {
       // fieldNome.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.NOME ) );
@@ -123,12 +131,13 @@ public class FrmVeiculoForm extends javax.swing.JFrame {
    private void btnSalvarActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnSalvarActionPerformed
 
       try{
+         checkInput();
          dataDown();
          veiculo.save();
          this.dispatchEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
       }
       catch( Exception e ){
-         e.printStackTrace();
+         LogTracker.getInstance().addException(e,true,null);
       }
    }// GEN-LAST:event_btnSalvarActionPerformed
 

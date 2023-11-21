@@ -4,8 +4,10 @@
  */
 package view;
 
+import controller.LogTracker;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 import model.Casa;
 import model.Morador;
@@ -58,7 +60,20 @@ public class FrmMoradorForm extends javax.swing.JFrame {
    private void formataCampos() {
       // fieldNome.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.NOME ) );
       // fieldEmail.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.EMAIL ) );
-
+   }
+   private void checkInput () throws Exception {
+        if (!fieldCelular.getText().trim().matches("(\\+\\d{2,})?\\(\\d{2}\\)\\d{4,5}-\\d{4}")) {
+            JOptionPane.showMessageDialog(null, "“O telefone deve estar no formato '(XX) XXXX-XXXX' ou '(XX) XXXXXXXXX'.", "Erro", JOptionPane.ERROR_MESSAGE);
+            throw new Exception("erro");
+        }
+         if (!fieldCpf.getText().trim().matches("\\\\d{3}.\\\\d{3}.\\\\d{3}-\\\\d{2}")) {
+        JOptionPane.showMessageDialog(null, "O cpf deve estr no formato XXX.XXX.XXX-XX.", "Erro", JOptionPane.ERROR_MESSAGE);
+        throw new Exception("erro");
+       }
+       if (!fieldDataNascimento.getText().trim().matches("\\d{4}-\\d{2}-\\d{2}")) {
+        JOptionPane.showMessageDialog(null, "A Data de Nascimento deve estar no formato AAAA-MM-DD.", "Erro", JOptionPane.ERROR_MESSAGE);
+        throw new Exception("erro");
+    }
    }
 
 
@@ -207,7 +222,7 @@ public class FrmMoradorForm extends javax.swing.JFrame {
          consultaCasas.setVisible( true );
       }
       catch( Exception ex ){
-         ex.printStackTrace();
+          LogTracker.getInstance().addException(ex,true,null); // se n tem frame passa null
          casa = null;
       }
     }//GEN-LAST:event_btnConsultaCasaActionPerformed
@@ -216,12 +231,13 @@ public class FrmMoradorForm extends javax.swing.JFrame {
    private void btnSalvarActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnSalvarActionPerformed
 
       try{
+         checkInput();
          dataDown();
          morador.save();
          this.dispatchEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
       }
       catch( Exception e ){
-         e.printStackTrace();
+       LogTracker.getInstance().addException(e,true,null); // se n tem frame passa null
       }
    }// GEN-LAST:event_btnSalvarActionPerformed
 

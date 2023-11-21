@@ -4,7 +4,9 @@
  */
 package view;
 
+import controller.LogTracker;
 import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
 
 import model.Proprietario;
 import model.Visitante;
@@ -51,6 +53,17 @@ public class FrmVisitanteForm extends javax.swing.JFrame {
       // fieldEmail.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.EMAIL ) );
 
    }
+   
+   private void checkInput () throws Exception {
+        if (!fieldCelular.getText().trim().matches("(\\+\\d{2,})?\\(\\d{2}\\)\\d{4,5}-\\d{4}")) {
+            JOptionPane.showMessageDialog(null, "“O telefone deve estar no formato '(XX) XXXX-XXXX' ou '(XX) XXXXXXXXX'.", "Erro", JOptionPane.ERROR_MESSAGE);
+            throw new Exception("erro");
+        } 
+         if (!fieldRg.getText().trim().matches("\\d{2}.\\d{3}.\\d{3}.\\d{1}")) {
+        JOptionPane.showMessageDialog(null, "O rg deve estr no formato XX.XXX.XXX-X.", "Erro", JOptionPane.ERROR_MESSAGE);
+        throw new Exception("erro");
+       }
+   }
 
 
    /**
@@ -96,12 +109,13 @@ public class FrmVisitanteForm extends javax.swing.JFrame {
 
    private void btnSalvarActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnSalvarActionPerformed
       try{
+         checkInput();
          dataDown();
          data.save();
          this.dispatchEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
       }
       catch( Exception e ){
-         e.printStackTrace();
+        LogTracker.getInstance().addException(e,true,null);
       }
    }// GEN-LAST:event_btnSalvarActionPerformed
 

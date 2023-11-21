@@ -22,85 +22,91 @@ import org.w3c.dom.Node;
 
 public class LogTracker {
 
-   private static final LogTracker singleton = new LogTracker();
+  private static final LogTracker singleton = new LogTracker();
+    
+    private final String fileName = "log-track.xml";
+    private Document doc;
+    private Node root;
+    
+    private LogTracker() {
+        
+        try {
+        
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
-   private final String            fileName  = "log-track.xml";
-   private Document                doc;
-   private Node                    root;
+            File file = new File(fileName);
+                    
+            if( file.exists() ) {
+                
+                doc = docBuilder.parse( file );
+                doc.getDocumentElement().normalize();
+                root = doc.getDocumentElement();
 
-   private LogTracker() {
+            } else {
 
-      try{
-         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-         DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+                doc = docBuilder.newDocument();
+                root = doc.createElement( "log" );
+                doc.appendChild(root);
+                save();
 
-         if( new File( fileName ).exists() ){
-            doc = docBuilder.parse( fileName );
-            doc.getDocumentElement().normalize();
+            }        
+        
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+    }
+    
+    public static LogTracker getInstance() {
+        return singleton;
+    }
+    
+    private void save() {
+        
+        try {
+                
+                FileOutputStream output = new FileOutputStream(fileName);
+                TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                Transformer transformer = transformerFactory.newTransformer();
+                DOMSource source = new DOMSource( doc );
+                StreamResult result = new StreamResult( output );
 
-            root = doc.getDocumentElement();
-         }
-         else{
-            doc = docBuilder.newDocument();
-            root = doc.createElement( "log" );
-            doc.appendChild( root );
-            save();
-         }
+                transformer.setOutputProperty( OutputKeys.OMIT_XML_DECLARATION, "yes" );
+                transformer.setOutputProperty( OutputKeys.INDENT, "yes" );
+                transformer.setOutputProperty( OutputKeys.ENCODING,"UTF-8" );
+                transformer.transform( source, result );
+        
+        } catch ( Exception ex ) {
+            ex.printStackTrace();
+        }
+        
+    }
+    
+    public void addException( Exception exception, boolean showDialog, JFrame frame ) {
+        
+        exception.printStackTrace();
+        
+        Calendar date = Calendar.getInstance();
+        String time = date.getTime().toString();
+        
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        exception.printStackTrace(pw);
+        
+        Element element = doc.createElement("exception");
+        
+        element.setAttribute( "time", time );
+        element.setTextContent( sw.toString() );
+        
+        root.appendChild(element);
+        
+        save();
+        
+        if( showDialog ) {
+            JOptionPane.showMessageDialog( frame, exception.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE );
+        }
+        
+    }
 
-      }
-      catch( Exception e ){
-         e.printStackTrace();
-      }
-
-   }
-
-
-   public static LogTracker getInstance() {
-      return singleton;
-   }
-
-
-   private void save() {
-      try{
-
-         FileOutputStream output = new FileOutputStream( fileName );
-         TransformerFactory transformerFactory = TransformerFactory.newInstance();
-         Transformer transformer = transformerFactory.newTransformer();
-         DOMSource source = new DOMSource( doc );
-         StreamResult result = new StreamResult( output );
-
-         transformer.setOutputProperty( OutputKeys.OMIT_XML_DECLARATION, "yes" );
-         transformer.setOutputProperty( OutputKeys.INDENT, "yes" );
-         transformer.setOutputProperty( OutputKeys.ENCODING, "UTF-8" );
-         transformer.transform( source, result );
-      }
-      catch( Exception e ){
-         e.printStackTrace();
-      }
-   }
-   
-   public void addException (Exception exception, boolean showDialog, JFrame frame) {
-      
-      exception.printStackTrace();
-      
-      Calendar date = Calendar.getInstance();
-      String time = date.getTime().toString();
-      
-      StringWriter sw = new StringWriter();
-      PrintWriter pw = new PrintWriter( sw );
-      exception.printStackTrace( pw );
-      
-      Element element = doc.createElement( "exception" );
-      
-      element.setAttribute( "time", time );
-      element.setTextContent( sw.toString() );
-      
-      root.appendChild( element );
-      
-      save();
-      
-      if (showDialog) {
-         JOptionPane.showMessageDialog( frame, exception.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE );
-      }
-   }
 }

@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.LogTracker;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
@@ -153,7 +154,7 @@ public class FrmCasaForm extends javax.swing.JFrame {
          this.dispatchEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
       }
       catch( Exception e ){
-         e.printStackTrace();
+         LogTracker.getInstance().addException(e,true,null);
       }
    }
 
