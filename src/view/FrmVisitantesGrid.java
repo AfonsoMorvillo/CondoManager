@@ -79,7 +79,7 @@ public class FrmVisitantesGrid extends javax.swing.JFrame {
         btnSelecionar = new utils.CMButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Consulta de Casas");
+        setTitle("Consulta de Visitantes");
         setResizable(false);
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar-texto.png"))); // NOI18N
