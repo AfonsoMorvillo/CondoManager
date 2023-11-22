@@ -46,7 +46,7 @@ public class FrmEntregasGrid extends javax.swing.JFrame {
         btnExcluir = new utils.CMButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Consulta de Veículos");
+        setTitle("Consulta de Entregas");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {

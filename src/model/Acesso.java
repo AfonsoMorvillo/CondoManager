@@ -141,8 +141,13 @@ public class Acesso extends DataAccessObject {
    @Override
    protected void fill( ArrayList<Object> data ) throws Exception {
       this.idAcesso = (int)data.get( 0 );
-      this.entrada = (String)data.get( 1 );
-      this.saida = (String)data.get( 2 );
+      if (data.get(1) != null) {
+    	  this.entrada = (String)data.get( 1 ).toString();
+      }
+
+      if (data.get(2) != null) {
+    	  this.saida = (String)data.get( 2 ).toString();
+      }
       if( data.get( 3 ) != null ){
 
          if( casa == null ){

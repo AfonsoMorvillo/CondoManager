@@ -111,5 +111,14 @@ public class StringUtils {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(currentDate);
     }
+   
+   public static String dateToString(Date date) {
+       if (date == null) {
+           return "";
+       }
+
+       SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+       return sdf.format(date);
+   }
 
 }

@@ -181,11 +181,19 @@ public class Entrega extends DataAccessObject {
       if( data.get( 3 ) != null ){
          this.horario_entrega = (String)data.get( 3 ).toString();
       }
+      
       if( data.get( 4 ) != null ){
          this.retirada = (String)data.get( 4 ).toString();
+      }else {
+    	  this.retirada = "";
       }
+      
+      
+      
       if( data.get( 5 ) != null ){
          this.horario_retirada = (String)data.get( 5 ).toString();
+      }else {
+    	  this.horario_retirada = "";
       }
 
       this.status = (String)data.get( 6 );
