@@ -33,7 +33,7 @@ public class FrmMenu extends javax.swing.JFrame {
         FrmCasaForm = new javax.swing.JMenuItem();
         FrmCasaGrid = new javax.swing.JMenuItem();
         FrmEntregaForm = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        FmrEntregaGrid = new javax.swing.JMenuItem();
         FrmMoradorForm = new javax.swing.JMenuItem();
         FrmMoradorGrid = new javax.swing.JMenuItem();
         FrmProprietarioForm = new javax.swing.JMenuItem();
@@ -87,21 +87,36 @@ public class FrmMenu extends javax.swing.JFrame {
         });
         jMenuAgendamento.add(FrmEntregaForm);
 
-        jMenuItem5.setText("EntregaGrid");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        FmrEntregaGrid.setText("EntregaGrid");
+        FmrEntregaGrid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                FmrEntregaGridActionPerformed(evt);
             }
         });
-        jMenuAgendamento.add(jMenuItem5);
+        jMenuAgendamento.add(FmrEntregaGrid);
 
         FrmMoradorForm.setText("MoradorForm");
+        FrmMoradorForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FrmMoradorFormActionPerformed(evt);
+            }
+        });
         jMenuAgendamento.add(FrmMoradorForm);
 
         FrmMoradorGrid.setText("MoradorGrid");
+        FrmMoradorGrid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FrmMoradorGridActionPerformed(evt);
+            }
+        });
         jMenuAgendamento.add(FrmMoradorGrid);
 
         FrmProprietarioForm.setText("ProprietarioForm");
+        FrmProprietarioForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FrmProprietarioFormActionPerformed(evt);
+            }
+        });
         jMenuAgendamento.add(FrmProprietarioForm);
 
         FrmProprietarioGrid.setText("ProprietarioGrid");
@@ -113,6 +128,11 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenuAgendamento.add(FrmProprietarioGrid);
 
         FrmVeiculosForm.setText("VeiculoForm");
+        FrmVeiculosForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FrmVeiculosFormActionPerformed(evt);
+            }
+        });
         jMenuAgendamento.add(FrmVeiculosForm);
 
         FrmVeiculosGrid.setText("VeiculoGrid");
@@ -124,6 +144,11 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenuAgendamento.add(FrmVeiculosGrid);
 
         FrmVisitanteForm.setText("VisitanteForm");
+        FrmVisitanteForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FrmVisitanteFormActionPerformed(evt);
+            }
+        });
         jMenuAgendamento.add(FrmVisitanteForm);
 
         FrmVisitanteGrid.setText("VisitanteGrid");
@@ -153,16 +178,28 @@ public class FrmMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void FrmProprietarioGridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FrmProprietarioGridActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FrmProprietarioGridActionPerformed
+  try {
+        FrmProprietariosGrid FrmProprietarioGrid = new FrmProprietariosGrid(null,false, true);
+        FrmProprietarioGrid.setVisible(true);
+        } catch (Exception ex) {
+        ex.printStackTrace();   
+      }    }//GEN-LAST:event_FrmProprietarioGridActionPerformed
 
     private void FrmVeiculosGridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FrmVeiculosGridActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FrmVeiculosGridActionPerformed
+  try {
+         FrmVeiculosGrid  FrmVeiculosGrid = new  FrmVeiculosGrid(false, true);
+         FrmVeiculosGrid.setVisible(true);
+        } catch (Exception ex) {
+        ex.printStackTrace();   
+      }    }//GEN-LAST:event_FrmVeiculosGridActionPerformed
 
     private void FrmVisitanteGridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FrmVisitanteGridActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FrmVisitanteGridActionPerformed
+  try {
+        FrmVisitantesGrid FrmVisitanteGrid = new FrmVisitantesGrid(null,false, true);
+        FrmVisitanteGrid.setVisible(true);
+        } catch (Exception ex) {
+        ex.printStackTrace();   
+      }    }//GEN-LAST:event_FrmVisitanteGridActionPerformed
 
     private void FrmAcessoFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FrmAcessoFormActionPerformed
        try {
@@ -207,12 +244,77 @@ public class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_FrmCasaGridActionPerformed
 
     private void FrmEntregaFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FrmEntregaFormActionPerformed
-        // TODO add your handling code here:
+          try {
+        FrmAcessoForm FrmAcessoForm;
+        FrmAcessoForm = new FrmAcessoForm(null, true,true);
+        FrmAcessoForm.setVisible(true);
+        
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }  
     }//GEN-LAST:event_FrmEntregaFormActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    private void FmrEntregaGridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FmrEntregaGridActionPerformed
+         try {
+        FrmEntregasGrid FrmEntregasGrid = new FrmEntregasGrid(false, true);
+        FrmEntregasGrid.setVisible(true);
+        } catch (Exception ex) {
+        ex.printStackTrace();   
+      }
+    }//GEN-LAST:event_FmrEntregaGridActionPerformed
+
+    private void FrmMoradorFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FrmMoradorFormActionPerformed
+         try {
+        FrmMoradorForm FrmMoradorForm;
+        FrmMoradorForm = new FrmMoradorForm(null, true,true);
+        FrmMoradorForm.setVisible(true);
+        
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }  
+    }//GEN-LAST:event_FrmMoradorFormActionPerformed
+
+    private void FrmMoradorGridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FrmMoradorGridActionPerformed
+          try {
+        FrmMoradoresGrid FrmMoradorGrid = new FrmMoradoresGrid(false, true);
+        FrmMoradorGrid.setVisible(true);
+        } catch (Exception ex) {
+        ex.printStackTrace();   
+      }
+    }//GEN-LAST:event_FrmMoradorGridActionPerformed
+
+    private void FrmProprietarioFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FrmProprietarioFormActionPerformed
+        try {
+        FrmProprietarioForm FrmProprietarioForm;
+        FrmProprietarioForm = new FrmProprietarioForm(null, true,true);
+        FrmProprietarioForm.setVisible(true);
+        
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }  
+    }//GEN-LAST:event_FrmProprietarioFormActionPerformed
+
+    private void FrmVeiculosFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FrmVeiculosFormActionPerformed
+        try {
+         FrmVeiculoForm  FrmVeiculoForm;
+         FrmVeiculoForm = new  FrmVeiculoForm(null, true,true);
+         FrmVeiculoForm.setVisible(true);
+        
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }  
+    }//GEN-LAST:event_FrmVeiculosFormActionPerformed
+
+    private void FrmVisitanteFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FrmVisitanteFormActionPerformed
+         try {
+        FrmVisitanteForm FrmVisitanteForm;
+        FrmVisitanteForm = new FrmVisitanteForm(null, true,true);
+        FrmVisitanteForm.setVisible(true);
+        
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }  
+    }//GEN-LAST:event_FrmVisitanteFormActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,6 +352,7 @@ public class FrmMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem FmrEntregaGrid;
     private javax.swing.JMenuItem FrmAcessoForm;
     private javax.swing.JMenuItem FrmAcessoGrid;
     private javax.swing.JMenuItem FrmCasaForm;
@@ -265,6 +368,5 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem FrmVisitanteGrid;
     private javax.swing.JMenu jMenuAgendamento;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
 }
