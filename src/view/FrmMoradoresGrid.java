@@ -32,7 +32,7 @@ public class FrmMoradoresGrid extends javax.swing.JFrame {
 
       result = new ResultSetTableModel( getSelect() );
 
-      jTableCasas.setModel( result );
+      jTableMoradores.setModel( result );
    }
 
    // public void showDialog(JFrame parent) {
@@ -68,7 +68,7 @@ public class FrmMoradoresGrid extends javax.swing.JFrame {
 
         btnEditar = new utils.CMButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableCasas = new javax.swing.JTable();
+        jTableMoradores = new javax.swing.JTable();
         btnAdicionar = new utils.CMButton();
         btnExcluir = new utils.CMButton();
         btnSelecionar = new utils.CMButton();
@@ -85,7 +85,7 @@ public class FrmMoradoresGrid extends javax.swing.JFrame {
             }
         });
 
-        jTableCasas.setModel(new javax.swing.table.DefaultTableModel(
+        jTableMoradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -96,7 +96,7 @@ public class FrmMoradoresGrid extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTableCasas);
+        jScrollPane1.setViewportView(jTableMoradores);
 
         btnAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/adicionar.png"))); // NOI18N
         btnAdicionar.setRadius(25);
@@ -161,7 +161,7 @@ public class FrmMoradoresGrid extends javax.swing.JFrame {
 
    private void btnEditarActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnEditarActionPerformed
 
-      int linhaSelecionada = jTableCasas.getSelectedRow();
+      int linhaSelecionada = jTableMoradores.getSelectedRow();
 
       if( linhaSelecionada != -1 ){
 
@@ -224,13 +224,26 @@ public class FrmMoradoresGrid extends javax.swing.JFrame {
    }// GEN-LAST:event_btnAdicionarActionPerformed
 
 
-   private void btnExcluirActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnExcluirActionPerformed
+   private void btnExcluirActionPerformed( java.awt.event.ActionEvent evt ) {
+       int linhaSelecionada = jTableMoradores.getSelectedRow();
+       if( linhaSelecionada != -1 ){
+            System.out.println("Excluir");
+            data = new Morador();
+            int numero = (int)result.getValueAt( linhaSelecionada, 0 );
+            data.setCodigo(numero);
+        try {
+         this.data.delete();
+         
+        } catch (Exception ex){
+          ex.printStackTrace();
+        }
+       }
    }// GEN-LAST:event_btnExcluirActionPerformed
 
 
    private void btnSelecionarActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnSelecionarActionPerformed
 
-      int linhaSelecionada = jTableCasas.getSelectedRow();
+      int linhaSelecionada = jTableMoradores.getSelectedRow();
 
       if( linhaSelecionada != -1 ){
 
@@ -293,6 +306,6 @@ public class FrmMoradoresGrid extends javax.swing.JFrame {
     private utils.CMButton btnExcluir;
     private utils.CMButton btnSelecionar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableCasas;
+    private javax.swing.JTable jTableMoradores;
     // End of variables declaration//GEN-END:variables
 }

@@ -193,7 +193,19 @@ public class FrmCasasGrid extends javax.swing.JFrame {
 
 
    private void btnExcluirActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnExcluirActionPerformed
-      // TODO add your handling code here:
+       int linhaSelecionada = jTableCasas.getSelectedRow();
+       if( linhaSelecionada != -1 ){
+            System.out.println("Excluir");
+            casa = new Casa();
+            int numero = (int)result.getValueAt( linhaSelecionada, 0 );
+            casa.setNumero(numero);
+        try {
+         this.casa.delete();
+         
+        } catch (Exception ex){
+          ex.printStackTrace();
+        }
+       }
    }// GEN-LAST:event_btnExcluirActionPerformed
 
 

@@ -7,6 +7,7 @@ package view;
 import java.sql.SQLException;
 
 import controller.ResultSetTableModel;
+import java.awt.event.WindowEvent;
 import model.Acesso;
 import model.Veiculos;
 import utils.Select;
@@ -138,7 +139,7 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
    private void btnEditarActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnEditarActionPerformed
 
       int linhaSelecionada = jTableProprietarios.getSelectedRow();
-
+      
       if( linhaSelecionada != -1 ){
 
          int id = (Integer)result.getValueAt( linhaSelecionada, 0 );
@@ -204,8 +205,20 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
 
 
    private void btnExcluirActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnExcluirActionPerformed
-      // TODO add your handling code here:
-   }// GEN-LAST:event_btnExcluirActionPerformed
+      int linhaSelecionada = jTableProprietarios.getSelectedRow();
+       if( linhaSelecionada != -1 ){
+            System.out.println("Excluir");
+            data = new Acesso();
+            int numero = (int)result.getValueAt( linhaSelecionada, 0 );
+            data.setIdAcesso(numero);
+        try {
+         this.data.delete();
+         
+        } catch (Exception ex){
+          ex.printStackTrace();
+        }
+       }
+   }
 
 
    private String getSelect() {

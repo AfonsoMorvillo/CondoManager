@@ -30,64 +30,100 @@ public class FrmVeiculosGrid extends javax.swing.JFrame {
 
       result = new ResultSetTableModel( getSelect() );
 
-      jTableProprietarios.setModel( result );
+      jTableVeiculos.setModel( result );
    }
 
 
    @SuppressWarnings( "unchecked" )
-   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-   private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-      btnEditar = new utils.CMButton();
-      jScrollPane1 = new javax.swing.JScrollPane();
-      jTableProprietarios = new javax.swing.JTable();
-      btnAdicionar = new utils.CMButton();
-      btnExcluir = new utils.CMButton();
+        btnEditar = new utils.CMButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableVeiculos = new javax.swing.JTable();
+        btnAdicionar = new utils.CMButton();
+        btnExcluir = new utils.CMButton();
 
-      setDefaultCloseOperation( javax.swing.WindowConstants.DISPOSE_ON_CLOSE );
-      setTitle( "Consulta de Veículos" );
-      setResizable( false );
-      addWindowListener( new java.awt.event.WindowAdapter() {
-         public void windowClosing( java.awt.event.WindowEvent evt ) {
-            formWindowClosing( evt );
-         }
-      } );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consulta de Veículos");
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-      btnEditar.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/editar-texto.png" ) ) ); // NOI18N
-      btnEditar.setRadius( 25 );
-      btnEditar.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnEditarActionPerformed( evt );
-         }
-      } );
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar-texto.png"))); // NOI18N
+        btnEditar.setRadius(25);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
-      jTableProprietarios.setModel( new javax.swing.table.DefaultTableModel( new Object[][] { { null, null, null, null }, { null, null, null, null }, { null, null, null, null }, { null, null, null, null } }, new String[] { "Title 1", "Title 2", "Title 3", "Title 4" } ) );
-      jScrollPane1.setViewportView( jTableProprietarios );
+        jTableVeiculos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableVeiculos);
 
-      btnAdicionar.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/adicionar.png" ) ) ); // NOI18N
-      btnAdicionar.setRadius( 25 );
-      btnAdicionar.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnAdicionarActionPerformed( evt );
-         }
-      } );
+        btnAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/adicionar.png"))); // NOI18N
+        btnAdicionar.setRadius(25);
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
 
-      btnExcluir.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/lixeira.png" ) ) ); // NOI18N
-      btnExcluir.setRadius( 25 );
-      btnExcluir.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnExcluirActionPerformed( evt );
-         }
-      } );
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lixeira.png"))); // NOI18N
+        btnExcluir.setRadius(25);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
-      javax.swing.GroupLayout layout = new javax.swing.GroupLayout( getContentPane() );
-      getContentPane().setLayout( layout );
-      layout.setHorizontalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addContainerGap().addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addComponent( jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE ).addContainerGap() ).addGroup( layout.createSequentialGroup().addComponent( btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 18, 18, 18 ).addComponent( btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 18, 18, 18 ).addComponent( btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 420, 1000, Short.MAX_VALUE ) ) ) ) );
-      layout.setVerticalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addGap( 90, 90, 90 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addGap( 12, 12, 12 ).addComponent( jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE ).addContainerGap() ) );
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(420, 1000, Short.MAX_VALUE))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
-      pack();
-      setLocationRelativeTo( null );
-   }// </editor-fold>//GEN-END:initComponents
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
 
 
    private void formWindowClosing( java.awt.event.WindowEvent evt ) {// GEN-FIRST:event_formWindowClosing
@@ -100,7 +136,7 @@ public class FrmVeiculosGrid extends javax.swing.JFrame {
 
    private void btnEditarActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnEditarActionPerformed
 
-      int linhaSelecionada = jTableProprietarios.getSelectedRow();
+      int linhaSelecionada = jTableVeiculos.getSelectedRow();
 
       if( linhaSelecionada != -1 ){
 
@@ -167,7 +203,19 @@ public class FrmVeiculosGrid extends javax.swing.JFrame {
 
 
    private void btnExcluirActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnExcluirActionPerformed
-      // TODO add your handling code here:
+    int linhaSelecionada = jTableVeiculos.getSelectedRow();
+       if( linhaSelecionada != -1 ){
+            System.out.println("Excluir");
+            data = new Veiculos();
+            String numero = (String)result.getValueAt( linhaSelecionada, 0 );
+            data.setPlacaCarro(numero);
+        try {
+         this.data.delete();
+         
+        } catch (Exception ex){
+          ex.printStackTrace();
+        }
+       }
    }// GEN-LAST:event_btnExcluirActionPerformed
 
 
@@ -234,11 +282,11 @@ public class FrmVeiculosGrid extends javax.swing.JFrame {
       } );
    }
 
-   // Variables declaration - do not modify//GEN-BEGIN:variables
-   private utils.CMButton          btnAdicionar;
-   private utils.CMButton          btnEditar;
-   private utils.CMButton          btnExcluir;
-   private javax.swing.JScrollPane jScrollPane1;
-   private javax.swing.JTable      jTableProprietarios;
-   // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private utils.CMButton btnAdicionar;
+    private utils.CMButton btnEditar;
+    private utils.CMButton btnExcluir;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableVeiculos;
+    // End of variables declaration//GEN-END:variables
 }
