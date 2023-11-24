@@ -238,7 +238,7 @@ public class FrmVisitantesGrid extends javax.swing.JFrame {
             visitante.setIdVisitante(numero);
         try {
          this.visitante.delete();
-         
+         result.setQuery( getSelect() );
         } catch (Exception ex){
           ex.printStackTrace();
         }

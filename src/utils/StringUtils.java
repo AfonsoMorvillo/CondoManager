@@ -79,6 +79,10 @@ public class StringUtils {
    }
    
    public static String dataParaBanco(String inputDate) {
+	   
+	   if (inputDate == null)  return null;
+	   
+	   
       try {
           // Define os formatos de entrada e saída
           SimpleDateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");

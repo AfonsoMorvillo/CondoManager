@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 import controller.DataAccessObject;
+import utils.StringUtils;
 
 public class Morador extends DataAccessObject {
 
@@ -54,7 +55,7 @@ public class Morador extends DataAccessObject {
 
 
    public void setDataNascimento( String dataNascimento ) {
-      if( !dataNascimento.equals( this.dataNascimento ) ){
+      if( !StringUtils.isEmpty(dataNascimento) && !dataNascimento.equals( this.dataNascimento ) ){
          this.dataNascimento = dataNascimento;
          addChange( "dataNascimento", this.dataNascimento );
       }
@@ -132,7 +133,7 @@ public class Morador extends DataAccessObject {
 
 
    public void setInicioMoradia( String inicioMoradia ) {
-      if( !inicioMoradia.equals( this.inicioMoradia ) ){
+      if(!StringUtils.isEmpty(inicioMoradia) &&  !inicioMoradia.equals( this.inicioMoradia ) ){
          this.inicioMoradia = inicioMoradia;
          addChange( "inicioMoradia", this.inicioMoradia );
       }

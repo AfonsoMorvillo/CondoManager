@@ -101,7 +101,7 @@ public class Entrega extends DataAccessObject {
 
 
    public void setRetirada( String retirada ) {
-      if( !retirada.equals( this.retirada ) && !StringUtils.isEmpty( retirada ) ){
+      if( !StringUtils.isEmpty( retirada ) && !retirada.equals( this.retirada ) ){
          this.retirada = retirada;
          addChange( "retirada", this.retirada );
       }
@@ -109,7 +109,7 @@ public class Entrega extends DataAccessObject {
 
 
    public void setHorario_retirada( String horario_retirada ) {
-      if( !horario_retirada.equals( this.horario_retirada ) && !StringUtils.isEmpty( horario_retirada )){
+      if( !StringUtils.isEmpty( horario_retirada ) && !horario_retirada.equals( this.horario_retirada ) ){
          this.horario_retirada = horario_retirada;
          addChange( "horario_retirada", this.horario_retirada );
       }

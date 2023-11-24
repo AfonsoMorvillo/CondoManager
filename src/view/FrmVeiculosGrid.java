@@ -214,6 +214,8 @@ public class FrmVeiculosGrid extends javax.swing.JFrame {
          
         } catch (Exception ex){
           ex.printStackTrace();
+        }finally {
+        	 result.setQuery( getSelect() );
         }
        }
    }// GEN-LAST:event_btnExcluirActionPerformed

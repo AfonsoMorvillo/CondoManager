@@ -66,14 +66,14 @@ public class FrmMoradorForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "“O telefone deve estar no formato '(XX) XXXX-XXXX' ou '(XX) XXXXXXXXX'.", "Erro", JOptionPane.ERROR_MESSAGE);
             throw new Exception("erro");
         }
-         if (!fieldCpf.getText().trim().matches("\\\\d{3}.\\\\d{3}.\\\\d{3}-\\\\d{2}")) {
+         if (!fieldCpf.getText().trim().matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
         JOptionPane.showMessageDialog(null, "O cpf deve estr no formato XXX.XXX.XXX-XX.", "Erro", JOptionPane.ERROR_MESSAGE);
         throw new Exception("erro");
        }
-       if (!fieldDataNascimento.getText().trim().matches("\\d{4}-\\d{2}-\\d{2}")) {
-        JOptionPane.showMessageDialog(null, "A Data de Nascimento deve estar no formato AAAA-MM-DD.", "Erro", JOptionPane.ERROR_MESSAGE);
-        throw new Exception("erro");
-    }
+//       if (!fieldDataNascimento.getText().trim().matches("\\d{4}-\\d{2}-\\d{2}")) {
+//        JOptionPane.showMessageDialog(null, "A Data de Nascimento deve estar no formato AAAA-MM-DD.", "Erro", JOptionPane.ERROR_MESSAGE);
+//        throw new Exception("erro");
+//    }
    }
 
 
@@ -255,8 +255,14 @@ public class FrmMoradorForm extends javax.swing.JFrame {
       fieldCelular.setText( morador.getCelular() );
       fieldEmail.setText( morador.getEmail() );
       fieldCpf.setText( morador.getCpf() );
-      fieldDataNascimento.setText( StringUtils.dataParaTela( morador.getDataNascimento() ) );
-      fieldInicioMoradia.setText( StringUtils.dataParaTela( morador.getInicioMoradia() ) );
+      if (morador.getDataNascimento() != null ) {
+    	  fieldDataNascimento.setText( StringUtils.dataParaTela( morador.getDataNascimento() ) );
+      }
+      
+      if (morador.getInicioMoradia() != null) {
+    	  fieldInicioMoradia.setText( StringUtils.dataParaTela( morador.getInicioMoradia() ) );
+      }
+      
       fieldNome.setText( morador.getNome() );
       fieldRG.setText( morador.getRg() );
       fieldTelefone.setText( morador.getTelefone() );

@@ -56,6 +56,9 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
         });
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar-texto.png"))); // NOI18N
+        btnEditar.setBorderColor(new java.awt.Color(214, 217, 223));
+        btnEditar.setColor(new java.awt.Color(214, 217, 223));
+        btnEditar.setColorOver(new java.awt.Color(204, 204, 204));
         btnEditar.setRadius(25);
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,6 +80,10 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTableProprietarios);
 
         btnAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/adicionar.png"))); // NOI18N
+        btnAdicionar.setBorderColor(new java.awt.Color(214, 217, 223));
+        btnAdicionar.setColor(new java.awt.Color(214, 217, 223));
+        btnAdicionar.setColorClick(new java.awt.Color(214, 217, 223));
+        btnAdicionar.setColorOver(new java.awt.Color(204, 204, 204));
         btnAdicionar.setRadius(25);
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +92,8 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
         });
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lixeira.png"))); // NOI18N
+        btnExcluir.setBorderColor(new java.awt.Color(214, 217, 223));
+        btnExcluir.setColor(new java.awt.Color(214, 217, 223));
         btnExcluir.setRadius(25);
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,16 +108,16 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(420, 1000, Short.MAX_VALUE))))
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,6 +225,9 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
          
         } catch (Exception ex){
           ex.printStackTrace();
+        }
+        finally {
+        	result.setQuery( getSelect() );
         }
        }
    }

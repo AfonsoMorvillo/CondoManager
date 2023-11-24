@@ -237,10 +237,13 @@ public class FrmMoradoresGrid extends javax.swing.JFrame {
         } catch (Exception ex){
           ex.printStackTrace();
         }
+        finally {
+        	result.setQuery( getSelect() );
+        }
        }
    }// GEN-LAST:event_btnExcluirActionPerformed
 
-
+   
    private void btnSelecionarActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnSelecionarActionPerformed
 
       int linhaSelecionada = jTableMoradores.getSelectedRow();
