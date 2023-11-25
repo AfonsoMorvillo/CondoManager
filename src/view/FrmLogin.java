@@ -4,18 +4,30 @@
  */
 package view;
 
-import java.awt.event.KeyEvent;
+import controller.LogTracker;
+import model.Usuario;
 
 /**
  * @author aluno
  */
 public class FrmLogin extends javax.swing.JFrame {
 
-   /**
-    * Creates new form FrmLogin
-    */
+   private Usuario usuario;
+
    public FrmLogin() {
       initComponents();
+
+      logout();
+   }
+
+
+   private void logout() {
+      usuario = new Usuario();
+   }
+
+
+   private void login() {
+
    }
 
 
@@ -27,17 +39,18 @@ public class FrmLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextFieldUser = new javax.swing.JTextField();
+        fieldUsuario = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        jButtonLogin = new javax.swing.JButton();
         IconUser = new javax.swing.JLabel();
         IconPassword = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jButtonSair = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        fieldSenha = new javax.swing.JPasswordField();
+        btnLogin = new utils.CMButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -46,20 +59,14 @@ public class FrmLogin extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
 
-        jTextFieldUser.setBackground(new java.awt.Color(153, 204, 255));
-        jTextFieldUser.setForeground(new java.awt.Color(204, 204, 204));
-        jTextFieldUser.setText("Digite seu usuário");
-        jTextFieldUser.setBorder(null);
-        jTextFieldUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldUserActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextFieldUser);
-        jTextFieldUser.setBounds(90, 160, 240, 20);
+        fieldUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        fieldUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        fieldUsuario.setBorder(null);
+        jPanel1.add(fieldUsuario);
+        fieldUsuario.setBounds(90, 120, 240, 20);
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -67,7 +74,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jSeparator1.setPreferredSize(new java.awt.Dimension(0, 1));
         jSeparator1.setRequestFocusEnabled(false);
         jPanel1.add(jSeparator1);
-        jSeparator1.setBounds(90, 250, 240, 10);
+        jSeparator1.setBounds(90, 210, 240, 10);
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
@@ -75,46 +82,30 @@ public class FrmLogin extends javax.swing.JFrame {
         jSeparator2.setPreferredSize(new java.awt.Dimension(0, 1));
         jSeparator2.setRequestFocusEnabled(false);
         jPanel1.add(jSeparator2);
-        jSeparator2.setBounds(90, 183, 240, 10);
-
-        jButtonLogin.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonLogin.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        jButtonLogin.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonLogin.setText("Login");
-        jButtonLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLoginActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButtonLogin);
-        jButtonLogin.setBounds(85, 272, 250, 35);
+        jSeparator2.setBounds(90, 140, 240, 10);
 
         IconUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/usuario.png"))); // NOI18N
         jPanel1.add(IconUser);
-        IconUser.setBounds(41, 154, 32, 32);
+        IconUser.setBounds(40, 110, 32, 32);
 
         IconPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/senha.png"))); // NOI18N
         jPanel1.add(IconPassword);
-        IconPassword.setBounds(41, 222, 32, 32);
+        IconPassword.setBounds(40, 180, 32, 32);
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        jLabel1.setText("User");
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setText("Usuário");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(90, 140, 29, 19);
+        jLabel1.setBounds(90, 100, 60, 19);
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        jLabel2.setText(" Password");
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setText("Senha");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(90, 210, 65, 19);
-
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 48)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Sign In");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(137, 27, 148, 62);
+        jLabel2.setBounds(90, 170, 41, 19);
 
         jButtonSair.setFont(new java.awt.Font("DejaVu Sans", 1, 16)); // NOI18N
+        jButtonSair.setForeground(new java.awt.Color(51, 51, 51));
         jButtonSair.setText("X");
         jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonSair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -123,35 +114,89 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonSair);
-        jButtonSair.setBounds(403, 6, 11, 15);
+        jButtonSair.setBounds(350, 6, 11, 15);
 
-        jPasswordField1.setBackground(new java.awt.Color(153, 204, 255));
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.setBorder(null);
-        jPanel1.add(jPasswordField1);
-        jPasswordField1.setBounds(90, 230, 240, 16);
+        fieldSenha.setBackground(new java.awt.Color(255, 255, 255));
+        fieldSenha.setForeground(new java.awt.Color(0, 0, 0));
+        fieldSenha.setBorder(null);
+        jPanel1.add(fieldSenha);
+        fieldSenha.setBounds(90, 190, 240, 20);
+
+        btnLogin.setBackground(new java.awt.Color(102, 51, 0));
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Entrar");
+        btnLogin.setBorderColor(new java.awt.Color(102, 51, 0));
+        btnLogin.setColor(new java.awt.Color(102, 51, 0));
+        btnLogin.setColorClick(new java.awt.Color(110, 55, 0));
+        btnLogin.setColorOver(new java.awt.Color(84, 42, 1));
+        btnLogin.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        btnLogin.setRadius(10);
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLogin);
+        btnLogin.setBounds(90, 250, 240, 35);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 420, 330);
+        jPanel1.setBounds(160, 0, 420, 330);
 
-        setSize(new java.awt.Dimension(420, 330));
+        jPanel2.setBackground(new java.awt.Color(102, 51, 0));
+        jPanel2.setLayout(new java.awt.GridBagLayout());
+
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/LOGOCM128.png"))); // NOI18N
+        jLabel3.setMaximumSize(new java.awt.Dimension(128, 128));
+        jLabel3.setMinimumSize(new java.awt.Dimension(128, 128));
+        jLabel3.setPreferredSize(new java.awt.Dimension(128, 128));
+        jPanel2.add(jLabel3, new java.awt.GridBagConstraints());
+
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 160, 330);
+
+        setSize(new java.awt.Dimension(529, 330));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldUserActionPerformed
+
+   private void btnLoginActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnLoginActionPerformed
+
+      try{
+
+         usuario.setUsername( fieldUsuario.getText() );
+
+         if( !usuario.load() ){
+            if( usuario == null ){
+               throw new Exception( "Username não cadastrado!" );
+            }
+         }
+
+         Usuario comparePassword = new Usuario();
+
+         comparePassword.setUsername( fieldUsuario.getText() );
+         comparePassword.setSenha( fieldSenha.getText() );
+
+         if( usuario.getSenha().equals( comparePassword.getSenha() ) ){
+            login();
+            usuario.disconnectFromDatabase();
+         }
+         else{
+            throw new Exception( "Senha Inválida!" );
+         }
+
+      }
+      catch( Exception ex ){
+         LogTracker.getInstance().addException( ex, true, this );
+      }
+   }// GEN-LAST:event_btnLoginActionPerformed
 
 
    private void jButtonSairMouseClicked( java.awt.event.MouseEvent evt ) {// GEN-FIRST:event_jButtonSairMouseClicked
       // TODO add your handling code here:
       dispose();
    }// GEN-LAST:event_jButtonSairMouseClicked
-
-
-   private void jButtonLoginActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_jButtonLoginActionPerformed
-      // TODO add your handling code here:
-   }// GEN-LAST:event_jButtonLoginActionPerformed
 
 
    /**
@@ -188,7 +233,7 @@ public class FrmLogin extends javax.swing.JFrame {
       // </editor-fold>
 
       /* Create and display the form */
-      java.awt.EventQueue.invokeLater(new Runnable() {
+      java.awt.EventQueue.invokeLater( new Runnable() {
          public void run() {
             new FrmLogin().setVisible( true );
          }
@@ -198,15 +243,16 @@ public class FrmLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IconPassword;
     private javax.swing.JLabel IconUser;
-    private javax.swing.JButton jButtonLogin;
+    private utils.CMButton btnLogin;
+    private javax.swing.JPasswordField fieldSenha;
+    private javax.swing.JTextField fieldUsuario;
     private javax.swing.JLabel jButtonSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextFieldUser;
     // End of variables declaration//GEN-END:variables
 }

@@ -150,7 +150,7 @@ public abstract class DataAccessObject {
    }
 
 
-   public void load() throws SQLException, Exception {
+   public boolean load() throws SQLException, Exception {
 
       String sql;
 
@@ -168,7 +168,9 @@ public abstract class DataAccessObject {
 
          fill( data );
          limpa();
+         return true;
       }
+      return false;
 
    }
 
