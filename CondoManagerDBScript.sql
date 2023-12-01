@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `condoManager`.`Proprietario` (
   `dataNascimento` DATE NULL,
   `dataAquisicao` DATE NULL,
   `cpf` VARCHAR(11) NULL,
-  `rg` VARCHAR(10) NULL,
+  `rg` VARCHAR(12) NULL,
   PRIMARY KEY (`idProprietario`))
 ENGINE = InnoDB;
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `condoManager`.`Morador` (
   `codigo` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(50) NULL,
   `dataNascimento` DATE NULL,
-  `rg` VARCHAR(11) NULL,
+  `rg` VARCHAR(12) NULL,
   `cpf` VARCHAR(15) NULL,
   `imagem` LONGBLOB NULL,
   `email` VARCHAR(45) NULL,
