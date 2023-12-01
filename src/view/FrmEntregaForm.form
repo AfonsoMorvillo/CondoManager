@@ -121,7 +121,7 @@
     </Component>
     <Component class="utils.TextField" name="fieldHorarioRetirada">
       <Properties>
-        <Property name="labelText" type="java.lang.String" value="Hor&#xe1;rio entrega"/>
+        <Property name="labelText" type="java.lang.String" value="Hor&#xe1;rio retirada"/>
       </Properties>
     </Component>
     <Component class="utils.TextField" name="fieldEntrega">

@@ -208,7 +208,7 @@ public class FrmCasasGrid extends javax.swing.JFrame {
 				@Override
 				public void windowClosed(java.awt.event.WindowEvent evt) {
 					try {
-						// result.setQuery( getSelect() );
+						 result.setQuery( getSelect() );
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

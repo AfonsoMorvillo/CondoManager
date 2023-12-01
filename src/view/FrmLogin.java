@@ -27,7 +27,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
 
    private void login() {
-
+	   System.out.println("login efetuado");
    }
 
 
@@ -62,8 +62,6 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
 
-        fieldUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        fieldUsuario.setForeground(new java.awt.Color(0, 0, 0));
         fieldUsuario.setBorder(null);
         jPanel1.add(fieldUsuario);
         fieldUsuario.setBounds(90, 120, 240, 20);
@@ -96,13 +94,13 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Usuário");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(90, 100, 60, 19);
+        jLabel1.setBounds(90, 100, 60, 16);
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Senha");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(90, 170, 41, 19);
+        jLabel2.setBounds(90, 170, 38, 16);
 
         jButtonSair.setFont(new java.awt.Font("DejaVu Sans", 1, 16)); // NOI18N
         jButtonSair.setForeground(new java.awt.Color(51, 51, 51));
@@ -114,10 +112,8 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonSair);
-        jButtonSair.setBounds(350, 6, 11, 15);
+        jButtonSair.setBounds(350, 10, 12, 15);
 
-        fieldSenha.setBackground(new java.awt.Color(255, 255, 255));
-        fieldSenha.setForeground(new java.awt.Color(0, 0, 0));
         fieldSenha.setBorder(null);
         jPanel1.add(fieldSenha);
         fieldSenha.setBounds(90, 190, 240, 20);
@@ -146,7 +142,6 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 48)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/LOGOCM128.png"))); // NOI18N
         jLabel3.setMaximumSize(new java.awt.Dimension(128, 128));
         jLabel3.setMinimumSize(new java.awt.Dimension(128, 128));

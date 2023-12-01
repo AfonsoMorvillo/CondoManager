@@ -8,19 +8,24 @@ import controller.LogTracker;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import model.Acesso;
 import model.Casa;
 import model.Entrega;
 import model.Veiculos;
 import model.Visitante;
+import utils.FormataTextInput;
+import utils.RegexUtils;
+import utils.StringUtils;
 
 /**
  * @author Afonso
  */
 public class FrmEntregaForm extends javax.swing.JFrame {
 
-   private Entrega entrega;
    private boolean disconnectOnClose;
+   private Entrega entrega;
    private boolean formEdicao;
 
    private Casa    casa;
@@ -61,8 +66,12 @@ public class FrmEntregaForm extends javax.swing.JFrame {
       // fieldNome.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.NOME ) );
       // fieldEmail.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.EMAIL ) );
 
+      fieldEntrega.setDocument( new FormataTextInput( 10, FormataTextInput.TipoEntrada.DATA ) );
+      fieldRetirada.setDocument( new FormataTextInput( 10, FormataTextInput.TipoEntrada.DATA ) );
+
+      fieldHorarioEntrega.setDocument( new FormataTextInput( 5, FormataTextInput.TipoEntrada.HORA ) );
+      fieldHorarioRetirada.setDocument( new FormataTextInput( 5, FormataTextInput.TipoEntrada.HORA ) );
    }
-   
 
 
    /**
@@ -150,7 +159,7 @@ public class FrmEntregaForm extends javax.swing.JFrame {
          casasConsulta.setVisible( true );
       }
       catch( Exception ex ){
-         LogTracker.getInstance().addException(ex,true,null);
+         LogTracker.getInstance().addException( ex, true, null );
          casa = null;
       }
    }// GEN-LAST:event_btnSelecionarCasaActionPerformed
@@ -159,15 +168,64 @@ public class FrmEntregaForm extends javax.swing.JFrame {
    private void btnSalvarActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnSalvarActionPerformed
 
       try{
+         checkInput();
          dataDown();
          entrega.save();
          this.dispatchEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
       }
       catch( Exception e ){
-         LogTracker.getInstance().addException(e,true,null);
-         
+         LogTracker.getInstance().addException( e, true, null );
+
       }
    }// GEN-LAST:event_btnSalvarActionPerformed
+
+
+   private void checkInput() throws Exception {
+
+      if( casa == null ){
+         JOptionPane.showMessageDialog( null, "Selecione uma casa para cadastrar a entrega", "Erro", JOptionPane.ERROR_MESSAGE );
+         fieldCasa.setError();
+         fieldCasa.requestFocus();
+         throw new Exception( "erro" );
+      }
+
+      if( StringUtils.isEmpty( fieldEntregador.getText().trim() ) ){
+         fieldEntregador.setText( "" );
+         JOptionPane.showMessageDialog( null, "Digite o nome do entregador", "Erro", JOptionPane.ERROR_MESSAGE );
+         fieldEntregador.setError();
+         fieldEntregador.requestFocus();
+         throw new Exception( "erro" );
+      }
+
+      if( !fieldEntrega.getText().matches( RegexUtils.DATA ) ){
+         JOptionPane.showMessageDialog( null, "Data para entrega inválida, deve estar no formato '##/##/####'", "Erro", JOptionPane.ERROR_MESSAGE );
+         fieldEntrega.setError();
+         fieldEntrega.requestFocus();
+         throw new Exception( "erro" );
+      }
+
+      if( !fieldHorarioEntrega.getText().matches( RegexUtils.HORA ) ){
+         JOptionPane.showMessageDialog( null, "Hora para entrega inválida, deve estar no formato 'MM:ss'", "Erro", JOptionPane.ERROR_MESSAGE );
+         fieldHorarioEntrega.setError();
+         fieldHorarioEntrega.requestFocus();
+         throw new Exception( "erro" );
+      }
+
+      if( !StringUtils.isEmpty( fieldRetirada.getText() ) && !fieldRetirada.getText().matches( RegexUtils.DATA ) ){
+         JOptionPane.showMessageDialog( null, "Data para retirada inválida, deve estar no formato '##/##/####'", "Erro", JOptionPane.ERROR_MESSAGE );
+         fieldRetirada.setError();
+         fieldRetirada.requestFocus();
+         throw new Exception( "erro" );
+      }
+
+      if( !StringUtils.isEmpty( fieldHorarioRetirada.getText() ) && !fieldHorarioEntrega.getText().matches( RegexUtils.HORA ) ){
+         JOptionPane.showMessageDialog( null, "Hora para retirada inválida, deve estar no formato 'MM:ss'", "Erro", JOptionPane.ERROR_MESSAGE );
+         fieldHorarioRetirada.setError();
+         fieldHorarioRetirada.requestFocus();
+         throw new Exception( "erro" );
+      }
+
+   }
 
 
    private void fillFields() {
@@ -176,12 +234,21 @@ public class FrmEntregaForm extends javax.swing.JFrame {
          fieldCasa.setText( String.valueOf( entrega.getCasa().getNumero() ) );
       }
       fieldEntregador.setText( entrega.getNomeEntregador() );
-      fieldEntrega.setText( entrega.getEntrega() );
-      fieldHorarioEntrega.setText( entrega.getHorario_entrega() );
-      fieldRetirada.setText( entrega.getRetirada() );
-      fieldHorarioRetirada.setText( entrega.getHorario_retirada() );
+      fieldEntrega.setText( StringUtils.dataParaTela( entrega.getEntrega() ) );
+      fieldHorarioEntrega.setText( StringUtils.horarioParaTela( entrega.getHorario_entrega() ) );
       fieldStatus.setText( entrega.getStatus() );
       fieldObservacao.setText( entrega.getObservacao() );
+
+      if( !StringUtils.isEmpty( entrega.getRetirada() ) ){
+
+         fieldRetirada.setText( StringUtils.dataParaTela( entrega.getRetirada() ) );
+      }
+
+      if( !StringUtils.isEmpty( entrega.getHorario_retirada() ) ){
+
+         fieldHorarioRetirada.setText( entrega.getHorario_retirada() );
+
+      }
 
    }
 
@@ -190,9 +257,9 @@ public class FrmEntregaForm extends javax.swing.JFrame {
 
       entrega.setCasa( casa );
       entrega.setNomeEntregador( fieldEntregador.getText() );
-      entrega.setEntrega( fieldEntrega.getText() );
+      entrega.setEntrega( StringUtils.dataParaBanco( fieldEntrega.getText() ) );
       entrega.setHorario_entrega( fieldHorarioEntrega.getText() );
-      entrega.setRetirada( fieldRetirada.getText() );
+      entrega.setRetirada( StringUtils.dataParaBanco( fieldRetirada.getText() ) );
       entrega.setHorario_retirada( fieldHorarioRetirada.getText() );
       entrega.setStatus( fieldStatus.getText() );
       entrega.setObservacao( fieldObservacao.getText() );
