@@ -244,7 +244,10 @@ public class FrmAcessoForm extends javax.swing.JFrame {
    private void fillFields() {
 
       fieldEntrada.setText( acesso.getEntrada() );
-      fieldSaida.setText( acesso.getSaida() );
+
+      if( !StringUtils.isEmpty( acesso.getSaida() ) ){
+         fieldSaida.setText( StringUtils.dataParaTela( acesso.getSaida() ) );
+      }
 
       if( acesso.getCasa().getNumero() > 0 ){
          fieldCasa.setText( String.valueOf( acesso.getCasa().getNumero() ) );

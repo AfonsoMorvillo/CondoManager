@@ -6,7 +6,7 @@ import javax.swing.text.PlainDocument;
 
 public class FormataTextInput extends PlainDocument {
    public enum TipoEntrada {
-      NUMEROINTEIRO, NUMERODECIMAL, NOME, EMAIL, DATA, HORA;
+      NUMEROINTEIRO, NUMERODECIMAL, NOME, EMAIL, DATA, HORA, CPF, RG, CELULAR, TELEFONE;
    }
 
    private int         qtdCaracteres;
@@ -42,27 +42,85 @@ public class FormataTextInput extends PlainDocument {
          case HORA :
             regex = "[^0-9:]";
             break;
+         case CPF :
+            regex = "[^0-9.\\-]";
+            break;
+         case RG :
+            regex = "[^0-9.\\-]";
+            break;
+         case CELULAR :
+            regex = "[^0-9\\-\\(\\)]";
+            break;
+         case TELEFONE :
+            regex = "[^0-9\\-\\(\\)]";
+            break;
          case DATA :
             regex = "[^0-9]";
             break;
       }
 
-      // fazendo a substituição
       string = string.replaceAll( regex, "" );
 
-      // Verifica se é uma entrada numérica e adiciona a máscara de data automaticamente
       if( tpEntrada == TipoEntrada.DATA && totalCarac <= qtdCaracteres ){
          if( totalCarac == 2 || totalCarac == 5 ){
             string += "/";
          }
          super.insertString( i, string, as );
       }
+
       else if( tpEntrada == TipoEntrada.HORA && totalCarac <= qtdCaracteres ){
          if( totalCarac == 2 ){
             string += ":";
          }
          super.insertString( i, string, as );
       }
+
+      else if( tpEntrada == TipoEntrada.CPF ){
+         if( totalCarac == 3 || totalCarac == 7 ){
+            string += ".";
+         }
+         else if( totalCarac == 11 ){
+            string += "-";
+         }
+         super.insertString( i, string, as );
+      }
+
+      else if( tpEntrada == TipoEntrada.RG ){
+         if( totalCarac == 2 || totalCarac == 6 ){
+            string += ".";
+         }
+         else if( totalCarac == 10 ){
+            string += "-";
+         }
+         super.insertString( i, string, as );
+      }
+
+      else if( tpEntrada == TipoEntrada.CELULAR ){
+         if( totalCarac == 1 ){
+            string = "(" + string;
+         }
+         else if( totalCarac == 3 ){
+            string += ")";
+         }
+         else if( totalCarac == 9 ){
+            string += "-";
+         }
+         super.insertString( i, string, as );
+      }
+
+      else if( tpEntrada == TipoEntrada.TELEFONE ){
+         if( totalCarac == 1 ){
+            string = "(" + string;
+         }
+         else if( totalCarac == 3 ){
+            string += ")";
+         }
+         else if( totalCarac == 8 ){
+            string += "-";
+         }
+         super.insertString( i, string, as );
+      }
+
       else if( totalCarac <= qtdCaracteres ){
          super.insertString( i, string, as );
       }

@@ -4,13 +4,16 @@
  */
 package view;
 
-import controller.LogTracker;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
+
 import javax.swing.JOptionPane;
 
+import controller.LogTracker;
 import model.Casa;
 import model.Morador;
+import utils.FormataTextInput;
+import utils.RegexUtils;
 import utils.StringUtils;
 
 /**
@@ -58,8 +61,15 @@ public class FrmMoradorForm extends javax.swing.JFrame {
 
 
    private void formataCampos() {
-      // fieldNome.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.NOME ) );
-      // fieldEmail.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.EMAIL ) );
+      fieldEmail.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.EMAIL ) );
+      fieldCpf.setDocument( new FormataTextInput( 14, FormataTextInput.TipoEntrada.CPF ) );
+      fieldRG.setDocument( new FormataTextInput( 12, FormataTextInput.TipoEntrada.RG ) );
+      fieldDataNascimento.setDocument( new FormataTextInput( 10, FormataTextInput.TipoEntrada.DATA ) );
+      fieldInicioMoradia.setDocument( new FormataTextInput( 10, FormataTextInput.TipoEntrada.DATA ) );
+      fieldCelular.setDocument( new FormataTextInput( 14, FormataTextInput.TipoEntrada.CELULAR) );
+      fieldTelefone.setDocument( new FormataTextInput( 13, FormataTextInput.TipoEntrada.TELEFONE ) );
+
+      
    }
 
 
@@ -72,11 +82,66 @@ public class FrmMoradorForm extends javax.swing.JFrame {
          throw new Exception( "erro" );
       }
 
-      if( !fieldCelular.getText().trim().matches( "(\\+\\d{2,})?\\(\\d{2}\\)\\d{4,5}-\\d{4}" ) ){
-         JOptionPane.showMessageDialog( null, "“O telefone deve estar no formato '(XX) XXXX-XXXX' ou '(XX) XXXXXXXXX'.", "Erro", JOptionPane.ERROR_MESSAGE );
+      if( StringUtils.isEmpty( fieldNome.getText().trim() ) ){
+         JOptionPane.showMessageDialog( null, "Digite o nome do morador", "Erro", JOptionPane.ERROR_MESSAGE );
+         fieldNome.setError();
+         fieldNome.requestFocus();
          throw new Exception( "erro" );
       }
-      if( !fieldCpf.getText().trim().matches( "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}" ) ){
+
+      if( StringUtils.isEmpty( fieldEmail.getText().trim() ) || !fieldEmail.getText().matches( RegexUtils.EMAIL ) ){
+         JOptionPane.showMessageDialog( null, "E-mail devete estar no formato 'aaaaaaa@aaa.com'", "Erro", JOptionPane.ERROR_MESSAGE );
+         fieldEmail.setError();
+         fieldEmail.requestFocus();
+         throw new Exception( "erro" );
+      }
+
+      if( StringUtils.isEmpty( fieldRG.getText().trim() ) || !fieldRG.getText().matches( RegexUtils.RG ) ){
+         JOptionPane.showMessageDialog( null, "O RG deve estar no formato XX.XXX.XXX-X.", "Erro", JOptionPane.ERROR_MESSAGE );
+         fieldRG.setError();
+         fieldRG.requestFocus();
+         throw new Exception( "erro" );
+      }
+
+      if( StringUtils.isEmpty( fieldCpf.getText().trim() ) || !fieldCpf.getText().matches( RegexUtils.CPF ) ){
+         JOptionPane.showMessageDialog( null, "O cpf deve estar no formato XXX.XXX.XXX-XX.", "Erro", JOptionPane.ERROR_MESSAGE );
+         fieldCpf.setError();
+         fieldCpf.requestFocus();
+         throw new Exception( "erro" );
+      }
+
+      if( !fieldDataNascimento.getText().matches( RegexUtils.DATA ) ){
+         JOptionPane.showMessageDialog( null, "Data de nascimento inválida, deve estar no formato '##/##/####'", "Erro", JOptionPane.ERROR_MESSAGE );
+         fieldDataNascimento.setError();
+         fieldDataNascimento.requestFocus();
+         throw new Exception( "erro" );
+      }
+
+      if( !fieldInicioMoradia.getText().matches( RegexUtils.DATA ) ){
+         JOptionPane.showMessageDialog( null, "Data de início moradia inválida, deve estar no formato '##/##/####'", "Erro", JOptionPane.ERROR_MESSAGE );
+         fieldInicioMoradia.setError();
+         fieldInicioMoradia.requestFocus();
+         throw new Exception( "erro" );
+      }
+      
+      
+      if( !fieldCelular.getText().trim().matches( RegexUtils.CELULAR) ){
+         JOptionPane.showMessageDialog( null, "“O Celular deve estar no formato '(XX)XXXXX-XXXX'.", "Erro", JOptionPane.ERROR_MESSAGE );
+         fieldCelular.setError();
+         fieldCelular.requestFocus();
+         throw new Exception( "erro" );
+      }
+      
+      if( !fieldTelefone.getText().trim().matches( RegexUtils.TELEFONE) ){
+         JOptionPane.showMessageDialog( null, "“O Telefone deve estar no formato '(XX)XXXx-XXXX'.", "Erro", JOptionPane.ERROR_MESSAGE );
+         fieldTelefone.setError();
+         fieldTelefone.requestFocus();
+         throw new Exception( "erro" );
+      }
+      
+      
+      
+      if( !fieldCpf.getText().matches( "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}" ) ){
          JOptionPane.showMessageDialog( null, "O cpf deve estr no formato XXX.XXX.XXX-XX.", "Erro", JOptionPane.ERROR_MESSAGE );
          throw new Exception( "erro" );
       }
@@ -214,11 +279,12 @@ public class FrmMoradorForm extends javax.swing.JFrame {
       fieldCelular.setText( morador.getCelular() );
       fieldEmail.setText( morador.getEmail() );
       fieldCpf.setText( morador.getCpf() );
-      if( morador.getDataNascimento() != null ){
+
+      if( !StringUtils.isEmpty( morador.getDataNascimento() ) ){
          fieldDataNascimento.setText( StringUtils.dataParaTela( morador.getDataNascimento() ) );
       }
 
-      if( morador.getInicioMoradia() != null ){
+      if( !StringUtils.isEmpty( morador.getInicioMoradia() ) ){
          fieldInicioMoradia.setText( StringUtils.dataParaTela( morador.getInicioMoradia() ) );
       }
 
