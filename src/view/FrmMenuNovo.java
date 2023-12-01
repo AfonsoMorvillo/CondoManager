@@ -31,13 +31,13 @@ public class FrmMenuNovo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButtonMinimizar = new javax.swing.JLabel();
         jButtonSair = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        jButtonAcesso = new javax.swing.JButton();
+        jButtonEntrega = new javax.swing.JButton();
+        jButtonProprietario = new javax.swing.JButton();
+        jButtonCasa = new javax.swing.JButton();
+        jButtonMorador = new javax.swing.JButton();
+        jButtonCarro = new javax.swing.JButton();
+        jButtonVisitante = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -77,56 +77,86 @@ public class FrmMenuNovo extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonSair);
-        jButtonSair.setBounds(1580, 5, 11, 15);
+        jButtonSair.setBounds(1580, 5, 12, 15);
 
-        jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/acesso.png"))); // NOI18N
-        jButton1.setText("Acesso");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setIconTextGap(0);
-        jButton1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAcesso.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        jButtonAcesso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/acesso.png"))); // NOI18N
+        jButtonAcesso.setText("Acesso");
+        jButtonAcesso.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonAcesso.setIconTextGap(0);
+        jButtonAcesso.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonAcesso.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonAcesso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonAcessoActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/caixa.png"))); // NOI18N
-        jButton2.setText("Entrega");
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonEntrega.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        jButtonEntrega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/caixa.png"))); // NOI18N
+        jButtonEntrega.setText("Entrega");
+        jButtonEntrega.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonEntrega.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonEntrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEntregaActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/proprietario.png"))); // NOI18N
-        jButton3.setText("Proprietário");
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonProprietario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        jButtonProprietario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/proprietario.png"))); // NOI18N
+        jButtonProprietario.setText("Proprietário");
+        jButtonProprietario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonProprietario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonProprietario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProprietarioActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/casa-limpa.png"))); // NOI18N
-        jButton4.setText("Casa");
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonCasa.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        jButtonCasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/casa-limpa.png"))); // NOI18N
+        jButtonCasa.setText("Casa");
+        jButtonCasa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonCasa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonCasa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCasaActionPerformed(evt);
+            }
+        });
 
-        jButton5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/morador.png"))); // NOI18N
-        jButton5.setText("Morador");
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonMorador.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        jButtonMorador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/morador.png"))); // NOI18N
+        jButtonMorador.setText("Morador");
+        jButtonMorador.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonMorador.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonMorador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMoradorActionPerformed(evt);
+            }
+        });
 
-        jButton6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/carro.png"))); // NOI18N
-        jButton6.setText("Carro");
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonCarro.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        jButtonCarro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/carro.png"))); // NOI18N
+        jButtonCarro.setText("Carro");
+        jButtonCarro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonCarro.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonCarro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCarroActionPerformed(evt);
+            }
+        });
 
-        jButton7.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/visitante.png"))); // NOI18N
-        jButton7.setText("Visitante");
-        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonVisitante.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        jButtonVisitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/visitante.png"))); // NOI18N
+        jButtonVisitante.setText("Visitante");
+        jButtonVisitante.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonVisitante.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonVisitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVisitanteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,20 +166,20 @@ public class FrmMenuNovo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(378, 378, 378)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonMorador, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(200, 200, 200)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(200, 200, 200)
-                            .addComponent(jButton3))
+                            .addComponent(jButtonProprietario))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButtonEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -158,16 +188,16 @@ public class FrmMenuNovo extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(114, 114, 114)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3))
+                    .addComponent(jButtonMorador)
+                    .addComponent(jButtonCasa)
+                    .addComponent(jButtonProprietario))
                 .addGap(117, 117, 117)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton7)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(jButtonVisitante)
+                    .addComponent(jButtonAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEntrega))
                 .addGap(104, 104, 104)
-                .addComponent(jButton6)
+                .addComponent(jButtonCarro)
                 .addContainerGap(109, Short.MAX_VALUE))
         );
 
@@ -175,9 +205,16 @@ public class FrmMenuNovo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessoActionPerformed
+       try {
+      
+        FrmAcessosGrid AcessoGrid = new FrmAcessosGrid(false, true);
+        AcessoGrid.setVisible(true);
+        
+        } catch (Exception ex) {
+        ex.printStackTrace();   
+      }
+    }//GEN-LAST:event_jButtonAcessoActionPerformed
 
     private void jButtonMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMinimizarMouseClicked
         // TODO add your handling code here:
@@ -188,6 +225,60 @@ public class FrmMenuNovo extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButtonSairMouseClicked
+
+    private void jButtonMoradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMoradorActionPerformed
+        try {
+        FrmMoradoresGrid FrmMoradorGrid = new FrmMoradoresGrid(false, true);
+        FrmMoradorGrid.setVisible(true);
+        } catch (Exception ex) {
+        ex.printStackTrace();   
+      }
+    }//GEN-LAST:event_jButtonMoradorActionPerformed
+
+    private void jButtonCasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCasaActionPerformed
+         try {
+        FrmCasasGrid FrmCasaGrid = new FrmCasasGrid(null,false, true);
+        FrmCasaGrid.setVisible(true);
+        } catch (Exception ex) {
+        ex.printStackTrace();   
+      }
+    }//GEN-LAST:event_jButtonCasaActionPerformed
+
+    private void jButtonVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVisitanteActionPerformed
+        try {
+        FrmVisitantesGrid FrmVisitanteGrid = new FrmVisitantesGrid(null,false, true);
+        FrmVisitanteGrid.setVisible(true);
+        } catch (Exception ex) {
+        ex.printStackTrace();   
+      }
+    }//GEN-LAST:event_jButtonVisitanteActionPerformed
+
+    private void jButtonCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCarroActionPerformed
+        try {
+         FrmVeiculosGrid  FrmVeiculosGrid = new  FrmVeiculosGrid(false, true);
+         FrmVeiculosGrid.setVisible(true);
+        } catch (Exception ex) {
+        ex.printStackTrace();   
+      }
+    }//GEN-LAST:event_jButtonCarroActionPerformed
+
+    private void jButtonProprietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProprietarioActionPerformed
+          try {
+        FrmProprietariosGrid FrmProprietarioGrid = new FrmProprietariosGrid(null,false, true);
+        FrmProprietarioGrid.setVisible(true);
+        } catch (Exception ex) {
+        ex.printStackTrace();   
+      }
+    }//GEN-LAST:event_jButtonProprietarioActionPerformed
+
+    private void jButtonEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntregaActionPerformed
+        try {
+        FrmEntregasGrid FrmEntregasGrid = new FrmEntregasGrid(false, true);
+        FrmEntregasGrid.setVisible(true);
+        } catch (Exception ex) {
+        ex.printStackTrace();   
+      }
+    }//GEN-LAST:event_jButtonEntregaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,15 +317,15 @@ public class FrmMenuNovo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButtonAcesso;
+    private javax.swing.JButton jButtonCarro;
+    private javax.swing.JButton jButtonCasa;
+    private javax.swing.JButton jButtonEntrega;
     private javax.swing.JLabel jButtonMinimizar;
+    private javax.swing.JButton jButtonMorador;
+    private javax.swing.JButton jButtonProprietario;
     private javax.swing.JLabel jButtonSair;
+    private javax.swing.JButton jButtonVisitante;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
