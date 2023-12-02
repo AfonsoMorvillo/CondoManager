@@ -4,13 +4,17 @@
  */
 package view;
 
-import controller.LogTracker;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
+
 import javax.swing.JOptionPane;
 
+import controller.LogTracker;
 import model.Casa;
 import model.Veiculos;
+import utils.FormataTextInput;
+import utils.RegexUtils;
+import utils.StringUtils;
 
 /**
  * @author Afonso
@@ -53,17 +57,11 @@ public class FrmVeiculoForm extends javax.swing.JFrame {
       }
       this.disconnectOnClose = disconnectOnClose;
    }
-   private void checkInput () throws Exception {
-        if (!fieldAno.getText().trim().matches("\\d{4}")) {
-            JOptionPane.showMessageDialog(null, "“O formato da ano deve ser ex:2004 ou seja apenas o anoo", "Erro", JOptionPane.ERROR_MESSAGE);
-            throw new Exception("erro");
-        }
-     
-    }
+
 
    private void formataCampos() {
-      // fieldNome.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.NOME ) );
-      // fieldEmail.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.EMAIL ) );
+      fieldAno.setDocument( new FormataTextInput( 4, FormataTextInput.TipoEntrada.NUMEROINTEIRO ) );
+      fieldCor.setDocument( new FormataTextInput( 15, FormataTextInput.TipoEntrada.NOME ) );
 
    }
 
@@ -75,15 +73,15 @@ public class FrmVeiculoForm extends javax.swing.JFrame {
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {
 
-      fieldCasa = new utils.TextField();
-      cMSelecionar = new utils.CMButton();
-      fieldModelo = new utils.TextField();
-      fieldAno = new utils.TextField();
-      fieldPlaca = new utils.TextField();
-      btnSalvar = new utils.CMButton();
-      fieldMarca = new utils.TextField();
-      fieldTipo = new utils.TextField();
-      fieldCor = new utils.TextField();
+      fieldCasa = new design.TextField();
+      cMSelecionar = new design.CMButton();
+      fieldModelo = new design.TextField();
+      fieldAno = new design.TextField();
+      fieldPlaca = new design.TextField();
+      btnSalvar = new design.CMButton();
+      fieldMarca = new design.TextField();
+      fieldTipo = new design.TextField();
+      fieldCor = new design.TextField();
 
       setDefaultCloseOperation( javax.swing.WindowConstants.DISPOSE_ON_CLOSE );
       setTitle( "Cadastro Veículos" );
@@ -120,7 +118,7 @@ public class FrmVeiculoForm extends javax.swing.JFrame {
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout( getContentPane() );
       getContentPane().setLayout( layout );
-      layout.setHorizontalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addGap( 46, 46, 46 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( fieldMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ).addGroup( layout.createSequentialGroup().addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE ).addGroup( layout.createSequentialGroup().addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.TRAILING, false ).addComponent( fieldCor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE ).addComponent( fieldCasa, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE ) ).addPreferredGap( javax.swing.LayoutStyle.ComponentPlacement.RELATED ).addComponent( cMSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 18, 18, 18 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING, false ).addComponent( fieldAno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE ).addComponent( fieldPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE ) ) ) ).addGap( 23, 23, 23 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING, false ).addComponent( fieldModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE ).addComponent( fieldTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE ) ) ) ).addContainerGap( 221, Short.MAX_VALUE ) ) );
+      layout.setHorizontalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addGap( 46, 46, 46 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( fieldMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ).addGroup( layout.createSequentialGroup().addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE ).addGroup( layout.createSequentialGroup().addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.TRAILING, false ).addComponent( fieldCor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE ).addComponent( fieldCasa, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE ) ).addPreferredGap( javax.swing.LayoutStyle.ComponentPlacement.RELATED ).addComponent( cMSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 18, 18, 18 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING, false ).addComponent( fieldAno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE ).addComponent( fieldPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE ) ) ) ).addGap( 35, 35, 35 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.TRAILING ).addComponent( fieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE ) ) ) ).addContainerGap( 209, Short.MAX_VALUE ) ) );
       layout.setVerticalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addGap( 40, 40, 40 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING, false ).addComponent( cMSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE ).addComponent( fieldCasa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE ) ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.BASELINE ).addComponent( fieldPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ) ) ).addGap( 53, 53, 53 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.BASELINE ).addComponent( fieldCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addGap( 45, 45, 45 ).addComponent( fieldMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addPreferredGap( javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE ).addComponent( btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 82, 82, 82 ) ) );
 
       pack();
@@ -137,9 +135,26 @@ public class FrmVeiculoForm extends javax.swing.JFrame {
          this.dispatchEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
       }
       catch( Exception e ){
-         LogTracker.getInstance().addException(e,true,null);
+         LogTracker.getInstance().addException( e, true, null );
       }
    }// GEN-LAST:event_btnSalvarActionPerformed
+
+
+   private void checkInput() throws Exception {
+
+      if( casa == null ){
+         fieldCasa.setError();
+         fieldCasa.requestFocus();
+         throw new Exception( "Selecione uma casa para cadastrar o veículo" );
+      }
+
+      if( StringUtils.isEmpty( fieldPlaca.getText().trim() ) ){
+         fieldPlaca.setError();
+         fieldPlaca.requestFocus();
+         throw new Exception( "Informe a placa do veículo" );
+      }
+
+   }
 
 
    private void fillFields() {
@@ -198,14 +213,14 @@ public class FrmVeiculoForm extends javax.swing.JFrame {
    }// GEN-LAST:event_cMButton1ActionPerformed
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
-   private utils.CMButton  btnSalvar;
-   private utils.CMButton  cMSelecionar;
-   private utils.TextField fieldAno;
-   private utils.TextField fieldCasa;
-   private utils.TextField fieldCor;
-   private utils.TextField fieldMarca;
-   private utils.TextField fieldModelo;
-   private utils.TextField fieldPlaca;
-   private utils.TextField fieldTipo;
+   private design.CMButton  btnSalvar;
+   private design.CMButton  cMSelecionar;
+   private design.TextField fieldAno;
+   private design.TextField fieldCasa;
+   private design.TextField fieldCor;
+   private design.TextField fieldMarca;
+   private design.TextField fieldModelo;
+   private design.TextField fieldPlaca;
+   private design.TextField fieldTipo;
    // End of variables declaration//GEN-END:variables
 }

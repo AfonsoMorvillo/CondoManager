@@ -45,9 +45,9 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
         jTableProprietarios = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        btnAdicionar = new utils.CMButton();
-        btnEditar = new utils.CMButton();
-        btnExcluir = new utils.CMButton();
+        btnAdicionar = new design.CMButton();
+        btnEditar = new design.CMButton();
+        btnExcluir = new design.CMButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -323,9 +323,9 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private utils.CMButton btnAdicionar;
-    private utils.CMButton btnEditar;
-    private utils.CMButton btnExcluir;
+    private design.CMButton btnAdicionar;
+    private design.CMButton btnEditar;
+    private design.CMButton btnExcluir;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

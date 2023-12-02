@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import model.Proprietario;
 import model.Visitante;
 import utils.FormataTextInput;
+import utils.RegexUtils;
 import utils.StringUtils;
 
 /**
@@ -49,20 +50,40 @@ public class FrmVisitanteForm extends javax.swing.JFrame {
 
 
    private void setFormatoCampos() {
-      // fieldNome.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.NOME ) );
-      // fieldEmail.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.EMAIL ) );
+      fieldNome.setDocument( new FormataTextInput( 50, FormataTextInput.TipoEntrada.NOME ) );
+      fieldIdade.setDocument( new FormataTextInput( 4, FormataTextInput.TipoEntrada.NUMEROINTEIRO ) );
+      fieldRg.setDocument( new FormataTextInput( 12, FormataTextInput.TipoEntrada.RG ) );
+      fieldCelular.setDocument( new FormataTextInput( 14, FormataTextInput.TipoEntrada.CELULAR ) );
 
    }
-   
-   private void checkInput () throws Exception {
-        if (!fieldCelular.getText().trim().matches("(\\+\\d{2,})?\\(\\d{2}\\)\\d{4,5}-\\d{4}")) {
-            JOptionPane.showMessageDialog(null, "“O telefone deve estar no formato '(XX) XXXX-XXXX' ou '(XX) XXXXXXXXX'.", "Erro", JOptionPane.ERROR_MESSAGE);
-            throw new Exception("erro");
-        } 
-         if (!fieldRg.getText().trim().matches("\\d{2}.\\d{3}.\\d{3}.\\d{1}")) {
-        JOptionPane.showMessageDialog(null, "O rg deve estr no formato XX.XXX.XXX-X.", "Erro", JOptionPane.ERROR_MESSAGE);
-        throw new Exception("erro");
-       }
+
+
+   private void checkInput() throws Exception {
+
+      if( StringUtils.isEmpty( fieldNome.getText().trim() ) ){
+         fieldNome.setError();
+         fieldNome.requestFocus();
+         throw new Exception( "Digite o nome do visitante" );
+      }
+
+      if( StringUtils.isEmpty( fieldRg.getText().trim() ) || !fieldRg.getText().matches( RegexUtils.RG ) ){
+         fieldRg.setError();
+         fieldRg.requestFocus();
+         throw new Exception( "O RG deve estar no formato XX.XXX.XXX-X." );
+      }
+
+      if( StringUtils.isEmpty( fieldIdade.getText().trim() ) ){
+         fieldIdade.setError();
+         fieldIdade.requestFocus();
+         throw new Exception( "Digite a idade do visitante" );
+      }
+
+      if( !fieldCelular.getText().trim().matches( RegexUtils.CELULAR ) ){
+         fieldCelular.setError();
+         fieldCelular.requestFocus();
+         throw new Exception( "O Telefone deve estar no formato '(XX)XXXXX-XXXX'." );
+      }
+
    }
 
 
@@ -73,11 +94,11 @@ public class FrmVisitanteForm extends javax.swing.JFrame {
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {
 
-      fieldNome = new utils.TextField();
-      fieldIdade = new utils.TextField();
-      fieldRg = new utils.TextField();
-      fieldCelular = new utils.TextField();
-      btnSalvar = new utils.CMButton();
+      fieldNome = new design.TextField();
+      fieldIdade = new design.TextField();
+      fieldRg = new design.TextField();
+      fieldCelular = new design.TextField();
+      btnSalvar = new design.CMButton();
 
       setDefaultCloseOperation( javax.swing.WindowConstants.DISPOSE_ON_CLOSE );
 
@@ -115,7 +136,7 @@ public class FrmVisitanteForm extends javax.swing.JFrame {
          this.dispatchEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
       }
       catch( Exception e ){
-        LogTracker.getInstance().addException(e,true,null);
+         LogTracker.getInstance().addException( e, true, null );
       }
    }// GEN-LAST:event_btnSalvarActionPerformed
 
@@ -138,10 +159,10 @@ public class FrmVisitanteForm extends javax.swing.JFrame {
    }
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
-   private utils.CMButton  btnSalvar;
-   private utils.TextField fieldCelular;
-   private utils.TextField fieldIdade;
-   private utils.TextField fieldNome;
-   private utils.TextField fieldRg;
+   private design.CMButton  btnSalvar;
+   private design.TextField fieldCelular;
+   private design.TextField fieldIdade;
+   private design.TextField fieldNome;
+   private design.TextField fieldRg;
    // End of variables declaration//GEN-END:variables
 }

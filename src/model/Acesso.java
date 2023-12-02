@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import controller.DataAccessObject;
+import utils.StringUtils;
 
 public class Acesso extends DataAccessObject {
    private int       idAcesso;
@@ -58,7 +59,7 @@ public class Acesso extends DataAccessObject {
 
 
    public void setSaida( String saida ) {
-      if( saida != this.saida ){
+      if( saida != this.saida && !StringUtils.isEmpty( saida )){
          this.saida = saida;
          addChange( "saida", this.saida );
       }

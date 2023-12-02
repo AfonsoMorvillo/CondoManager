@@ -48,7 +48,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButtonSair = new javax.swing.JLabel();
         fieldSenha = new javax.swing.JPasswordField();
-        btnLogin = new utils.CMButton();
+        btnLogin = new design.CMButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -238,7 +238,7 @@ public class FrmLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IconPassword;
     private javax.swing.JLabel IconUser;
-    private utils.CMButton btnLogin;
+    private design.CMButton btnLogin;
     private javax.swing.JPasswordField fieldSenha;
     private javax.swing.JTextField fieldUsuario;
     private javax.swing.JLabel jButtonSair;

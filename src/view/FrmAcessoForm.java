@@ -85,13 +85,13 @@ public class FrmAcessoForm extends javax.swing.JFrame {
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {
 
-      fieldCasa = new utils.TextField();
-      btnSelecionarCasa = new utils.CMButton();
-      fieldEntrada = new utils.TextField();
-      fieldSaida = new utils.TextField();
-      btnSalvar = new utils.CMButton();
-      btnSelecionarVisitante = new utils.CMButton();
-      fieldVisitante = new utils.TextField();
+      fieldCasa = new design.TextField();
+      btnSelecionarCasa = new design.CMButton();
+      fieldEntrada = new design.TextField();
+      fieldSaida = new design.TextField();
+      btnSalvar = new design.CMButton();
+      btnSelecionarVisitante = new design.CMButton();
+      fieldVisitante = new design.TextField();
 
       setDefaultCloseOperation( javax.swing.WindowConstants.DISPOSE_ON_CLOSE );
       setTitle( "Cadastro Veículos" );
@@ -211,31 +211,27 @@ public class FrmAcessoForm extends javax.swing.JFrame {
    private void checkInput() throws Exception {
 
       if( casa == null ){
-         JOptionPane.showMessageDialog( null, "Selecione uma casa para cadastrar a visita", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldCasa.setError();
          fieldCasa.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Selecione uma casa para cadastrar a visita" );
       }
 
       if( visitante == null ){
-         JOptionPane.showMessageDialog( null, "Selecione um visitante para cadastrar a visita", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldVisitante.setError();
          fieldVisitante.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Selecione um visitante para cadastrar a visita" );
       }
 
       if( !fieldEntrada.getText().matches( RegexUtils.DATA ) ){
-         JOptionPane.showMessageDialog( null, "Data para entrada inválida, deve estar no formato '##/##/####'", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldEntrada.setError();
          fieldEntrada.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Data para entrada inválida, deve estar no formato '##/##/####'" );
       }
 
       if( !StringUtils.isEmpty( fieldSaida.getText() ) && !fieldSaida.getText().matches( RegexUtils.DATA ) ){
-         JOptionPane.showMessageDialog( null, "Data para saída inválida, deve estar no formato '##/##/####'", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldSaida.setError();
          fieldSaida.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Data para saída inválida, deve estar no formato '##/##/####'" );
       }
 
    }
@@ -271,12 +267,12 @@ public class FrmAcessoForm extends javax.swing.JFrame {
    }
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
-   private utils.CMButton  btnSalvar;
-   private utils.CMButton  btnSelecionarCasa;
-   private utils.CMButton  btnSelecionarVisitante;
-   private utils.TextField fieldCasa;
-   private utils.TextField fieldEntrada;
-   private utils.TextField fieldSaida;
-   private utils.TextField fieldVisitante;
+   private design.CMButton  btnSalvar;
+   private design.CMButton  btnSelecionarCasa;
+   private design.CMButton  btnSelecionarVisitante;
+   private design.TextField fieldCasa;
+   private design.TextField fieldEntrada;
+   private design.TextField fieldSaida;
+   private design.TextField fieldVisitante;
    // End of variables declaration//GEN-END:variables
 }

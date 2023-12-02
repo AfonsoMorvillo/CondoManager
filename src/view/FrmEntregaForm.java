@@ -4,17 +4,12 @@
  */
 package view;
 
-import controller.LogTracker;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-
-import model.Acesso;
+import controller.LogTracker;
 import model.Casa;
 import model.Entrega;
-import model.Veiculos;
-import model.Visitante;
 import utils.FormataTextInput;
 import utils.RegexUtils;
 import utils.StringUtils;
@@ -81,16 +76,17 @@ public class FrmEntregaForm extends javax.swing.JFrame {
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {
 
-      fieldCasa = new utils.TextField();
-      btnSelecionarCasa = new utils.CMButton();
-      fieldEntregador = new utils.TextField();
-      fieldRetirada = new utils.TextField();
-      btnSalvar = new utils.CMButton();
-      fieldHorarioRetirada = new utils.TextField();
-      fieldEntrega = new utils.TextField();
-      fieldHorarioEntrega = new utils.TextField();
-      fieldStatus = new utils.TextField();
-      fieldObservacao = new utils.TextField();
+      fieldCasa = new design.TextField();
+      btnSelecionarCasa = new design.CMButton();
+      fieldEntregador = new design.TextField();
+      fieldRetirada = new design.TextField();
+      btnSalvar = new design.CMButton();
+      fieldHorarioRetirada = new design.TextField();
+      fieldEntrega = new design.TextField();
+      fieldHorarioEntrega = new design.TextField();
+      fieldStatus = new design.TextField();
+      fieldObservacao = new design.TextField();
+      cbStatus = new design.Combobox();
 
       setDefaultCloseOperation( javax.swing.WindowConstants.DISPOSE_ON_CLOSE );
       setTitle( "Cadastro Veículos" );
@@ -117,7 +113,7 @@ public class FrmEntregaForm extends javax.swing.JFrame {
          }
       } );
 
-      fieldHorarioRetirada.setLabelText( "Horário entrega" );
+      fieldHorarioRetirada.setLabelText( "Horário retirada" );
 
       fieldEntrega.setLabelText( "Data entrega" );
 
@@ -127,10 +123,15 @@ public class FrmEntregaForm extends javax.swing.JFrame {
 
       fieldObservacao.setLabelText( "Observação" );
 
+      cbStatus.setBackground( new java.awt.Color( 214, 217, 223 ) );
+      cbStatus.setModel( new javax.swing.DefaultComboBoxModel( new String[] { "Entregue", "Retirado" } ) );
+      cbStatus.setSelectedIndex( -1 );
+      cbStatus.setLabeText( "Status" );
+
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout( getContentPane() );
       getContentPane().setLayout( layout );
-      layout.setHorizontalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addGap( 46, 46, 46 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE ).addGroup( layout.createSequentialGroup().addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addComponent( fieldCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ).addPreferredGap( javax.swing.LayoutStyle.ComponentPlacement.UNRELATED ).addComponent( btnSelecionarCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addComponent( fieldEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addGap( 33, 33, 33 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( fieldObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldHorarioEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldEntregador, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldHorarioRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ) ) ) ).addContainerGap( 86, Short.MAX_VALUE ) ) );
-      layout.setVerticalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addGap( 40, 40, 40 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( fieldCasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( btnSelecionarCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldEntregador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addGap( 42, 42, 42 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.BASELINE ).addComponent( fieldEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldHorarioEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addGap( 44, 44, 44 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.BASELINE ).addComponent( fieldRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldHorarioRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addGap( 36, 36, 36 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.BASELINE ).addComponent( fieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addPreferredGap( javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE ).addComponent( btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 28, 28, 28 ) ) );
+      layout.setHorizontalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addGap( 46, 46, 46 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE ).addGroup( layout.createSequentialGroup().addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addComponent( fieldCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ).addPreferredGap( javax.swing.LayoutStyle.ComponentPlacement.UNRELATED ).addComponent( btnSelecionarCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addComponent( fieldEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addGap( 33, 33, 33 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( fieldObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldHorarioEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldEntregador, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldHorarioRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ) ) ).addComponent( cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addContainerGap( 86, Short.MAX_VALUE ) ) );
+      layout.setVerticalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addGap( 40, 40, 40 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( fieldCasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( btnSelecionarCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldEntregador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addGap( 42, 42, 42 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.BASELINE ).addComponent( fieldEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldHorarioEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addGap( 44, 44, 44 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.BASELINE ).addComponent( fieldRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldHorarioRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addGap( 36, 36, 36 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.BASELINE ).addComponent( fieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( fieldObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addGap( 53, 53, 53 ).addComponent( cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE ).addPreferredGap( javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE ).addComponent( btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 28, 28, 28 ) ) );
 
       pack();
       setLocationRelativeTo( null );
@@ -183,46 +184,40 @@ public class FrmEntregaForm extends javax.swing.JFrame {
    private void checkInput() throws Exception {
 
       if( casa == null ){
-         JOptionPane.showMessageDialog( null, "Selecione uma casa para cadastrar a entrega", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldCasa.setError();
          fieldCasa.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Selecione uma casa para cadastrar a entrega" );
       }
 
       if( StringUtils.isEmpty( fieldEntregador.getText().trim() ) ){
          fieldEntregador.setText( "" );
-         JOptionPane.showMessageDialog( null, "Digite o nome do entregador", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldEntregador.setError();
          fieldEntregador.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Digite o nome do entregador" );
       }
 
       if( !fieldEntrega.getText().matches( RegexUtils.DATA ) ){
-         JOptionPane.showMessageDialog( null, "Data para entrega inválida, deve estar no formato '##/##/####'", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldEntrega.setError();
          fieldEntrega.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Data para entrega inválida, deve estar no formato '##/##/####'" );
       }
 
       if( !fieldHorarioEntrega.getText().matches( RegexUtils.HORA ) ){
-         JOptionPane.showMessageDialog( null, "Hora para entrega inválida, deve estar no formato 'MM:ss'", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldHorarioEntrega.setError();
          fieldHorarioEntrega.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Hora para entrega inválida, deve estar no formato 'MM:ss'" );
       }
 
       if( !StringUtils.isEmpty( fieldRetirada.getText() ) && !fieldRetirada.getText().matches( RegexUtils.DATA ) ){
-         JOptionPane.showMessageDialog( null, "Data para retirada inválida, deve estar no formato '##/##/####'", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldRetirada.setError();
          fieldRetirada.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Data para retirada inválida, deve estar no formato '##/##/####'" );
       }
 
       if( !StringUtils.isEmpty( fieldHorarioRetirada.getText() ) && !fieldHorarioEntrega.getText().matches( RegexUtils.HORA ) ){
-         JOptionPane.showMessageDialog( null, "Hora para retirada inválida, deve estar no formato 'MM:ss'", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldHorarioRetirada.setError();
          fieldHorarioRetirada.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Hora para retirada inválida, deve estar no formato 'MM:ss'" );
       }
 
    }
@@ -236,8 +231,14 @@ public class FrmEntregaForm extends javax.swing.JFrame {
       fieldEntregador.setText( entrega.getNomeEntregador() );
       fieldEntrega.setText( StringUtils.dataParaTela( entrega.getEntrega() ) );
       fieldHorarioEntrega.setText( StringUtils.horarioParaTela( entrega.getHorario_entrega() ) );
-      fieldStatus.setText( entrega.getStatus() );
       fieldObservacao.setText( entrega.getObservacao() );
+
+      if( entrega.getStatus().equals( "Entregue" ) ){
+         cbStatus.setSelectedIndex( 0 );
+      }
+      else{
+         cbStatus.setSelectedIndex( 1 );
+      }
 
       if( !StringUtils.isEmpty( entrega.getRetirada() ) ){
 
@@ -261,21 +262,22 @@ public class FrmEntregaForm extends javax.swing.JFrame {
       entrega.setHorario_entrega( fieldHorarioEntrega.getText() );
       entrega.setRetirada( StringUtils.dataParaBanco( fieldRetirada.getText() ) );
       entrega.setHorario_retirada( fieldHorarioRetirada.getText() );
-      entrega.setStatus( fieldStatus.getText() );
+      entrega.setStatus( cbStatus.getSelectedItem().toString() );
       entrega.setObservacao( fieldObservacao.getText() );
 
    }
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
-   private utils.CMButton  btnSalvar;
-   private utils.CMButton  btnSelecionarCasa;
-   private utils.TextField fieldCasa;
-   private utils.TextField fieldEntrega;
-   private utils.TextField fieldEntregador;
-   private utils.TextField fieldHorarioEntrega;
-   private utils.TextField fieldHorarioRetirada;
-   private utils.TextField fieldObservacao;
-   private utils.TextField fieldRetirada;
-   private utils.TextField fieldStatus;
+   private design.CMButton  btnSalvar;
+   private design.CMButton  btnSelecionarCasa;
+   private design.Combobox  cbStatus;
+   private design.TextField fieldCasa;
+   private design.TextField fieldEntrega;
+   private design.TextField fieldEntregador;
+   private design.TextField fieldHorarioEntrega;
+   private design.TextField fieldHorarioRetirada;
+   private design.TextField fieldObservacao;
+   private design.TextField fieldRetirada;
+   private design.TextField fieldStatus;
    // End of variables declaration//GEN-END:variables
 }

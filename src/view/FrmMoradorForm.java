@@ -66,89 +66,67 @@ public class FrmMoradorForm extends javax.swing.JFrame {
       fieldRG.setDocument( new FormataTextInput( 12, FormataTextInput.TipoEntrada.RG ) );
       fieldDataNascimento.setDocument( new FormataTextInput( 10, FormataTextInput.TipoEntrada.DATA ) );
       fieldInicioMoradia.setDocument( new FormataTextInput( 10, FormataTextInput.TipoEntrada.DATA ) );
-      fieldCelular.setDocument( new FormataTextInput( 14, FormataTextInput.TipoEntrada.CELULAR) );
+      fieldCelular.setDocument( new FormataTextInput( 14, FormataTextInput.TipoEntrada.CELULAR ) );
       fieldTelefone.setDocument( new FormataTextInput( 13, FormataTextInput.TipoEntrada.TELEFONE ) );
 
-      
    }
 
 
    private void checkInput() throws Exception {
 
       if( casa == null ){
-         JOptionPane.showMessageDialog( null, "Selecione uma casa para cadastrar o morador", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldCasa.setError();
          fieldCasa.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Selecione uma casa para cadastrar o morador" );
       }
 
       if( StringUtils.isEmpty( fieldNome.getText().trim() ) ){
-         JOptionPane.showMessageDialog( null, "Digite o nome do morador", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldNome.setError();
          fieldNome.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Digite o nome do morador" );
       }
 
       if( StringUtils.isEmpty( fieldEmail.getText().trim() ) || !fieldEmail.getText().matches( RegexUtils.EMAIL ) ){
-         JOptionPane.showMessageDialog( null, "E-mail devete estar no formato 'aaaaaaa@aaa.com'", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldEmail.setError();
          fieldEmail.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "E-mail devete estar no formato 'aaaaaaa@aaa.com'" );
       }
 
       if( StringUtils.isEmpty( fieldRG.getText().trim() ) || !fieldRG.getText().matches( RegexUtils.RG ) ){
-         JOptionPane.showMessageDialog( null, "O RG deve estar no formato XX.XXX.XXX-X.", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldRG.setError();
          fieldRG.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "O RG deve estar no formato XX.XXX.XXX-X." );
       }
 
       if( StringUtils.isEmpty( fieldCpf.getText().trim() ) || !fieldCpf.getText().matches( RegexUtils.CPF ) ){
-         JOptionPane.showMessageDialog( null, "O cpf deve estar no formato XXX.XXX.XXX-XX.", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldCpf.setError();
          fieldCpf.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "O cpf deve estar no formato XXX.XXX.XXX-XX." );
       }
 
       if( !fieldDataNascimento.getText().matches( RegexUtils.DATA ) ){
-         JOptionPane.showMessageDialog( null, "Data de nascimento inválida, deve estar no formato '##/##/####'", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldDataNascimento.setError();
          fieldDataNascimento.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Data de nascimento inválida, deve estar no formato '##/##/####'" );
       }
 
       if( !fieldInicioMoradia.getText().matches( RegexUtils.DATA ) ){
-         JOptionPane.showMessageDialog( null, "Data de início moradia inválida, deve estar no formato '##/##/####'", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldInicioMoradia.setError();
          fieldInicioMoradia.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Data de início moradia inválida, deve estar no formato '##/##/####'" );
       }
-      
-      
-      if( !fieldCelular.getText().trim().matches( RegexUtils.CELULAR) ){
-         JOptionPane.showMessageDialog( null, "“O Celular deve estar no formato '(XX)XXXXX-XXXX'.", "Erro", JOptionPane.ERROR_MESSAGE );
+
+      if( !fieldCelular.getText().trim().matches( RegexUtils.CELULAR ) ){
          fieldCelular.setError();
          fieldCelular.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "O Celular deve estar no formato '(XX)XXXXX-XXXX'." );
       }
-      
-      if( !fieldTelefone.getText().trim().matches( RegexUtils.TELEFONE) ){
-         JOptionPane.showMessageDialog( null, "“O Telefone deve estar no formato '(XX)XXXx-XXXX'.", "Erro", JOptionPane.ERROR_MESSAGE );
+
+      if( !fieldTelefone.getText().trim().matches( RegexUtils.TELEFONE ) ){
          fieldTelefone.setError();
          fieldTelefone.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "O Telefone deve estar no formato '(XX)XXXx-XXXX'." );
       }
-      
-      
-      
-      if( !fieldCpf.getText().matches( "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}" ) ){
-         JOptionPane.showMessageDialog( null, "O cpf deve estr no formato XXX.XXX.XXX-XX.", "Erro", JOptionPane.ERROR_MESSAGE );
-         throw new Exception( "erro" );
-      }
-      // if (!fieldDataNascimento.getText().trim().matches("\\d{4}-\\d{2}-\\d{2}")) {
-      // JOptionPane.showMessageDialog(null, "A Data de Nascimento deve estar no formato AAAA-MM-DD.", "Erro", JOptionPane.ERROR_MESSAGE);
-      // throw new Exception("erro");
-      // }
    }
 
 
@@ -159,17 +137,17 @@ public class FrmMoradorForm extends javax.swing.JFrame {
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {
 
-      fieldCasa = new utils.TextField();
-      btnConsultaCasa = new utils.CMButton();
-      fieldEmail = new utils.TextField();
-      fieldDataNascimento = new utils.TextField();
-      fieldNome = new utils.TextField();
-      btnSalvar = new utils.CMButton();
-      fieldRG = new utils.TextField();
-      fieldCpf = new utils.TextField();
-      fieldCelular = new utils.TextField();
-      fieldTelefone = new utils.TextField();
-      fieldInicioMoradia = new utils.TextField();
+      fieldCasa = new design.TextField();
+      btnConsultaCasa = new design.CMButton();
+      fieldEmail = new design.TextField();
+      fieldDataNascimento = new design.TextField();
+      fieldNome = new design.TextField();
+      btnSalvar = new design.CMButton();
+      fieldRG = new design.TextField();
+      fieldCpf = new design.TextField();
+      fieldCelular = new design.TextField();
+      fieldTelefone = new design.TextField();
+      fieldInicioMoradia = new design.TextField();
 
       setDefaultCloseOperation( javax.swing.WindowConstants.DISPOSE_ON_CLOSE );
       setBackground( new java.awt.Color( 102, 255, 102 ) );
@@ -309,16 +287,16 @@ public class FrmMoradorForm extends javax.swing.JFrame {
    }
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
-   private utils.CMButton  btnConsultaCasa;
-   private utils.CMButton  btnSalvar;
-   private utils.TextField fieldCasa;
-   private utils.TextField fieldCelular;
-   private utils.TextField fieldCpf;
-   private utils.TextField fieldDataNascimento;
-   private utils.TextField fieldEmail;
-   private utils.TextField fieldInicioMoradia;
-   private utils.TextField fieldNome;
-   private utils.TextField fieldRG;
-   private utils.TextField fieldTelefone;
+   private design.CMButton  btnConsultaCasa;
+   private design.CMButton  btnSalvar;
+   private design.TextField fieldCasa;
+   private design.TextField fieldCelular;
+   private design.TextField fieldCpf;
+   private design.TextField fieldDataNascimento;
+   private design.TextField fieldEmail;
+   private design.TextField fieldInicioMoradia;
+   private design.TextField fieldNome;
+   private design.TextField fieldRG;
+   private design.TextField fieldTelefone;
    // End of variables declaration//GEN-END:variables
 }

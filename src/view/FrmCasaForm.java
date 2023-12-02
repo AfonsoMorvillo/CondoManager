@@ -61,9 +61,8 @@ public class FrmCasaForm extends javax.swing.JFrame {
 
 
    private void formataCampos() {
-       fieldBloco.setDocument( new FormataTextInput( 45, FormataTextInput.TipoEntrada.NOME ) );
-       fieldNumero.setDocument( new FormataTextInput( 10, FormataTextInput.TipoEntrada.NUMEROINTEIRO ) );
-       fieldVagas.setDocument( new FormataTextInput( 10, FormataTextInput.TipoEntrada.NUMEROINTEIRO ) );
+      fieldNumero.setDocument( new FormataTextInput( 10, FormataTextInput.TipoEntrada.NUMEROINTEIRO ) );
+      fieldVagas.setDocument( new FormataTextInput( 10, FormataTextInput.TipoEntrada.NUMEROINTEIRO ) );
    }
 
 
@@ -74,12 +73,12 @@ public class FrmCasaForm extends javax.swing.JFrame {
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {
 
-      fieldProprietario = new utils.TextField();
-      cMButton1 = new utils.CMButton();
-      fieldNumero = new utils.TextField();
-      fieldVagas = new utils.TextField();
-      fieldBloco = new utils.TextField();
-      btnSalvar = new utils.CMButton();
+      fieldProprietario = new design.TextField();
+      cMButton1 = new design.CMButton();
+      fieldNumero = new design.TextField();
+      fieldVagas = new design.TextField();
+      fieldBloco = new design.TextField();
+      btnSalvar = new design.CMButton();
 
       setDefaultCloseOperation( javax.swing.WindowConstants.DISPOSE_ON_CLOSE );
 
@@ -134,34 +133,29 @@ public class FrmCasaForm extends javax.swing.JFrame {
    private void checkInput() throws Exception {
 
       if( proprietario == null ){
-         JOptionPane.showMessageDialog( null, "Selecione um proprietário para cadastrar a casa", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldProprietario.setError();
          fieldProprietario.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Selecione um proprietário para cadastrar a casa" );
       }
 
       if( StringUtils.isEmpty( fieldBloco.getText().trim() ) ){
          fieldBloco.setText( "" );
-         JOptionPane.showMessageDialog( null, "Digite o bloco da casa", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldBloco.setError();
          fieldBloco.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Digite o bloco da casa" );
       }
-      
+
       if( StringUtils.isEmpty( fieldNumero.getText().trim() ) ){
-         JOptionPane.showMessageDialog( null, "Digite o número da casa", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldNumero.setError();
          fieldNumero.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Digite o número da casa" );
       }
 
       if( StringUtils.isEmpty( fieldVagas.getText().trim() ) ){
-         JOptionPane.showMessageDialog( null, "Digite a quantidade de vagas", "Erro", JOptionPane.ERROR_MESSAGE );
          fieldVagas.setError();
          fieldVagas.requestFocus();
-         throw new Exception( "erro" );
+         throw new Exception( "Digite a quantidade de vagas" );
       }
-
 
    }
 
@@ -223,11 +217,11 @@ public class FrmCasaForm extends javax.swing.JFrame {
    }// GEN-LAST:event_cMButton1ActionPerformed
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
-   private utils.CMButton  btnSalvar;
-   private utils.CMButton  cMButton1;
-   private utils.TextField fieldBloco;
-   private utils.TextField fieldNumero;
-   private utils.TextField fieldProprietario;
-   private utils.TextField fieldVagas;
+   private design.CMButton  btnSalvar;
+   private design.CMButton  cMButton1;
+   private design.TextField fieldBloco;
+   private design.TextField fieldNumero;
+   private design.TextField fieldProprietario;
+   private design.TextField fieldVagas;
    // End of variables declaration//GEN-END:variables
 }

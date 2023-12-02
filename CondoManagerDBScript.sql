@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `condoManager`.`Proprietario` (
   `telefone` VARCHAR(15) NULL,
   `dataNascimento` DATE NULL,
   `dataAquisicao` DATE NULL,
-  `cpf` VARCHAR(11) NULL,
+  `cpf` VARCHAR(15) NULL,
   `rg` VARCHAR(12) NULL,
   PRIMARY KEY (`idProprietario`))
 ENGINE = InnoDB;

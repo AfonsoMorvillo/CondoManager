@@ -47,6 +47,7 @@
                           <Component id="fieldHorarioRetirada" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <Component id="cbStatus" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="86" max="32767" attributes="0"/>
           </Group>
@@ -76,7 +77,9 @@
                   <Component id="fieldStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="fieldObservacao" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="102" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+              <Component id="cbStatus" min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace pref="120" max="32767" attributes="0"/>
               <Component id="btnSalvar" min="-2" pref="37" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
           </Group>
@@ -142,6 +145,21 @@
     <Component class="utils.TextField" name="fieldObservacao">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Observa&#xe7;&#xe3;o"/>
+      </Properties>
+    </Component>
+    <Component class="combobox.Combobox" name="cbStatus">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="df" green="d9" red="d6" type="rgb"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Entregue"/>
+            <StringItem index="1" value="Retirado"/>
+          </StringArray>
+        </Property>
+        <Property name="selectedIndex" type="int" value="-1"/>
+        <Property name="labeText" type="java.lang.String" value="Status"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -72,12 +72,12 @@ public class FrmCasasGrid extends javax.swing.JFrame {
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
 
-		btnEditar = new utils.CMButton();
+		btnEditar = new design.CMButton();
 		jScrollPane1 = new javax.swing.JScrollPane();
 		jTableCasas = new javax.swing.JTable();
-		btnAdicionar = new utils.CMButton();
-		btnExcluir = new utils.CMButton();
-		btnSelecionar = new utils.CMButton();
+		btnAdicionar = new design.CMButton();
+		btnExcluir = new design.CMButton();
+		btnSelecionar = new design.CMButton();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 		setTitle("Consulta de Casas");
@@ -306,10 +306,10 @@ public class FrmCasasGrid extends javax.swing.JFrame {
 	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private utils.CMButton btnAdicionar;
-	private utils.CMButton btnEditar;
-	private utils.CMButton btnExcluir;
-	private utils.CMButton btnSelecionar;
+	private design.CMButton btnAdicionar;
+	private design.CMButton btnEditar;
+	private design.CMButton btnExcluir;
+	private design.CMButton btnSelecionar;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JTable jTableCasas;
 	// End of variables declaration//GEN-END:variables

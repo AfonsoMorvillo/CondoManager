@@ -55,7 +55,7 @@ public class FormataTextInput extends PlainDocument {
             regex = "[^0-9\\-\\(\\)]";
             break;
          case DATA :
-            regex = "[^0-9]";
+            regex = "[^0-9\\/]";
             break;
       }
 
