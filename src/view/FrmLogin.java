@@ -39,16 +39,12 @@ public class FrmLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        fieldUsuario = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
         IconUser = new javax.swing.JLabel();
         IconPassword = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jButtonSair = new javax.swing.JLabel();
-        fieldSenha = new javax.swing.JPasswordField();
         btnLogin = new design.CMButton();
+        textField1 = new design.TextField();
+        fieldSenha = new design.PasswordField();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -62,26 +58,6 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
 
-        fieldUsuario.setBorder(null);
-        jPanel1.add(fieldUsuario);
-        fieldUsuario.setBounds(90, 120, 240, 20);
-
-        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jSeparator1.setPreferredSize(new java.awt.Dimension(0, 1));
-        jSeparator1.setRequestFocusEnabled(false);
-        jPanel1.add(jSeparator1);
-        jSeparator1.setBounds(90, 210, 240, 10);
-
-        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jSeparator2.setPreferredSize(new java.awt.Dimension(0, 1));
-        jSeparator2.setRequestFocusEnabled(false);
-        jPanel1.add(jSeparator2);
-        jSeparator2.setBounds(90, 140, 240, 10);
-
         IconUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/usuario.png"))); // NOI18N
         jPanel1.add(IconUser);
         IconUser.setBounds(40, 110, 32, 32);
@@ -89,18 +65,6 @@ public class FrmLogin extends javax.swing.JFrame {
         IconPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/senha.png"))); // NOI18N
         jPanel1.add(IconPassword);
         IconPassword.setBounds(40, 180, 32, 32);
-
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("Usuário");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(90, 100, 90, 19);
-
-        jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel2.setText("Senha");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(90, 170, 80, 19);
 
         jButtonSair.setFont(new java.awt.Font("DejaVu Sans", 1, 16)); // NOI18N
         jButtonSair.setForeground(new java.awt.Color(51, 51, 51));
@@ -113,10 +77,6 @@ public class FrmLogin extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonSair);
         jButtonSair.setBounds(350, 10, 11, 15);
-
-        fieldSenha.setBorder(null);
-        jPanel1.add(fieldSenha);
-        fieldSenha.setBounds(90, 190, 240, 20);
 
         btnLogin.setBackground(new java.awt.Color(102, 51, 0));
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
@@ -135,8 +95,26 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel1.add(btnLogin);
         btnLogin.setBounds(90, 250, 240, 35);
 
+        textField1.setBackground(new java.awt.Color(255, 255, 255));
+        textField1.setForeground(new java.awt.Color(0, 0, 0));
+        textField1.setLabelText("Usuário");
+        textField1.setLineColor(new java.awt.Color(140, 70, 1));
+        textField1.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        textField1.setSelectionColor(new java.awt.Color(204, 204, 204));
+        jPanel1.add(textField1);
+        textField1.setBounds(90, 100, 240, 40);
+
+        fieldSenha.setBackground(new java.awt.Color(255, 255, 255));
+        fieldSenha.setForeground(new java.awt.Color(0, 0, 0));
+        fieldSenha.setLabelText("Senha");
+        fieldSenha.setLineColor(new java.awt.Color(140, 70, 1));
+        fieldSenha.setSelectionColor(new java.awt.Color(204, 204, 204));
+        fieldSenha.setShowAndHide(true);
+        jPanel1.add(fieldSenha);
+        fieldSenha.setBounds(90, 170, 240, 40);
+
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(160, 0, 420, 330);
+        jPanel1.setBounds(160, 0, 370, 330);
 
         jPanel2.setBackground(new java.awt.Color(102, 51, 0));
         jPanel2.setLayout(new java.awt.GridBagLayout());
@@ -160,7 +138,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
       try{
 
-         usuario.setUsername( fieldUsuario.getText() );
+         usuario.setUsername( textField1.getText() );
 
          if( !usuario.load() ){
             if( usuario == null ){
@@ -170,7 +148,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
          Usuario comparePassword = new Usuario();
 
-         comparePassword.setUsername( fieldUsuario.getText() );
+         comparePassword.setUsername( textField1.getText() );
          comparePassword.setSenha( fieldSenha.getText() );
 
          if( usuario.getSenha().equals( comparePassword.getSenha() ) ){
@@ -239,15 +217,11 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel IconPassword;
     private javax.swing.JLabel IconUser;
     private design.CMButton btnLogin;
-    private javax.swing.JPasswordField fieldSenha;
-    private javax.swing.JTextField fieldUsuario;
+    private design.PasswordField fieldSenha;
     private javax.swing.JLabel jButtonSair;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
+    private design.TextField textField1;
     // End of variables declaration//GEN-END:variables
 }
