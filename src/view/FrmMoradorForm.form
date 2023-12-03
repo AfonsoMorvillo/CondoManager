@@ -95,12 +95,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="utils.TextField" name="fieldCasa">
+    <Component class="design.TextField" name="fieldCasa">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Casa"/>
       </Properties>
     </Component>
-    <Component class="utils.CMButton" name="btnConsultaCasa">
+    <Component class="design.CMButton" name="btnConsultaCasa">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/resources/pesquisa.png"/>
@@ -111,22 +111,22 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaCasaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="utils.TextField" name="fieldEmail">
+    <Component class="design.TextField" name="fieldEmail">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="E-mail"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldDataNascimento">
+    <Component class="design.TextField" name="fieldDataNascimento">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Data de Nascimento"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldNome">
+    <Component class="design.TextField" name="fieldNome">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Nome"/>
       </Properties>
     </Component>
-    <Component class="utils.CMButton" name="btnSalvar">
+    <Component class="design.CMButton" name="btnSalvar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
         <Property name="radius" type="int" value="25"/>
@@ -135,7 +135,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="utils.TextField" name="fieldRG">
+    <Component class="design.TextField" name="fieldRG">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="RG"/>
       </Properties>
@@ -143,22 +143,22 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fieldRGActionPerformed"/>
       </Events>
     </Component>
-    <Component class="utils.TextField" name="fieldCpf">
+    <Component class="design.TextField" name="fieldCpf">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="CPF"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldCelular">
+    <Component class="design.TextField" name="fieldCelular">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Celular"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldTelefone">
+    <Component class="design.TextField" name="fieldTelefone">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Telefone"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldInicioMoradia">
+    <Component class="design.TextField" name="fieldInicioMoradia">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="In&#xed;cio Moradia"/>
       </Properties>

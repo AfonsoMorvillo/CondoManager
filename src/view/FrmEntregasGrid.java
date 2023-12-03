@@ -6,10 +6,14 @@ package view;
 
 import java.sql.SQLException;
 
+import controller.LogTracker;
 import controller.ResultSetTableModel;
 import model.Acesso;
+import model.Casa;
 import model.Entrega;
+import utils.FormataTextInput;
 import utils.Select;
+import utils.StringUtils;
 
 /**
  * @author aluno
@@ -22,8 +26,12 @@ public class FrmEntregasGrid extends javax.swing.JFrame {
 
    private ResultSetTableModel result;
 
+   private Casa                casa;
+
    public FrmEntregasGrid( boolean select, boolean disconnectOnClose ) throws SQLException {
       initComponents();
+
+      setControles();
 
       this.select = select;
       // jButtonSelecionar.setEnabled( this.select );
@@ -32,6 +40,13 @@ public class FrmEntregasGrid extends javax.swing.JFrame {
       result = new ResultSetTableModel( getSelect() );
 
       jTableEntregas.setModel( result );
+   }
+
+
+   private void setControles() {
+      fieldDataEntrega.setDocument( new FormataTextInput( 10, FormataTextInput.TipoEntrada.DATA ) );
+      fielDataRetirada.setDocument( new FormataTextInput( 10, FormataTextInput.TipoEntrada.DATA ) );
+
    }
 
 
@@ -44,6 +59,16 @@ public class FrmEntregasGrid extends javax.swing.JFrame {
         jTableEntregas = new javax.swing.JTable();
         btnAdicionar = new design.CMButton();
         btnExcluir = new design.CMButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnLimparCasa = new javax.swing.JButton();
+        fieldCasa = new design.TextField();
+        fieldDataEntrega = new design.TextField();
+        fielDataRetirada = new design.TextField();
+        btnSelecionarCasa = new design.CMButton();
+        btnBuscar = new design.CMButton();
+        btnLimpar = new design.CMButton();
+        cbEntregue = new design.JCheckBoxCustom();
+        cbRetirado = new design.JCheckBoxCustom();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta de Entregas");
@@ -91,6 +116,74 @@ public class FrmEntregasGrid extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtros"));
+        jPanel1.setLayout(null);
+
+        btnLimparCasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/excluirLinha.png"))); // NOI18N
+        btnLimparCasa.setContentAreaFilled(false);
+        btnLimparCasa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLimparCasa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparCasaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLimparCasa);
+        btnLimparCasa.setBounds(240, 56, 30, 16);
+
+        fieldCasa.setEditable(false);
+        fieldCasa.setFocusable(false);
+        fieldCasa.setLabelText("Casa");
+        jPanel1.add(fieldCasa);
+        fieldCasa.setBounds(30, 43, 238, 41);
+
+        fieldDataEntrega.setLabelText("Data entrega");
+        jPanel1.add(fieldDataEntrega);
+        fieldDataEntrega.setBounds(340, 43, 85, 41);
+
+        fielDataRetirada.setLabelText("Data retirada");
+        jPanel1.add(fielDataRetirada);
+        fielDataRetirada.setBounds(460, 43, 85, 41);
+
+        btnSelecionarCasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pesquisa.png"))); // NOI18N
+        btnSelecionarCasa.setRadius(25);
+        btnSelecionarCasa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarCasaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSelecionarCasa);
+        btnSelecionarCasa.setBounds(280, 43, 40, 41);
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.setRadius(15);
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBuscar);
+        btnBuscar.setBounds(1020, 40, 72, 41);
+
+        btnLimpar.setText("Limpar");
+        btnLimpar.setRadius(15);
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLimpar);
+        btnLimpar.setBounds(930, 40, 72, 40);
+
+        cbEntregue.setBackground(new java.awt.Color(214, 217, 223));
+        cbEntregue.setText("Entregue");
+        jPanel1.add(cbEntregue);
+        cbEntregue.setBounds(570, 40, 110, 20);
+
+        cbRetirado.setBackground(new java.awt.Color(214, 217, 223));
+        cbRetirado.setText("Retirado");
+        jPanel1.add(cbRetirado);
+        cbRetirado.setBounds(570, 70, 110, 20);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,23 +201,91 @@ public class FrmEntregasGrid extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(420, 1000, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(41, 41, 41))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+
+   private void btnLimparCasaActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnLimparCasaActionPerformed
+      casa = null;
+      fieldCasa.setText( "" );
+   }// GEN-LAST:event_btnLimparCasaActionPerformed
+
+
+   private void btnSelecionarCasaActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnSelecionarCasaActionPerformed
+      try{
+
+         if( casa == null ){
+            casa = new Casa();
+         }
+
+         FrmCasasGrid casasConsulta;
+         casasConsulta = new FrmCasasGrid( casa, true, false );
+
+         casasConsulta.addWindowListener( new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed( java.awt.event.WindowEvent evt ) {
+               if( casa.getNumero() > 0 ){
+                  fieldCasa.setText( String.valueOf( casa.getNumero() ) );
+               }
+            }
+         } );
+
+         casasConsulta.setVisible( true );
+      }
+      catch( Exception ex ){
+         LogTracker.getInstance().addException( ex, true, this );
+         casa = null;
+      }
+   }// GEN-LAST:event_btnSelecionarCasaActionPerformed
+
+
+   private void btnBuscarActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnBuscarActionPerformed
+      try{
+         result.setQuery( getSelect() );
+
+      }
+      catch( Exception ex ){
+         LogTracker.getInstance().addException( ex, true, this );
+      }
+   }// GEN-LAST:event_btnBuscarActionPerformed
+
+
+   private void btnLimparActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnLimparActionPerformed
+      casa = null;
+      fieldCasa.setText( "" );
+      fieldDataEntrega.setText( "" );
+      fielDataRetirada.setText( "" );
+      cbEntregue.setSelected( false );
+      cbRetirado.setSelected( false );
+      try{
+         result.setQuery( getSelect() );
+
+      }
+      catch( Exception ex ){
+         LogTracker.getInstance().addException( ex, true, this );
+      }
+   }// GEN-LAST:event_btnLimparActionPerformed
 
 
    private void formWindowClosing( java.awt.event.WindowEvent evt ) {// GEN-FIRST:event_formWindowClosing
@@ -204,22 +365,23 @@ public class FrmEntregasGrid extends javax.swing.JFrame {
 
 
    private void btnExcluirActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnExcluirActionPerformed
-       int linhaSelecionada = jTableEntregas.getSelectedRow();
-       if( linhaSelecionada != -1 ){
-            System.out.println("Excluir");
-            data = new Entrega();
-            int numero = (int)result.getValueAt( linhaSelecionada, 0 );
-            data.setIdEntrega(numero);
-        try {
-         this.data.delete();
-         
-        } catch (Exception ex){
-          ex.printStackTrace();
-        }
-        finally {
-        	result.setQuery( getSelect() );
-        }
-       }
+      int linhaSelecionada = jTableEntregas.getSelectedRow();
+      if( linhaSelecionada != -1 ){
+         System.out.println( "Excluir" );
+         data = new Entrega();
+         int numero = (int)result.getValueAt( linhaSelecionada, 0 );
+         data.setIdEntrega( numero );
+         try{
+            this.data.delete();
+
+         }
+         catch( Exception ex ){
+            ex.printStackTrace();
+         }
+         finally{
+            result.setQuery( getSelect() );
+         }
+      }
    }// GEN-LAST:event_btnExcluirActionPerformed
 
 
@@ -230,11 +392,31 @@ public class FrmEntregasGrid extends javax.swing.JFrame {
       select.add( "c.numero", "Casa" );
       select.add( "e.entrega", "Data_Entrega" );
       select.add( "e.horario_entrega", "Horário_Entrega" );
+      select.add( "e.retirada", "Data_Retirada" );
       select.add( "e.horario_retirada", "Horário_Retirada" );
       select.add( "e.status", "Situação" );
-     
 
       select.addLeftJoin( "Casa c", "c.numero = casa" );
+
+      if( casa != null ){
+         select.addWhere( "e.casa = " + casa.getNumero() );
+      }
+
+      if( !StringUtils.isEmpty( fieldDataEntrega.getText().trim() ) ){
+         select.addWhere( "e.entrega = '" + StringUtils.dataParaBanco( fieldDataEntrega.getText().trim() ) + "'" );
+      }
+
+      if( !StringUtils.isEmpty( fielDataRetirada.getText().trim() ) ){
+         select.addWhere( "e.retirada = '" + StringUtils.dataParaBanco( fielDataRetirada.getText().trim() ) + "'" );
+      }
+
+      if( cbEntregue.isSelected() ){
+         select.addWhere( "e.status = 'Entregue'" );
+      }
+
+      if( cbRetirado.isSelected() ){
+         select.addWhere( "e.status = 'Retirado'" );
+      }
 
       return select.build();
    }
@@ -302,8 +484,18 @@ public class FrmEntregasGrid extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private design.CMButton btnAdicionar;
+    private design.CMButton btnBuscar;
     private design.CMButton btnEditar;
     private design.CMButton btnExcluir;
+    private design.CMButton btnLimpar;
+    private javax.swing.JButton btnLimparCasa;
+    private design.CMButton btnSelecionarCasa;
+    private design.JCheckBoxCustom cbEntregue;
+    private design.JCheckBoxCustom cbRetirado;
+    private design.TextField fielDataRetirada;
+    private design.TextField fieldCasa;
+    private design.TextField fieldDataEntrega;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableEntregas;
     // End of variables declaration//GEN-END:variables

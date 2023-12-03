@@ -94,13 +94,13 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Usuário");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(90, 100, 60, 16);
+        jLabel1.setBounds(90, 100, 90, 19);
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Senha");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(90, 170, 38, 16);
+        jLabel2.setBounds(90, 170, 80, 19);
 
         jButtonSair.setFont(new java.awt.Font("DejaVu Sans", 1, 16)); // NOI18N
         jButtonSair.setForeground(new java.awt.Color(51, 51, 51));
@@ -112,7 +112,7 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonSair);
-        jButtonSair.setBounds(350, 10, 12, 15);
+        jButtonSair.setBounds(350, 10, 11, 15);
 
         fieldSenha.setBorder(null);
         jPanel1.add(fieldSenha);

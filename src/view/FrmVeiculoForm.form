@@ -86,12 +86,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="utils.TextField" name="fieldCasa">
+    <Component class="design.TextField" name="fieldCasa">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Casa"/>
       </Properties>
     </Component>
-    <Component class="utils.CMButton" name="cMSelecionar">
+    <Component class="design.CMButton" name="cMSelecionar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/resources/pesquisa.png"/>
@@ -102,22 +102,22 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cMSelecionarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="utils.TextField" name="fieldModelo">
+    <Component class="design.TextField" name="fieldModelo">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Modelo"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldAno">
+    <Component class="design.TextField" name="fieldAno">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Ano"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldPlaca">
+    <Component class="design.TextField" name="fieldPlaca">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Placa"/>
       </Properties>
     </Component>
-    <Component class="utils.CMButton" name="btnSalvar">
+    <Component class="design.CMButton" name="btnSalvar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
         <Property name="radius" type="int" value="25"/>
@@ -126,17 +126,17 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="utils.TextField" name="fieldMarca">
+    <Component class="design.TextField" name="fieldMarca">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Marca"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldTipo">
+    <Component class="design.TextField" name="fieldTipo">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Tipo"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldCor">
+    <Component class="design.TextField" name="fieldCor">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Cor"/>
       </Properties>

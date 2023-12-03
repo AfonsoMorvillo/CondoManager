@@ -37,7 +37,7 @@
                           </Group>
                           <Component id="fieldEntrega" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
                           <Component id="fieldRetirada" min="-2" pref="219" max="-2" attributes="0"/>
-                          <Component id="fieldStatus" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
+                          <Component id="cbStatus" min="-2" pref="219" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -47,7 +47,6 @@
                           <Component id="fieldHorarioRetirada" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="cbStatus" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="86" max="32767" attributes="0"/>
           </Group>
@@ -73,13 +72,11 @@
                   <Component id="fieldHorarioRetirada" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="fieldStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="fieldObservacao" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="fieldObservacao" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbStatus" min="-2" pref="41" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-              <Component id="cbStatus" min="-2" pref="41" max="-2" attributes="0"/>
-              <EmptySpace pref="120" max="32767" attributes="0"/>
+              <EmptySpace pref="214" max="32767" attributes="0"/>
               <Component id="btnSalvar" min="-2" pref="37" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
           </Group>
@@ -87,12 +84,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="utils.TextField" name="fieldCasa">
+    <Component class="design.TextField" name="fieldCasa">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Casa"/>
       </Properties>
     </Component>
-    <Component class="utils.CMButton" name="btnSelecionarCasa">
+    <Component class="design.CMButton" name="btnSelecionarCasa">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/resources/pesquisa.png"/>
@@ -103,17 +100,17 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelecionarCasaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="utils.TextField" name="fieldEntregador">
+    <Component class="design.TextField" name="fieldEntregador">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Nome entregador"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldRetirada">
+    <Component class="design.TextField" name="fieldRetirada">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Data retirada"/>
       </Properties>
     </Component>
-    <Component class="utils.CMButton" name="btnSalvar">
+    <Component class="design.CMButton" name="btnSalvar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
         <Property name="radius" type="int" value="25"/>
@@ -122,32 +119,27 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="utils.TextField" name="fieldHorarioRetirada">
+    <Component class="design.TextField" name="fieldHorarioRetirada">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Hor&#xe1;rio retirada"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldEntrega">
+    <Component class="design.TextField" name="fieldEntrega">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Data entrega"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldHorarioEntrega">
+    <Component class="design.TextField" name="fieldHorarioEntrega">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Hor&#xe1;rio entrega"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldStatus">
-      <Properties>
-        <Property name="labelText" type="java.lang.String" value="Status"/>
-      </Properties>
-    </Component>
-    <Component class="utils.TextField" name="fieldObservacao">
+    <Component class="design.TextField" name="fieldObservacao">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Observa&#xe7;&#xe3;o"/>
       </Properties>
     </Component>
-    <Component class="combobox.Combobox" name="cbStatus">
+    <Component class="design.Combobox" name="cbStatus">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="df" green="d9" red="d6" type="rgb"/>

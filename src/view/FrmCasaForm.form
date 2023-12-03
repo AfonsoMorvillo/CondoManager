@@ -66,12 +66,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="utils.TextField" name="fieldProprietario">
+    <Component class="design.TextField" name="fieldProprietario">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Propriet&#xe1;rio"/>
       </Properties>
     </Component>
-    <Component class="utils.CMButton" name="cMButton1">
+    <Component class="design.CMButton" name="cMButton1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/resources/pesquisa.png"/>
@@ -82,22 +82,22 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cMButton1ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="utils.TextField" name="fieldNumero">
+    <Component class="design.TextField" name="fieldNumero">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="N&#xfa;mero"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldVagas">
+    <Component class="design.TextField" name="fieldVagas">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Vagas"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldBloco">
+    <Component class="design.TextField" name="fieldBloco">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Bloco"/>
       </Properties>
     </Component>
-    <Component class="utils.CMButton" name="btnSalvar">
+    <Component class="design.CMButton" name="btnSalvar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
         <Property name="radius" type="int" value="25"/>

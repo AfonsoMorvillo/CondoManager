@@ -57,27 +57,27 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="utils.TextField" name="fieldNome">
+    <Component class="design.TextField" name="fieldNome">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Nome"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldIdade">
+    <Component class="design.TextField" name="fieldIdade">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Idade"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldRg">
+    <Component class="design.TextField" name="fieldRg">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="RG"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldCelular">
+    <Component class="design.TextField" name="fieldCelular">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Celular"/>
       </Properties>
     </Component>
-    <Component class="utils.CMButton" name="btnSalvar">
+    <Component class="design.CMButton" name="btnSalvar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
         <Property name="radius" type="int" value="25"/>

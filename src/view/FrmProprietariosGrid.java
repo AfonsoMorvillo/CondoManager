@@ -7,9 +7,11 @@ package view;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
+import controller.LogTracker;
 import controller.ResultSetTableModel;
 import model.Proprietario;
 import utils.Select;
+import utils.StringUtils;
 
 /**
  * @author aluno
@@ -37,119 +39,137 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
 
 
    @SuppressWarnings( "unchecked" )
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+   private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableProprietarios = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        btnAdicionar = new design.CMButton();
-        btnEditar = new design.CMButton();
-        btnExcluir = new design.CMButton();
+      jPanel1 = new javax.swing.JPanel();
+      jScrollPane1 = new javax.swing.JScrollPane();
+      jTableProprietarios = new javax.swing.JTable();
+      jPanel2 = new javax.swing.JPanel();
+      btnAdicionar = new design.CMButton();
+      btnEditar = new design.CMButton();
+      btnExcluir = new design.CMButton();
+      jButton1 = new javax.swing.JButton();
+      jPanel4 = new javax.swing.JPanel();
+      btnBuscar = new design.CMButton();
+      btnLimpar = new design.CMButton();
+      fieldNome = new design.TextField();
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+      javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout( jPanel1 );
+      jPanel1.setLayout( jPanel1Layout );
+      jPanel1Layout.setHorizontalGroup( jPanel1Layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGap( 0, 100, Short.MAX_VALUE ) );
+      jPanel1Layout.setVerticalGroup( jPanel1Layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGap( 0, 100, Short.MAX_VALUE ) );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Consulta de Proprietários");
-        setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
+      setDefaultCloseOperation( javax.swing.WindowConstants.DISPOSE_ON_CLOSE );
+      setTitle( "Consulta de Proprietários" );
+      setResizable( false );
+      addWindowListener( new java.awt.event.WindowAdapter() {
+         public void windowClosing( java.awt.event.WindowEvent evt ) {
+            formWindowClosing( evt );
+         }
+      } );
 
-        jTableProprietarios.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTableProprietarios);
+      jTableProprietarios.setModel( new javax.swing.table.DefaultTableModel( new Object[][] { { null, null, null, null }, { null, null, null, null }, { null, null, null, null }, { null, null, null, null } }, new String[] { "Title 1", "Title 2", "Title 3", "Title 4" } ) );
+      jScrollPane1.setViewportView( jTableProprietarios );
 
-        jButton1.setText("selecionar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+      jPanel2.setBorder( javax.swing.BorderFactory.createBevelBorder( javax.swing.border.BevelBorder.RAISED, new java.awt.Color( 153, 153, 153 ), new java.awt.Color( 153, 153, 153 ), new java.awt.Color( 153, 153, 153 ), new java.awt.Color( 153, 153, 153 ) ) );
+      jPanel2.setLayout( null );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
-        jPanel2.setLayout(null);
+      btnAdicionar.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/adicionar.png" ) ) ); // NOI18N
+      btnAdicionar.setToolTipText( "" );
+      btnAdicionar.addActionListener( new java.awt.event.ActionListener() {
+         public void actionPerformed( java.awt.event.ActionEvent evt ) {
+            btnAdicionarActionPerformed( evt );
+         }
+      } );
+      jPanel2.add( btnAdicionar );
+      btnAdicionar.setBounds( 10, 5, 70, 40 );
 
-        btnAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/adicionar.png"))); // NOI18N
-        btnAdicionar.setToolTipText("");
-        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdicionarActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnAdicionar);
-        btnAdicionar.setBounds(10, 5, 70, 40);
+      btnEditar.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/editar-texto.png" ) ) ); // NOI18N
+      btnEditar.addActionListener( new java.awt.event.ActionListener() {
+         public void actionPerformed( java.awt.event.ActionEvent evt ) {
+            btnEditarActionPerformed( evt );
+         }
+      } );
+      jPanel2.add( btnEditar );
+      btnEditar.setBounds( 80, 5, 70, 40 );
 
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar-texto.png"))); // NOI18N
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnEditar);
-        btnEditar.setBounds(80, 5, 70, 40);
+      btnExcluir.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/lixeira.png" ) ) ); // NOI18N
+      btnExcluir.addActionListener( new java.awt.event.ActionListener() {
+         public void actionPerformed( java.awt.event.ActionEvent evt ) {
+            btnExcluirActionPerformed( evt );
+         }
+      } );
+      jPanel2.add( btnExcluir );
+      btnExcluir.setBounds( 150, 5, 70, 40 );
 
-        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lixeira.png"))); // NOI18N
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnExcluir);
-        btnExcluir.setBounds(150, 5, 70, 40);
+      jButton1.setText( "selecionar" );
+      jButton1.addActionListener( new java.awt.event.ActionListener() {
+         public void actionPerformed( java.awt.event.ActionEvent evt ) {
+            jButton1ActionPerformed( evt );
+         }
+      } );
+      jPanel2.add( jButton1 );
+      jButton1.setBounds( 740, 20, 83, 22 );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(420, 420, 420))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jButton1)
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
-        );
+      jPanel4.setBorder( javax.swing.BorderFactory.createTitledBorder( "Filtros" ) );
+      jPanel4.setLayout( null );
 
-        pack();
-        setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+      btnBuscar.setText( "Buscar" );
+      btnBuscar.setRadius( 15 );
+      btnBuscar.addActionListener( new java.awt.event.ActionListener() {
+         public void actionPerformed( java.awt.event.ActionEvent evt ) {
+            btnBuscarActionPerformed( evt );
+         }
+      } );
+      jPanel4.add( btnBuscar );
+      btnBuscar.setBounds( 1020, 40, 72, 41 );
+
+      btnLimpar.setText( "Limpar" );
+      btnLimpar.setRadius( 15 );
+      btnLimpar.addActionListener( new java.awt.event.ActionListener() {
+         public void actionPerformed( java.awt.event.ActionEvent evt ) {
+            btnLimparActionPerformed( evt );
+         }
+      } );
+      jPanel4.add( btnLimpar );
+      btnLimpar.setBounds( 930, 40, 72, 40 );
+
+      fieldNome.setLabelText( "Nome" );
+      jPanel4.add( fieldNome );
+      fieldNome.setBounds( 30, 40, 300, 41 );
+
+      javax.swing.GroupLayout layout = new javax.swing.GroupLayout( getContentPane() );
+      getContentPane().setLayout( layout );
+      layout.setHorizontalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addContainerGap().addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1246, Short.MAX_VALUE ).addComponent( jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1246, Short.MAX_VALUE ) ) ).addGroup( layout.createSequentialGroup().addGap( 37, 37, 37 ).addComponent( jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1128, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 0, 0, Short.MAX_VALUE ) ) );
+      layout.setVerticalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addGap( 19, 19, 19 ).addComponent( jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE ).addPreferredGap( javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE ).addComponent( jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 18, 18, 18 ).addComponent( jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 17, 17, 17 ) ) );
+
+      pack();
+      setLocationRelativeTo( null );
+   }// </editor-fold>//GEN-END:initComponents
+
+
+   private void btnBuscarActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnBuscarActionPerformed
+      try{
+         result.setQuery( getSelect() );
+
+      }
+      catch( Exception ex ){
+         LogTracker.getInstance().addException( ex, true, this );
+      }
+   }// GEN-LAST:event_btnBuscarActionPerformed
+
+
+   private void btnLimparActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnLimparActionPerformed
+      fieldNome.setText( "" );
+      try{
+         result.setQuery( getSelect() );
+
+      }
+      catch( Exception ex ){
+         LogTracker.getInstance().addException( ex, true, this );
+      }
+   }// GEN-LAST:event_btnLimparActionPerformed
 
 
    private void jButton1ActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_jButton1ActionPerformed
@@ -190,13 +210,13 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
       if( linhaSelecionada != -1 ){
 
          int codigo = (int)result.getValueAt( linhaSelecionada, 0 );
-         
-         data  = new Proprietario();
-         data.setIdProprietario(codigo);
+
+         data = new Proprietario();
+         data.setIdProprietario( codigo );
 
          try{
             data.load();
-            
+
             FrmProprietarioForm crud = new FrmProprietarioForm( data, false, true );
             crud.setVisible( true );
             crud.addWindowListener( new java.awt.event.WindowAdapter() {
@@ -242,22 +262,23 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
 
 
    private void btnExcluirActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnExcluirActionPerformed
-       int linhaSelecionada = jTableProprietarios.getSelectedRow();
-       if( linhaSelecionada != -1 ){
-            System.out.println("Excluir");
-            data = new Proprietario();
-            int numero = (int)result.getValueAt( linhaSelecionada, 0 );
-            data.setIdProprietario(numero);
-        try {
-         this.data.delete();
-         
-        } catch (Exception ex){
-          ex.printStackTrace();
-        }
-        finally {
-        	 result.setQuery( getSelect() );
-        }
-       }
+      int linhaSelecionada = jTableProprietarios.getSelectedRow();
+      if( linhaSelecionada != -1 ){
+         System.out.println( "Excluir" );
+         data = new Proprietario();
+         int numero = (int)result.getValueAt( linhaSelecionada, 0 );
+         data.setIdProprietario( numero );
+         try{
+            this.data.delete();
+
+         }
+         catch( Exception ex ){
+            ex.printStackTrace();
+         }
+         finally{
+            result.setQuery( getSelect() );
+         }
+      }
    }// GEN-LAST:event_btnExcluirActionPerformed
 
 
@@ -271,6 +292,10 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
       select.add( "cpf", "CPF" );
       select.add( "rg", "RG" );
       select.add( "telefone", "Telefone" );
+
+      if( !StringUtils.isEmpty( fieldNome.getText().trim() ) ){
+         select.addWhere( "nome LIKE '%" + fieldNome.getText().trim() + "%'" );
+      }
 
       return select.build();
    }
@@ -322,14 +347,20 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
       } );
    }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private design.CMButton btnAdicionar;
-    private design.CMButton btnEditar;
-    private design.CMButton btnExcluir;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableProprietarios;
-    // End of variables declaration//GEN-END:variables
+   // Variables declaration - do not modify//GEN-BEGIN:variables
+   private design.CMButton         btnAdicionar;
+   private design.CMButton         btnBuscar;
+   private design.CMButton         btnEditar;
+   private design.CMButton         btnExcluir;
+   private design.CMButton         btnLimpar;
+   private javax.swing.JButton     btnLimparCasa;
+   private design.TextField        fieldNome;
+   private javax.swing.JButton     jButton1;
+   private javax.swing.JPanel      jPanel1;
+   private javax.swing.JPanel      jPanel2;
+   private javax.swing.JPanel      jPanel3;
+   private javax.swing.JPanel      jPanel4;
+   private javax.swing.JScrollPane jScrollPane1;
+   private javax.swing.JTable      jTableProprietarios;
+   // End of variables declaration//GEN-END:variables
 }

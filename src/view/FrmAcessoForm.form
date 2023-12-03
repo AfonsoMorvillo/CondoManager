@@ -75,12 +75,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="utils.TextField" name="fieldCasa">
+    <Component class="design.TextField" name="fieldCasa">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Casa"/>
       </Properties>
     </Component>
-    <Component class="utils.CMButton" name="btnSelecionarCasa">
+    <Component class="design.CMButton" name="btnSelecionarCasa">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/resources/pesquisa.png"/>
@@ -91,17 +91,17 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelecionarCasaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="utils.TextField" name="fieldEntrada">
+    <Component class="design.TextField" name="fieldEntrada">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Entrada"/>
       </Properties>
     </Component>
-    <Component class="utils.TextField" name="fieldSaida">
+    <Component class="design.TextField" name="fieldSaida">
       <Properties>
         <Property name="labelText" type="java.lang.String" value="Sa&#xed;da"/>
       </Properties>
     </Component>
-    <Component class="utils.CMButton" name="btnSalvar">
+    <Component class="design.CMButton" name="btnSalvar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
         <Property name="radius" type="int" value="25"/>
@@ -110,7 +110,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="utils.CMButton" name="btnSelecionarVisitante">
+    <Component class="design.CMButton" name="btnSelecionarVisitante">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/resources/pesquisa.png"/>
@@ -121,8 +121,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelecionarVisitanteActionPerformed"/>
       </Events>
     </Component>
-    <Component class="utils.TextField" name="fieldVisitante">
+    <Component class="design.TextField" name="fieldVisitante">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="labelText" type="java.lang.String" value="Visitante"/>
       </Properties>
     </Component>

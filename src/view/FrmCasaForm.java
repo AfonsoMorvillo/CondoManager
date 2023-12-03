@@ -7,8 +7,6 @@ package view;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-
 import controller.LogTracker;
 import model.Casa;
 import model.Proprietario;
@@ -210,7 +208,7 @@ public class FrmCasaForm extends javax.swing.JFrame {
          jFrameConsulta.setVisible( true );
       }
       catch( Exception ex ){
-         ex.printStackTrace();
+         LogTracker.getInstance().addException( ex, true, this );
          proprietario = null;
       }
 
