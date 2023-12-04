@@ -4,17 +4,35 @@
  */
 package view;
 
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+
+import model.Usuario;
+
 /**
  *
  * @author aluno
  */
 public class FrmMenuNovo extends javax.swing.JFrame {
 
+    Usuario usuario;
+    JPopupMenu opcoesUsuario;
+    JMenuItem ver, sair;
+    
+    
     /**
      * Creates new form FrmMenu
      */
-    public FrmMenuNovo() {
-        initComponents();
+    public FrmMenuNovo(Usuario usuario) {
+        
+    	initComponents();
+    	
+    	opcoesUsuario = new JPopupMenu();
+    	ver = new JMenuItem("Ver");
+    	
+        this.usuario = usuario;
+        
+        
     }
 
     /**
@@ -26,11 +44,13 @@ public class FrmMenuNovo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButtonMinimizar = new javax.swing.JLabel();
         jButtonSair = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jButtonAcesso = new javax.swing.JButton();
         jButtonEntrega = new javax.swing.JButton();
         jButtonProprietario = new javax.swing.JButton();
@@ -78,6 +98,10 @@ public class FrmMenuNovo extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonSair);
         jButtonSair.setBounds(1580, 5, 12, 15);
+
+        jButton1.setText("jButton1");
+        jPanel1.add(jButton1);
+        jButton1.setBounds(1490, 60, 78, 23);
 
         jButtonAcesso.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         jButtonAcesso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/acesso.png"))); // NOI18N
@@ -222,8 +246,7 @@ public class FrmMenuNovo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonMinimizarMouseClicked
 
     private void jButtonSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSairMouseClicked
-        // TODO add your handling code here:
-        dispose();
+    	 System.exit(0);
     }//GEN-LAST:event_jButtonSairMouseClicked
 
     private void jButtonMoradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMoradorActionPerformed
@@ -311,12 +334,13 @@ public class FrmMenuNovo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmMenuNovo().setVisible(true);
+                new FrmMenuNovo(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAcesso;
     private javax.swing.JButton jButtonCarro;
     private javax.swing.JButton jButtonCasa;
@@ -329,5 +353,6 @@ public class FrmMenuNovo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     // End of variables declaration//GEN-END:variables
 }

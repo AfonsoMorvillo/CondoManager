@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class Usuario extends DataAccessObject {
 
-   private int    idUsuario;
    private String username;
    private String senha;
 
@@ -16,9 +15,6 @@ public class Usuario extends DataAccessObject {
    }
 
 
-   public int getIdUsuario() {
-      return idUsuario;
-   }
 
 
    public String getUsername() {
@@ -31,12 +27,6 @@ public class Usuario extends DataAccessObject {
    }
 
 
-   public void setIdUsuario( int idUsuario ) {
-      if( idUsuario != this.idUsuario ){
-         this.idUsuario = idUsuario;
-         addChange( "idUsuario", this.idUsuario );
-      }
-   }
 
 
    public void setUsername( String username ) {
@@ -78,9 +68,8 @@ public class Usuario extends DataAccessObject {
    @Override
    protected void fill( ArrayList<Object> data ) throws Exception {
 
-      idUsuario = (int)data.get( 0 );
-      username = (String)data.get( 1 );
-      senha = (String)data.get( 2 );
+      username = (String)data.get( 0 );
+      senha = (String)data.get( 1 );
 
    }
 
@@ -92,7 +81,7 @@ public class Usuario extends DataAccessObject {
          Usuario aux;
          aux = (Usuario)obj;
 
-         if( idUsuario == aux.getIdUsuario() ){
+         if( username == aux.getUsername() ){
             return true;
          }
       }

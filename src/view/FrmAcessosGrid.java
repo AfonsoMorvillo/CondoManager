@@ -50,164 +50,201 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
 
 
    @SuppressWarnings( "unchecked" )
-   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-   private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-      btnEditar = new design.CMButton();
-      jScrollPane1 = new javax.swing.JScrollPane();
-      jTableProprietarios = new javax.swing.JTable();
-      btnAdicionar = new design.CMButton();
-      btnExcluir = new design.CMButton();
-      jPanel1 = new javax.swing.JPanel();
-      btnLimparVisitante = new javax.swing.JButton();
-      btnLimparCasa1 = new javax.swing.JButton();
-      fieldCasa = new design.TextField();
-      fieldEntrada = new design.TextField();
-      fieldSaida = new design.TextField();
-      fieldVisitante = new design.TextField();
-      btnSelecionarCasa = new design.CMButton();
-      btnSelecionarVisitante = new design.CMButton();
-      btnBuscar = new design.CMButton();
-      btnLimpar = new design.CMButton();
+        btnEditar = new design.CMButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableProprietarios = new javax.swing.JTable();
+        btnAdicionar = new design.CMButton();
+        btnExcluir = new design.CMButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnLimparVisitante = new javax.swing.JButton();
+        btnLimparCasa1 = new javax.swing.JButton();
+        fieldCasa = new design.TextField();
+        fieldEntrada = new design.TextField();
+        fieldSaida = new design.TextField();
+        fieldVisitante = new design.TextField();
+        btnSelecionarCasa = new design.CMButton();
+        btnSelecionarVisitante = new design.CMButton();
+        btnBuscar = new design.CMButton();
+        btnLimpar = new design.CMButton();
 
-      setDefaultCloseOperation( javax.swing.WindowConstants.DISPOSE_ON_CLOSE );
-      setTitle( "Consulta de Acessos" );
-      setResizable( false );
-      addWindowListener( new java.awt.event.WindowAdapter() {
-         public void windowClosing( java.awt.event.WindowEvent evt ) {
-            formWindowClosing( evt );
-         }
-      } );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consulta de Acessos");
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-      btnEditar.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/editar-texto.png" ) ) ); // NOI18N
-      btnEditar.setBorderColor( new java.awt.Color( 214, 217, 223 ) );
-      btnEditar.setColor( new java.awt.Color( 214, 217, 223 ) );
-      btnEditar.setColorOver( new java.awt.Color( 204, 204, 204 ) );
-      btnEditar.setRadius( 25 );
-      btnEditar.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnEditarActionPerformed( evt );
-         }
-      } );
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar-texto.png"))); // NOI18N
+        btnEditar.setBorderColor(new java.awt.Color(214, 217, 223));
+        btnEditar.setColor(new java.awt.Color(214, 217, 223));
+        btnEditar.setColorOver(new java.awt.Color(204, 204, 204));
+        btnEditar.setRadius(25);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
-      jTableProprietarios.setModel( new javax.swing.table.DefaultTableModel( new Object[][] { { null, null, null, null }, { null, null, null, null }, { null, null, null, null }, { null, null, null, null } }, new String[] { "Title 1", "Title 2", "Title 3", "Title 4" } ) );
-      jScrollPane1.setViewportView( jTableProprietarios );
+        jTableProprietarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableProprietarios);
 
-      btnAdicionar.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/adicionar.png" ) ) ); // NOI18N
-      btnAdicionar.setBorderColor( new java.awt.Color( 214, 217, 223 ) );
-      btnAdicionar.setColor( new java.awt.Color( 214, 217, 223 ) );
-      btnAdicionar.setColorClick( new java.awt.Color( 214, 217, 223 ) );
-      btnAdicionar.setColorOver( new java.awt.Color( 204, 204, 204 ) );
-      btnAdicionar.setRadius( 25 );
-      btnAdicionar.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnAdicionarActionPerformed( evt );
-         }
-      } );
+        btnAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/adicionar.png"))); // NOI18N
+        btnAdicionar.setBorderColor(new java.awt.Color(214, 217, 223));
+        btnAdicionar.setColor(new java.awt.Color(214, 217, 223));
+        btnAdicionar.setColorClick(new java.awt.Color(214, 217, 223));
+        btnAdicionar.setColorOver(new java.awt.Color(204, 204, 204));
+        btnAdicionar.setRadius(25);
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
 
-      btnExcluir.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/lixeira.png" ) ) ); // NOI18N
-      btnExcluir.setBorderColor( new java.awt.Color( 214, 217, 223 ) );
-      btnExcluir.setColor( new java.awt.Color( 214, 217, 223 ) );
-      btnExcluir.setRadius( 25 );
-      btnExcluir.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnExcluirActionPerformed( evt );
-         }
-      } );
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lixeira.png"))); // NOI18N
+        btnExcluir.setBorderColor(new java.awt.Color(214, 217, 223));
+        btnExcluir.setColor(new java.awt.Color(214, 217, 223));
+        btnExcluir.setRadius(25);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
-      jPanel1.setBorder( javax.swing.BorderFactory.createTitledBorder( "Filtros" ) );
-      jPanel1.setLayout( null );
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtros"));
+        jPanel1.setLayout(null);
 
-      btnLimparVisitante.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/excluirLinha.png" ) ) ); // NOI18N
-      btnLimparVisitante.setContentAreaFilled( false );
-      btnLimparVisitante.setCursor( new java.awt.Cursor( java.awt.Cursor.DEFAULT_CURSOR ) );
-      btnLimparVisitante.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnLimparVisitanteActionPerformed( evt );
-         }
-      } );
-      jPanel1.add( btnLimparVisitante );
-      btnLimparVisitante.setBounds( 550, 56, 30, 16 );
+        btnLimparVisitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/excluirLinha.png"))); // NOI18N
+        btnLimparVisitante.setContentAreaFilled(false);
+        btnLimparVisitante.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLimparVisitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparVisitanteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLimparVisitante);
+        btnLimparVisitante.setBounds(550, 56, 30, 16);
 
-      btnLimparCasa1.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/excluirLinha.png" ) ) ); // NOI18N
-      btnLimparCasa1.setContentAreaFilled( false );
-      btnLimparCasa1.setCursor( new java.awt.Cursor( java.awt.Cursor.DEFAULT_CURSOR ) );
-      btnLimparCasa1.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnLimparCasa1ActionPerformed( evt );
-         }
-      } );
-      jPanel1.add( btnLimparCasa1 );
-      btnLimparCasa1.setBounds( 240, 56, 30, 16 );
+        btnLimparCasa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/excluirLinha.png"))); // NOI18N
+        btnLimparCasa1.setContentAreaFilled(false);
+        btnLimparCasa1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLimparCasa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparCasa1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLimparCasa1);
+        btnLimparCasa1.setBounds(240, 56, 30, 16);
 
-      fieldCasa.setEditable( false );
-      fieldCasa.setFocusable( false );
-      fieldCasa.setLabelText( "Casa" );
-      jPanel1.add( fieldCasa );
-      fieldCasa.setBounds( 30, 43, 238, 41 );
+        fieldCasa.setEditable(false);
+        fieldCasa.setFocusable(false);
+        fieldCasa.setLabelText("Selecione uma casa");
+        jPanel1.add(fieldCasa);
+        fieldCasa.setBounds(30, 43, 238, 42);
 
-      fieldEntrada.setLabelText( "Entrada" );
-      jPanel1.add( fieldEntrada );
-      fieldEntrada.setBounds( 658, 43, 85, 41 );
+        fieldEntrada.setLabelText("Entrada");
+        jPanel1.add(fieldEntrada);
+        fieldEntrada.setBounds(658, 43, 85, 42);
 
-      fieldSaida.setLabelText( "Saída" );
-      jPanel1.add( fieldSaida );
-      fieldSaida.setBounds( 786, 43, 85, 41 );
+        fieldSaida.setLabelText("Saída");
+        jPanel1.add(fieldSaida);
+        fieldSaida.setBounds(786, 43, 85, 42);
 
-      fieldVisitante.setEditable( false );
-      fieldVisitante.setFocusable( false );
-      fieldVisitante.setLabelText( "Visitante" );
-      jPanel1.add( fieldVisitante );
-      fieldVisitante.setBounds( 350, 43, 227, 41 );
+        fieldVisitante.setEditable(false);
+        fieldVisitante.setFocusable(false);
+        fieldVisitante.setLabelText("Selecione um visitante");
+        jPanel1.add(fieldVisitante);
+        fieldVisitante.setBounds(350, 43, 227, 42);
 
-      btnSelecionarCasa.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/pesquisa.png" ) ) ); // NOI18N
-      btnSelecionarCasa.setRadius( 25 );
-      btnSelecionarCasa.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnSelecionarCasaActionPerformed( evt );
-         }
-      } );
-      jPanel1.add( btnSelecionarCasa );
-      btnSelecionarCasa.setBounds( 280, 43, 40, 41 );
+        btnSelecionarCasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pesquisa.png"))); // NOI18N
+        btnSelecionarCasa.setRadius(25);
+        btnSelecionarCasa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarCasaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSelecionarCasa);
+        btnSelecionarCasa.setBounds(280, 43, 40, 41);
 
-      btnSelecionarVisitante.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/pesquisa.png" ) ) ); // NOI18N
-      btnSelecionarVisitante.setRadius( 25 );
-      btnSelecionarVisitante.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnSelecionarVisitanteActionPerformed( evt );
-         }
-      } );
-      jPanel1.add( btnSelecionarVisitante );
-      btnSelecionarVisitante.setBounds( 589, 43, 40, 41 );
+        btnSelecionarVisitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pesquisa.png"))); // NOI18N
+        btnSelecionarVisitante.setRadius(25);
+        btnSelecionarVisitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarVisitanteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSelecionarVisitante);
+        btnSelecionarVisitante.setBounds(589, 43, 40, 41);
 
-      btnBuscar.setText( "Buscar" );
-      btnBuscar.setRadius( 15 );
-      btnBuscar.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnBuscarActionPerformed( evt );
-         }
-      } );
-      jPanel1.add( btnBuscar );
-      btnBuscar.setBounds( 1020, 40, 72, 41 );
+        btnBuscar.setText("Buscar");
+        btnBuscar.setRadius(15);
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBuscar);
+        btnBuscar.setBounds(1020, 40, 72, 41);
 
-      btnLimpar.setText( "Limpar" );
-      btnLimpar.setRadius( 15 );
-      btnLimpar.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnLimparActionPerformed( evt );
-         }
-      } );
-      jPanel1.add( btnLimpar );
-      btnLimpar.setBounds( 930, 40, 72, 40 );
+        btnLimpar.setText("Limpar");
+        btnLimpar.setRadius(15);
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLimpar);
+        btnLimpar.setBounds(930, 40, 72, 40);
 
-      javax.swing.GroupLayout layout = new javax.swing.GroupLayout( getContentPane() );
-      getContentPane().setLayout( layout );
-      layout.setHorizontalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addGap( 28, 28, 28 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1206, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1128, javax.swing.GroupLayout.PREFERRED_SIZE ).addGroup( layout.createSequentialGroup().addComponent( btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 18, 18, 18 ).addComponent( btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 18, 18, 18 ).addComponent( btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE ) ) ).addContainerGap( 18, Short.MAX_VALUE ) ) );
-      layout.setVerticalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addContainerGap( 53, Short.MAX_VALUE ).addComponent( jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE ).addPreferredGap( javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE ).addComponent( jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 18, 18, 18 ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ) ).addGap( 17, 17, 17 ) ) );
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
+        );
 
-      pack();
-      setLocationRelativeTo( null );
-   }// </editor-fold>//GEN-END:initComponents
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
 
 
    private void btnLimparActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnLimparActionPerformed
@@ -488,22 +525,22 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
       } );
    }
 
-   // Variables declaration - do not modify//GEN-BEGIN:variables
-   private design.CMButton         btnAdicionar;
-   private design.CMButton         btnBuscar;
-   private design.CMButton         btnEditar;
-   private design.CMButton         btnExcluir;
-   private design.CMButton         btnLimpar;
-   private javax.swing.JButton     btnLimparCasa1;
-   private javax.swing.JButton     btnLimparVisitante;
-   private design.CMButton         btnSelecionarCasa;
-   private design.CMButton         btnSelecionarVisitante;
-   private design.TextField        fieldCasa;
-   private design.TextField        fieldEntrada;
-   private design.TextField        fieldSaida;
-   private design.TextField        fieldVisitante;
-   private javax.swing.JPanel      jPanel1;
-   private javax.swing.JScrollPane jScrollPane1;
-   private javax.swing.JTable      jTableProprietarios;
-   // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private design.CMButton btnAdicionar;
+    private design.CMButton btnBuscar;
+    private design.CMButton btnEditar;
+    private design.CMButton btnExcluir;
+    private design.CMButton btnLimpar;
+    private javax.swing.JButton btnLimparCasa1;
+    private javax.swing.JButton btnLimparVisitante;
+    private design.CMButton btnSelecionarCasa;
+    private design.CMButton btnSelecionarVisitante;
+    private design.TextField fieldCasa;
+    private design.TextField fieldEntrada;
+    private design.TextField fieldSaida;
+    private design.TextField fieldVisitante;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableProprietarios;
+    // End of variables declaration//GEN-END:variables
 }

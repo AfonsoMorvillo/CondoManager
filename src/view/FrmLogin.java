@@ -5,7 +5,9 @@
 package view;
 
 import controller.LogTracker;
+import java.awt.Color;
 import model.Usuario;
+import utils.StringUtils;
 
 /**
  * @author aluno
@@ -16,7 +18,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
    public FrmLogin() {
       initComponents();
-
+      textField1.setBackground(new Color(255,255,255));
       logout();
    }
 
@@ -27,7 +29,12 @@ public class FrmLogin extends javax.swing.JFrame {
 
 
    private void login() {
-	   System.out.println("login efetuado");
+      
+        FrmMenuNovo menu = new FrmMenuNovo(usuario);
+        menu.setVisible(true);
+        
+        dispose();
+        
    }
 
 
@@ -76,7 +83,7 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonSair);
-        jButtonSair.setBounds(350, 10, 11, 15);
+        jButtonSair.setBounds(350, 10, 12, 15);
 
         btnLogin.setBackground(new java.awt.Color(102, 51, 0));
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
@@ -95,17 +102,13 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel1.add(btnLogin);
         btnLogin.setBounds(90, 250, 240, 35);
 
-        textField1.setBackground(new java.awt.Color(255, 255, 255));
-        textField1.setForeground(new java.awt.Color(0, 0, 0));
         textField1.setLabelText("Usuário");
         textField1.setLineColor(new java.awt.Color(140, 70, 1));
         textField1.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        textField1.setSelectionColor(new java.awt.Color(204, 204, 204));
+        textField1.setSelectionColor(new java.awt.Color(255, 255, 255));
         jPanel1.add(textField1);
         textField1.setBounds(90, 100, 240, 40);
 
-        fieldSenha.setBackground(new java.awt.Color(255, 255, 255));
-        fieldSenha.setForeground(new java.awt.Color(0, 0, 0));
         fieldSenha.setLabelText("Senha");
         fieldSenha.setLineColor(new java.awt.Color(140, 70, 1));
         fieldSenha.setSelectionColor(new java.awt.Color(204, 204, 204));
@@ -139,11 +142,13 @@ public class FrmLogin extends javax.swing.JFrame {
       try{
 
          usuario.setUsername( textField1.getText() );
+         
+         if (StringUtils.isEmpty( fieldSenha.getText().trim())) {
+        	 throw new Exception( "Digite a senha!" );
+         }
 
          if( !usuario.load() ){
-            if( usuario == null ){
                throw new Exception( "Username não cadastrado!" );
-            }
          }
 
          Usuario comparePassword = new Usuario();
@@ -168,7 +173,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
    private void jButtonSairMouseClicked( java.awt.event.MouseEvent evt ) {// GEN-FIRST:event_jButtonSairMouseClicked
       // TODO add your handling code here:
-      dispose();
+	   System.exit(0);
    }// GEN-LAST:event_jButtonSairMouseClicked
 
 

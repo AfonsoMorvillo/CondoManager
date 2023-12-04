@@ -48,6 +48,16 @@ public class PasswordField extends JPasswordField {
     public void setLineColor(Color lineColor) {
         this.lineColor = lineColor;
     }
+    
+    public void setError() {
+
+        this.addFocusListener( new java.awt.event.FocusAdapter() {
+           public void focusLost( java.awt.event.FocusEvent evt ) {
+              lineColor = new Color( 3, 155, 216 );
+           }
+        } );
+        lineColor = new Color( 216, 3, 3 );
+     }
 
     private final Animator animator;
     private boolean animateHinText = true;
