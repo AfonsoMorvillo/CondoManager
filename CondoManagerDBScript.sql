@@ -27,8 +27,8 @@ CREATE TABLE IF NOT EXISTS `condoManager`.`Proprietario` (
   `telefone` VARCHAR(15) NULL,
   `dataNascimento` DATE NULL,
   `dataAquisicao` DATE NULL,
-  `cpf` VARCHAR(11) NULL,
-  `rg` VARCHAR(10) NULL,
+  `cpf` VARCHAR(20) NULL,
+  `rg` VARCHAR(15) NULL,
   PRIMARY KEY (`idProprietario`))
 ENGINE = InnoDB;
 
@@ -59,8 +59,8 @@ CREATE TABLE IF NOT EXISTS `condoManager`.`Morador` (
   `codigo` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(50) NULL,
   `dataNascimento` DATE NULL,
-  `rg` VARCHAR(11) NULL,
-  `cpf` VARCHAR(15) NULL,
+  `rg` VARCHAR(15) NULL,
+  `cpf` VARCHAR(20) NULL,
   `imagem` LONGBLOB NULL,
   `email` VARCHAR(45) NULL,
   `celular` VARCHAR(45) NULL,
@@ -186,34 +186,55 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 insert into usuario (username,senha,tipoUsuario) values ('adm','3196a10252286b4d5976476f1909102ec33048a3e6f14a69b540cee8e1ca97dc','Administrador'); 
 
-
-
-
+INSERT INTO `condoManager`.`Proprietario`
+(`telefone`, `rg`, `cpf`, `nome`, `dataNascimento`, `email`)
+VALUES
+('(11)9876-5432', '33.444.555-6', '123.456.789-09', 'Maria Oliveira', '1985-07-18', 'maria@email.com');
 
 INSERT INTO `condoManager`.`Proprietario`
-(
-`nome`,
-`email`,
-`telefone`,
-`dataNascimento`,
-`dataAquisicao`,
-`cpf`,
-`rg`)
+(`telefone`, `rg`, `cpf`, `nome`, `dataNascimento`, `email`)
 VALUES
-('Vitor','vitorhugo@emai.com','16 99321-21354','2004-01-10','2022-10-10','1472853692','656512135');
+('(21)8765-4321', '11.222.333-4', '987.654.321-09', 'Pedro Silva', '1970-03-05', 'pedro@email.com');
 
-INSERT INTO `condoManager`.`Casa`
-(`numero`,
-`bloco`,
-`dataRegistro`,
-`vagas`,
-`idProprietario`)
+INSERT INTO `condoManager`.`Proprietario`
+(`telefone`, `rg`, `cpf`, `nome`, `dataNascimento`, `email`)
 VALUES
-(44,
-'Bloco A-3',
-'2022-10-10',
-4,
-1);
+('(31)7654-3210', '44.555.666-7', '654.321.987-09', 'Carla Santos', '1992-11-30', 'carla@email.com');
+
+INSERT INTO `condoManager`.`Proprietario`
+(`telefone`, `rg`, `cpf`, `nome`, `dataNascimento`, `email`)
+VALUES
+('(41)6543-2109', '22.333.444-5', '789.012.345-09', 'Ricardo Oliveira', '1982-09-12', 'ricardo@email.com');
+
+INSERT INTO `condoManager`.`Proprietario`
+(`telefone`, `rg`, `cpf`, `nome`, `dataNascimento`, `email`)
+VALUES
+('(51)5432-1098', '66.777.888-3', '012.345.678-90', 'Amanda Silva', '1996-04-08', 'amanda@email.com');
+
+-- CASA 
+-- Proprietário 1
+INSERT INTO Casa (vagas, idProprietario, numero, dataRegistro, bloco) VALUES (2, 1, 102, '2023-12-06', 'A-22');
+
+-- Proprietário 2
+INSERT INTO Casa (vagas, idProprietario, numero, dataRegistro, bloco) VALUES (2, 2, 103, '2023-12-06', 'A-22');
+
+-- Proprietário 3 (já fornecido no seu exemplo)
+INSERT INTO Casa (vagas, idProprietario, numero, dataRegistro, bloco) VALUES (2, 3, 101, '2023-12-06', 'A-22');
+
+-- Proprietário 4
+INSERT INTO Casa (vagas, idProprietario, numero, dataRegistro, bloco) VALUES (2, 4, 104, '2023-12-06', 'A-22');
+
+-- Proprietário 5
+INSERT INTO Casa (vagas, idProprietario, numero, dataRegistro, bloco) VALUES (2, 5, 105, '2023-12-06', 'A-22');
+
+
+-- PEDIR MAIS 5
+INSERT INTO Morador (casa,telefone,rg,cpf,celular,nome,dataNascimento,email,inicioMoradia) VALUES  (101,'(16)3312-1612','56.123.014-0','506.412.511-23','(16)99711-2154','Pedro CArlos','2000-12-10','pedrocarlos@email.com','2006-10-20')
+
+-- pedir mais 5
+
+INSERT INTO Veículos (marca,placaCarro,tipo,casa,ano,cor,modelo) VALUES  ('Honda','ABC-1234','Carro',101,'2023','Prata','Civic')
+com base nesse insert, gere mais 4 parecidos, com as casas 102,103,104,105
 
 INSERT INTO `condoManager`.`Veículos`
 (`placaCarro`,
