@@ -29,24 +29,35 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnSalvar" min="-2" pref="163" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="fieldEntrada" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="fieldEntrada" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="fieldCasa" min="-2" pref="219" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btnSelecionarCasa" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="fieldHorarioEntrada" min="-2" pref="219" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                           </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="fieldHorarioSaida" min="-2" pref="219" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="fieldCasa" min="-2" pref="219" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnSelecionarCasa" min="-2" pref="40" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="fieldVisitante" pref="219" max="32767" attributes="0"/>
+                                  <Component id="fieldSaida" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnSelecionarVisitante" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="fieldVisitante" pref="219" max="32767" attributes="0"/>
-                          <Component id="fieldSaida" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnSelecionarVisitante" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="28" max="32767" attributes="0"/>
@@ -68,7 +79,12 @@
                   <Component id="fieldEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="fieldSaida" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="fieldHorarioEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldHorarioSaida" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
               <Component id="btnSalvar" min="-2" pref="37" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -93,12 +109,12 @@
     </Component>
     <Component class="design.TextField" name="fieldEntrada">
       <Properties>
-        <Property name="labelText" type="java.lang.String" value="Entrada"/>
+        <Property name="labelText" type="java.lang.String" value="Data entrada"/>
       </Properties>
     </Component>
     <Component class="design.TextField" name="fieldSaida">
       <Properties>
-        <Property name="labelText" type="java.lang.String" value="Sa&#xed;da"/>
+        <Property name="labelText" type="java.lang.String" value="Data sa&#xed;da"/>
       </Properties>
     </Component>
     <Component class="design.CMButton" name="btnSalvar">
@@ -125,6 +141,16 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="labelText" type="java.lang.String" value="Visitante"/>
+      </Properties>
+    </Component>
+    <Component class="design.TextField" name="fieldHorarioEntrada">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Hor&#xe1;rio entrada"/>
+      </Properties>
+    </Component>
+    <Component class="design.TextField" name="fieldHorarioSaida">
+      <Properties>
+        <Property name="labelText" type="java.lang.String" value="Hor&#xe1;rio sa&#xed;da"/>
       </Properties>
     </Component>
   </SubComponents>

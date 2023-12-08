@@ -6,6 +6,8 @@ package view;
 
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import controller.LogTracker;
 import controller.ResultSetTableModel;
 import model.Casa;
@@ -159,7 +161,7 @@ public class FrmVeiculosGrid extends javax.swing.JFrame {
    private void btnLimparCasaActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnLimparCasaActionPerformed
       casa = null;
       fieldCasa.setText( "" );
-            
+
    }// GEN-LAST:event_btnLimparCasaActionPerformed
 
 
@@ -295,19 +297,22 @@ public class FrmVeiculosGrid extends javax.swing.JFrame {
    private void btnExcluirActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnExcluirActionPerformed
       int linhaSelecionada = jTableVeiculos.getSelectedRow();
       if( linhaSelecionada != -1 ){
-         System.out.println( "Excluir" );
-         data = new Veiculos();
-         String numero = (String)result.getValueAt( linhaSelecionada, 0 );
-         data.setPlacaCarro( numero );
-         try{
-            this.data.delete();
+         int opcao = JOptionPane.showConfirmDialog( this, "Deseja realmente excluir?", "Confirmação de Exclusão", JOptionPane.YES_NO_OPTION );
 
-         }
-         catch( Exception ex ){
-            ex.printStackTrace();
-         }
-         finally{
-            result.setQuery( getSelect() );
+         if( opcao == JOptionPane.YES_OPTION ){
+            data = new Veiculos();
+            String numero = (String)result.getValueAt( linhaSelecionada, 0 );
+            data.setPlacaCarro( numero );
+            try{
+               this.data.delete();
+
+            }
+            catch( Exception ex ){
+               ex.printStackTrace();
+            }
+            finally{
+               result.setQuery( getSelect() );
+            }
          }
       }
    }// GEN-LAST:event_btnExcluirActionPerformed
@@ -323,7 +328,7 @@ public class FrmVeiculosGrid extends javax.swing.JFrame {
       select.add( "cor", "Cor" );
       select.add( "ano", "Ano" );
       select.add( "casa", "Casa" );
-      
+
       if( casa != null ){
          select.addWhere( "casa = " + casa.getNumero() );
       }

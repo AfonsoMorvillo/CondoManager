@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import controller.LogTracker;
 import controller.ResultSetTableModel;
@@ -87,128 +88,283 @@ public class FrmCasasGrid extends javax.swing.JFrame {
     */
    @SuppressWarnings( "unchecked" )
    // <editor-fold defaultstate="collapsed" desc="Generated
-   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-   private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-      btnEditar = new design.CMButton();
-      jScrollPane1 = new javax.swing.JScrollPane();
-      jTableCasas = new javax.swing.JTable();
-      btnAdicionar = new design.CMButton();
-      btnExcluir = new design.CMButton();
-      btnSelecionar = new design.CMButton();
-      jPanel1 = new javax.swing.JPanel();
-      btnLimparProprietario = new javax.swing.JButton();
-      fieldProprietario = new design.TextField();
-      btnSelecionarProprietario = new design.CMButton();
-      fieldNumero = new design.TextField();
-      fieldBloco = new design.TextField();
-      btnBuscar = new design.CMButton();
-      btnLimpar = new design.CMButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableCasas = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        btnLimparProprietario = new javax.swing.JButton();
+        fieldProprietario = new design.TextField();
+        btnSelecionarProprietario = new design.CMButton();
+        fieldNumero = new design.TextField();
+        fieldBloco = new design.TextField();
+        btnBuscar = new design.CMButton();
+        btnLimpar = new design.CMButton();
+        btnSelect = new design.CMButton();
+        btnAdicionar1 = new design.CMButton();
+        btnExcluir1 = new design.CMButton();
+        btnEditar1 = new design.CMButton();
 
-      setDefaultCloseOperation( javax.swing.WindowConstants.DISPOSE_ON_CLOSE );
-      setTitle( "Consulta de Casas" );
-      setResizable( false );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consulta de Casas");
+        setResizable(false);
 
-      btnEditar.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/editar-texto.png" ) ) ); // NOI18N
-      btnEditar.setRadius( 25 );
-      btnEditar.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnEditarActionPerformed( evt );
-         }
-      } );
+        jTableCasas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableCasas);
 
-      jTableCasas.setModel( new javax.swing.table.DefaultTableModel( new Object[][] { { null, null, null, null }, { null, null, null, null }, { null, null, null, null }, { null, null, null, null } }, new String[] { "Title 1", "Title 2", "Title 3", "Title 4" } ) );
-      jScrollPane1.setViewportView( jTableCasas );
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtros"));
+        jPanel1.setLayout(null);
 
-      btnAdicionar.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/adicionar.png" ) ) ); // NOI18N
-      btnAdicionar.setRadius( 25 );
-      btnAdicionar.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnAdicionarActionPerformed( evt );
-         }
-      } );
+        btnLimparProprietario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/excluirLinha.png"))); // NOI18N
+        btnLimparProprietario.setContentAreaFilled(false);
+        btnLimparProprietario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLimparProprietario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparProprietarioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLimparProprietario);
+        btnLimparProprietario.setBounds(240, 56, 30, 16);
 
-      btnExcluir.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/lixeira.png" ) ) ); // NOI18N
-      btnExcluir.setRadius( 25 );
-      btnExcluir.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnExcluirActionPerformed( evt );
-         }
-      } );
+        fieldProprietario.setEditable(false);
+        fieldProprietario.setFocusable(false);
+        fieldProprietario.setLabelText("Proprietário");
+        jPanel1.add(fieldProprietario);
+        fieldProprietario.setBounds(30, 43, 238, 41);
 
-      btnSelecionar.setText( "Selecionar" );
-      btnSelecionar.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnSelecionarActionPerformed( evt );
-         }
-      } );
+        btnSelecionarProprietario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pesquisa.png"))); // NOI18N
+        btnSelecionarProprietario.setRadius(25);
+        btnSelecionarProprietario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarProprietarioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSelecionarProprietario);
+        btnSelecionarProprietario.setBounds(280, 43, 40, 41);
 
-      jPanel1.setBorder( javax.swing.BorderFactory.createTitledBorder( "Filtros" ) );
-      jPanel1.setLayout( null );
+        fieldNumero.setLabelText("Número");
+        jPanel1.add(fieldNumero);
+        fieldNumero.setBounds(360, 40, 100, 41);
 
-      btnLimparProprietario.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/excluirLinha.png" ) ) ); // NOI18N
-      btnLimparProprietario.setContentAreaFilled( false );
-      btnLimparProprietario.setCursor( new java.awt.Cursor( java.awt.Cursor.DEFAULT_CURSOR ) );
-      btnLimparProprietario.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnLimparProprietarioActionPerformed( evt );
-         }
-      } );
-      jPanel1.add( btnLimparProprietario );
-      btnLimparProprietario.setBounds( 240, 56, 30, 16 );
+        fieldBloco.setLabelText("Bloco");
+        jPanel1.add(fieldBloco);
+        fieldBloco.setBounds(500, 40, 110, 41);
 
-      fieldProprietario.setEditable( false );
-      fieldProprietario.setFocusable( false );
-      fieldProprietario.setLabelText( "Proprietário" );
-      jPanel1.add( fieldProprietario );
-      fieldProprietario.setBounds( 30, 43, 238, 41 );
+        btnBuscar.setText("Buscar");
+        btnBuscar.setRadius(15);
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBuscar);
+        btnBuscar.setBounds(970, 40, 72, 41);
 
-      btnSelecionarProprietario.setIcon( new javax.swing.ImageIcon( getClass().getResource( "/resources/pesquisa.png" ) ) ); // NOI18N
-      btnSelecionarProprietario.setRadius( 25 );
-      btnSelecionarProprietario.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnSelecionarProprietarioActionPerformed( evt );
-         }
-      } );
-      jPanel1.add( btnSelecionarProprietario );
-      btnSelecionarProprietario.setBounds( 280, 43, 40, 41 );
+        btnLimpar.setText("Limpar");
+        btnLimpar.setRadius(15);
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLimpar);
+        btnLimpar.setBounds(880, 40, 72, 41);
 
-      fieldNumero.setLabelText( "Número" );
-      jPanel1.add( fieldNumero );
-      fieldNumero.setBounds( 360, 40, 100, 41 );
+        btnSelect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/selecione.png"))); // NOI18N
+        btnSelect.setRadius(25);
+        btnSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectActionPerformed(evt);
+            }
+        });
 
-      fieldBloco.setLabelText( "Bloco" );
-      jPanel1.add( fieldBloco );
-      fieldBloco.setBounds( 500, 40, 110, 41 );
+        btnAdicionar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/adicionar.png"))); // NOI18N
+        btnAdicionar1.setRadius(25);
+        btnAdicionar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionar1ActionPerformed(evt);
+            }
+        });
 
-      btnBuscar.setText( "Buscar" );
-      btnBuscar.setRadius( 15 );
-      btnBuscar.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnBuscarActionPerformed( evt );
-         }
-      } );
-      jPanel1.add( btnBuscar );
-      btnBuscar.setBounds( 970, 40, 72, 41 );
+        btnExcluir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lixeira.png"))); // NOI18N
+        btnExcluir1.setRadius(25);
+        btnExcluir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluir1ActionPerformed(evt);
+            }
+        });
 
-      btnLimpar.setText( "Limpar" );
-      btnLimpar.setRadius( 15 );
-      btnLimpar.addActionListener( new java.awt.event.ActionListener() {
-         public void actionPerformed( java.awt.event.ActionEvent evt ) {
-            btnLimparActionPerformed( evt );
-         }
-      } );
-      jPanel1.add( btnLimpar );
-      btnLimpar.setBounds( 880, 40, 72, 41 );
+        btnEditar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar-texto.png"))); // NOI18N
+        btnEditar1.setRadius(25);
+        btnEditar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditar1ActionPerformed(evt);
+            }
+        });
 
-      javax.swing.GroupLayout layout = new javax.swing.GroupLayout( getContentPane() );
-      getContentPane().setLayout( layout );
-      layout.setHorizontalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addContainerGap().addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE ).addGroup( layout.createSequentialGroup().addComponent( btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 18, 18, 18 ).addComponent( btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 18, 18, 18 ).addComponent( btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 366, 366, 366 ).addComponent( btnSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 0, 0, Short.MAX_VALUE ) ) ).addContainerGap() ).addGroup( layout.createSequentialGroup().addGap( 14, 14, 14 ).addComponent( jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1128, javax.swing.GroupLayout.PREFERRED_SIZE ).addContainerGap( javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE ) ) );
-      layout.setVerticalGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addGroup( layout.createSequentialGroup().addGap( 20, 20, 20 ).addComponent( jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE ).addGap( 18, 18, 18 ).addComponent( jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE ).addPreferredGap( javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE ).addGroup( layout.createParallelGroup( javax.swing.GroupLayout.Alignment.LEADING ).addComponent( btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE ).addComponent( btnSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE ) ) ) );
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(btnAdicionar1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnExcluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAdicionar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
 
-      pack();
-      setLocationRelativeTo( null );
-   }// </editor-fold>//GEN-END:initComponents
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
+       int row = jTableCasas.getSelectedRow();
+       if( row != -1 ){
+
+          System.out.println( "Selecionar" );
+
+          int codigo = (int)result.getValueAt( row, 0 );
+
+          this.casa.setNumero( codigo );
+
+          try{
+             this.casa.load();
+             this.dispatchEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
+          }
+          catch( Exception ex ){
+             ex.printStackTrace();
+          }
+
+       }
+    }//GEN-LAST:event_btnSelectActionPerformed
+
+    private void btnAdicionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionar1ActionPerformed
+        // TODO add your handling code here:  FrmCasaForm formularioCasa;
+       FrmCasaForm formularioCasa;
+       try{
+          formularioCasa = new FrmCasaForm( null, false, false );
+
+          formularioCasa.setVisible( true );
+          // ATUALIZAR APENAS SE HOUVE ALTERACAO/EDICAO
+
+          formularioCasa.addWindowListener( new java.awt.event.WindowAdapter() {
+             @Override
+             public void windowClosed( java.awt.event.WindowEvent evt ) {
+                try{
+                   result.setQuery( getSelect() );
+                }
+                catch( Exception e ){
+                   e.printStackTrace();
+                }
+             }
+          } );
+
+       }
+       catch( Exception e ){
+          e.printStackTrace();
+       }
+    }//GEN-LAST:event_btnAdicionar1ActionPerformed
+
+    private void btnExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluir1ActionPerformed
+        // TODO add your handling code here:
+       int linhaSelecionada = jTableCasas.getSelectedRow();
+       if( linhaSelecionada != -1 ){
+          int opcao = JOptionPane.showConfirmDialog( this, "Deseja realmente excluir?", "Confirmação de Exclusão", JOptionPane.YES_NO_OPTION );
+
+          if( opcao == JOptionPane.YES_OPTION ){
+             casa = new Casa();
+             int numero = (int)result.getValueAt( linhaSelecionada, 0 );
+             casa.setNumero( numero );
+             try{
+                this.casa.delete();
+
+             }
+             catch( Exception ex ){
+                ex.printStackTrace();
+             }
+             finally{
+                result.setQuery( getSelect() );
+             }
+          }
+       }
+    }//GEN-LAST:event_btnExcluir1ActionPerformed
+
+    private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
+        // TODO add your handling code here:
+       int linhaSelecionada = jTableCasas.getSelectedRow();
+
+       if( linhaSelecionada != -1 ){
+
+          int numero = (int)result.getValueAt( linhaSelecionada, 0 );
+
+          casa = new Casa();
+          casa.setNumero( numero );
+
+          try{
+             casa.load();
+
+             FrmCasaForm crud = new FrmCasaForm( casa, false, true );
+             crud.setVisible( true );
+             crud.addWindowListener( new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosed( java.awt.event.WindowEvent evt ) {
+                   try{
+                      System.out.println( "atualizar" );
+                      result.setQuery( getSelect() );
+                   }
+                   catch( Exception e ){
+                      e.printStackTrace();
+                   }
+                }
+             } );
+
+          }
+          catch( Exception e ){
+             e.printStackTrace();
+          }
+       }
+    }//GEN-LAST:event_btnEditar1ActionPerformed
 
 
    private void btnLimparProprietarioActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnLimparProprietarioActionPerformed
@@ -263,7 +419,7 @@ public class FrmCasasGrid extends javax.swing.JFrame {
       fieldNumero.setText( "" );
       try{
          result.setQuery( getSelect() );
-         
+
       }
       catch( Exception ex ){
          LogTracker.getInstance().addException( ex, true, this );
@@ -339,19 +495,22 @@ public class FrmCasasGrid extends javax.swing.JFrame {
    private void btnExcluirActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnExcluirActionPerformed
       int linhaSelecionada = jTableCasas.getSelectedRow();
       if( linhaSelecionada != -1 ){
-         System.out.println( "Excluir" );
-         casa = new Casa();
-         int numero = (int)result.getValueAt( linhaSelecionada, 0 );
-         casa.setNumero( numero );
-         try{
-            this.casa.delete();
+         int opcao = JOptionPane.showConfirmDialog( this, "Deseja realmente excluir?", "Confirmação de Exclusão", JOptionPane.YES_NO_OPTION );
 
-         }
-         catch( Exception ex ){
-            ex.printStackTrace();
-         }
-         finally{
-            result.setQuery( getSelect() );
+         if( opcao == JOptionPane.YES_OPTION ){
+            casa = new Casa();
+            int numero = (int)result.getValueAt( linhaSelecionada, 0 );
+            casa.setNumero( numero );
+            try{
+               this.casa.delete();
+
+            }
+            catch( Exception ex ){
+               ex.printStackTrace();
+            }
+            finally{
+               result.setQuery( getSelect() );
+            }
          }
       }
    }// GEN-LAST:event_btnExcluirActionPerformed
@@ -426,20 +585,20 @@ public class FrmCasasGrid extends javax.swing.JFrame {
       } );
    }
 
-   // Variables declaration - do not modify//GEN-BEGIN:variables
-   private design.CMButton         btnAdicionar;
-   private design.CMButton         btnBuscar;
-   private design.CMButton         btnEditar;
-   private design.CMButton         btnExcluir;
-   private design.CMButton         btnLimpar;
-   private javax.swing.JButton     btnLimparProprietario;
-   private design.CMButton         btnSelecionar;
-   private design.CMButton         btnSelecionarProprietario;
-   private design.TextField        fieldBloco;
-   private design.TextField        fieldNumero;
-   private design.TextField        fieldProprietario;
-   private javax.swing.JPanel      jPanel1;
-   private javax.swing.JScrollPane jScrollPane1;
-   private javax.swing.JTable      jTableCasas;
-   // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private design.CMButton btnAdicionar1;
+    private design.CMButton btnBuscar;
+    private design.CMButton btnEditar1;
+    private design.CMButton btnExcluir1;
+    private design.CMButton btnLimpar;
+    private javax.swing.JButton btnLimparProprietario;
+    private design.CMButton btnSelecionarProprietario;
+    private design.CMButton btnSelect;
+    private design.TextField fieldBloco;
+    private design.TextField fieldNumero;
+    private design.TextField fieldProprietario;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableCasas;
+    // End of variables declaration//GEN-END:variables
 }

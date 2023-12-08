@@ -76,21 +76,16 @@ public class ResultSetTableModel extends AbstractTableModel {
 		 try {
 		        dbConnection.getResultset().absolute(row + 1);
 
-		        // Suponha que a coluna que você está buscando é um objeto
 		        Object columnValue = dbConnection.getResultset().getObject(column + 1);
 
 		        if (columnValue instanceof Time) {
-		            // Se for um horário
 		            Time time = (Time) columnValue;
-		            // Formate sem os segundos
 		            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 		            return timeFormat.format(time);
 		        } else if (columnValue instanceof Date) {
-		            // Se for uma data
 		            Date date = (Date) columnValue;
 		            return StringUtils.dateToString(date);
 		        } else {
-		            // Se não for nem data nem horário, retorne o valor como está
 		            return columnValue;
 		        }
 		    } catch (SQLException e) {

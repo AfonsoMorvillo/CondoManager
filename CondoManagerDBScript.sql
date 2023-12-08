@@ -29,9 +29,9 @@ CREATE TABLE IF NOT EXISTS `condoManager`.`Proprietario` (
   `dataAquisicao` DATE NULL,
   `cpf` VARCHAR(20) NULL,
   `rg` VARCHAR(15) NULL,
-  PRIMARY KEY (`idProprietario`))
+  PRIMARY KEY (`idProprietario`)
+)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `condoManager`.`Casa`
@@ -47,10 +47,10 @@ CREATE TABLE IF NOT EXISTS `condoManager`.`Casa` (
   CONSTRAINT `fk_Casa_Proprietario1`
     FOREIGN KEY (`idProprietario`)
     REFERENCES `condoManager`.`Proprietario` (`idProprietario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `condoManager`.`Morador`
@@ -65,17 +65,17 @@ CREATE TABLE IF NOT EXISTS `condoManager`.`Morador` (
   `email` VARCHAR(45) NULL,
   `celular` VARCHAR(45) NULL,
   `telefone` VARCHAR(45) NULL,
-  `inicioMoradia` VARCHAR(45) NULL,
+  `inicioMoradia` DATE NULL,
   `casa` INT NOT NULL,
   PRIMARY KEY (`codigo`, `casa`),
   INDEX `fk_Morador_casa1_idx` (`casa` ASC) VISIBLE,
   CONSTRAINT `fk_Morador_casa1`
     FOREIGN KEY (`casa`)
     REFERENCES `condoManager`.`Casa` (`numero`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `condoManager`.`Veículos`
@@ -93,10 +93,10 @@ CREATE TABLE IF NOT EXISTS `condoManager`.`Veículos` (
   CONSTRAINT `fk_Veículos_casa1`
     FOREIGN KEY (`casa`)
     REFERENCES `condoManager`.`Casa` (`numero`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `condoManager`.`Visitantes`
@@ -107,9 +107,9 @@ CREATE TABLE IF NOT EXISTS `condoManager`.`Visitantes` (
   `nome` VARCHAR(45) NULL,
   `idade` INT NULL,
   `celular` VARCHAR(45) NULL,
-  PRIMARY KEY (`idVisitante`))
+  PRIMARY KEY (`idVisitante`)
+)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `condoManager`.`Entregas`
@@ -129,10 +129,10 @@ CREATE TABLE IF NOT EXISTS `condoManager`.`Entregas` (
   CONSTRAINT `fk_Entregas_casa1`
     FOREIGN KEY (`casa`)
     REFERENCES `condoManager`.`Casa` (`numero`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `condoManager`.`Acesso`
@@ -151,15 +151,15 @@ CREATE TABLE IF NOT EXISTS `condoManager`.`Acesso` (
   CONSTRAINT `fk_Controle de Acesso_Casa1`
     FOREIGN KEY (`casa`)
     REFERENCES `condoManager`.`Casa` (`numero`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Controle de Acesso_Visitantes1`
     FOREIGN KEY (`visitante`)
     REFERENCES `condoManager`.`Visitantes` (`idVisitante`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `condoManager`.`usuario`
@@ -168,7 +168,8 @@ CREATE TABLE IF NOT EXISTS `condoManager`.`usuario` (
   `username` VARCHAR(50) NOT NULL,
   `senha` VARCHAR(100) NOT NULL,
   `tipoUsuario` VARCHAR(45) NULL,
-  PRIMARY KEY (`username`))
+  PRIMARY KEY (`username`)
+)
 ENGINE = InnoDB;
 
 
@@ -211,47 +212,112 @@ INSERT INTO `condoManager`.`Proprietario`
 VALUES
 ('(51)5432-1098', '66.777.888-3', '012.345.678-90', 'Amanda Silva', '1996-04-08', 'amanda@email.com');
 
--- CASA 
--- Proprietário 1
+
 INSERT INTO Casa (vagas, idProprietario, numero, dataRegistro, bloco) VALUES (2, 1, 102, '2023-12-06', 'A-22');
 
--- Proprietário 2
 INSERT INTO Casa (vagas, idProprietario, numero, dataRegistro, bloco) VALUES (2, 2, 103, '2023-12-06', 'A-22');
 
--- Proprietário 3 (já fornecido no seu exemplo)
 INSERT INTO Casa (vagas, idProprietario, numero, dataRegistro, bloco) VALUES (2, 3, 101, '2023-12-06', 'A-22');
 
--- Proprietário 4
 INSERT INTO Casa (vagas, idProprietario, numero, dataRegistro, bloco) VALUES (2, 4, 104, '2023-12-06', 'A-22');
 
--- Proprietário 5
 INSERT INTO Casa (vagas, idProprietario, numero, dataRegistro, bloco) VALUES (2, 5, 105, '2023-12-06', 'A-22');
 
 
--- PEDIR MAIS 5
-INSERT INTO Morador (casa,telefone,rg,cpf,celular,nome,dataNascimento,email,inicioMoradia) VALUES  (101,'(16)3312-1612','56.123.014-0','506.412.511-23','(16)99711-2154','Pedro CArlos','2000-12-10','pedrocarlos@email.com','2006-10-20')
+INSERT INTO Morador (casa, telefone, rg, cpf, celular, nome, dataNascimento, email, inicioMoradia)
+VALUES (102, '(21)8765-4321', '11.222.333-4', '987.654.321-09', '(19)88888-8888', 'Pedro Silva', '1970-03-05', 'pedro@email.com', '2010-05-15');
 
--- pedir mais 5
+INSERT INTO Morador (casa, telefone, rg, cpf, celular, nome, dataNascimento, email, inicioMoradia)
+VALUES (103, '(41)6543-2109', '22.333.444-5', '789.012.345-09', '(11)3333-3333', 'Ricardo Oliveira', '1982-09-12', 'ricardo@email.com', '2015-08-22');
 
-INSERT INTO Veículos (marca,placaCarro,tipo,casa,ano,cor,modelo) VALUES  ('Honda','ABC-1234','Carro',101,'2023','Prata','Civic')
-com base nesse insert, gere mais 4 parecidos, com as casas 102,103,104,105
+INSERT INTO Morador (casa, telefone, rg, cpf, celular, nome, dataNascimento, email, inicioMoradia)
+VALUES (104, '(51)5432-1098', '66.777.888-3', '012.345.678-90', '(22)4444-4444', 'Amanda Silva', '1996-04-08', 'amanda@email.com', '2018-02-10');
 
-INSERT INTO `condoManager`.`Veículos`
-(`placaCarro`,
-`modelo`,
-`marca`,
-`tipo`,
-`cor`,
-`ano`,
-`casa`)
-VALUES
-('FEP-0955',
-'Focus',
-'Ford',
-'Carro',
-'Preto',
-'2024',
-44);
+INSERT INTO Morador (casa, telefone, rg, cpf, celular, nome, dataNascimento, email, inicioMoradia)
+VALUES (105, '(11)9876-5432', '33.444.555-6', '123.456.789-09', '(31)5555-5555', 'Maria Oliveira', '1985-07-18', 'maria@email.com', '2012-11-18');
+
+INSERT INTO Morador (casa, telefone, rg, cpf, celular, nome, dataNascimento, email, inicioMoradia)
+VALUES (101, '(11)1111-1111', '55.666.777-8', '111.222.333-44', '(11)99999-9999', 'João Silva', '1980-05-20', 'joao@email.com', '2010-10-10');
+
+INSERT INTO Morador (casa, telefone, rg, cpf, celular, nome, dataNascimento, email, inicioMoradia)
+VALUES (102, '(22)2222-2222', '77.888.999-0', '222.333.444-55', '(22)88888-8888', 'Fernanda Oliveira', '1988-12-15', 'fernanda@email.com', '2015-03-05');
+
+INSERT INTO Morador (casa, telefone, rg, cpf, celular, nome, dataNascimento, email, inicioMoradia)
+VALUES (103, '(33)3333-3333', '99.000.111-2', '333.444.555-66', '(33)77777-7777', 'Carlos Santos', '1975-08-02', 'carlos@email.com', '2012-07-20');
+
+INSERT INTO Morador (casa, telefone, rg, cpf, celular, nome, dataNascimento, email, inicioMoradia)
+VALUES (104, '(44)4444-4444', '11.22.33-44', '444.555.666-77', '(44)66666-6666', 'Luana Oliveira', '1990-02-28', 'luana@email.com', '2018-12-12');
+
+INSERT INTO Morador (casa, telefone, rg, cpf, celular, nome, dataNascimento, email, inicioMoradia)
+VALUES (105, '(55)5555-5555', '99.88.77-66', '555.444.333-22', '(55)33333-3333', 'Gabriel Silva', '1994-06-10', 'gabriel@email.com', '2016-05-01');
+
+
+INSERT INTO Veículos (marca,placaCarro,tipo,casa,ano,cor,modelo) VALUES  ('Honda','ABC-1234','Carro',101,'2023','Prata','Civic');
+
+INSERT INTO Veículos (marca, placaCarro, tipo, casa, ano, cor, modelo)
+VALUES ('Toyota', 'DEF-5678', 'Carro', 102, '2022', 'Preto', 'Corolla');
+
+INSERT INTO Veículos (marca, placaCarro, tipo, casa, ano, cor, modelo)
+VALUES ('Chevrolet', 'GHI-9012', 'Moto', 103, '2021', 'Vermelho', 'Scooter');
+
+INSERT INTO Veículos (marca, placaCarro, tipo, casa, ano, cor, modelo)
+VALUES ('Ford', 'JKL-3456', 'Carro', 104, '2020', 'Azul', 'Focus');
+
+INSERT INTO Veículos (marca, placaCarro, tipo, casa, ano, cor, modelo)
+VALUES ('Volkswagen', 'MNO-7890', 'Carro', 105, '2019', 'Branco', 'Golf');
+
+
+INSERT INTO Visitantes (idade,rg,celular,nome) VALUES  (18,'56.712.122-1','(16)99711-2312','Vitor Soares');
+
+INSERT INTO Visitantes (idade, rg, celular, nome)
+VALUES (25, '78.345.678-9', '(21)98888-7654', 'Camila Oliveira');
+
+INSERT INTO Visitantes (idade, rg, celular, nome)
+VALUES (30, '98.765.432-1', '(31)97777-5432', 'Lucas Silva');
+
+INSERT INTO Visitantes (idade, rg, celular, nome)
+VALUES (22, '11.223.334-5', '(41)96666-7890', 'Ana Santos');
+
+INSERT INTO Visitantes (idade, rg, celular, nome)
+VALUES (35, '44.556.677-8', '(51)95555-4321', 'Carlos Oliveira');
+
+INSERT INTO Visitantes (idade, rg, celular, nome)
+VALUES (28, '33.445.566-7', '(61)94444-2109', 'Juliana Silva');
+
+
+INSERT INTO Acesso (horario_entrada,casa,entrada,horario_saida,visitante,saida) VALUES  ('12:55',101,'2023-01-24','18:30',1,'2023-01-24');
+
+INSERT INTO Acesso (horario_entrada, casa, entrada, horario_saida, visitante, saida)
+VALUES ('14:20', 102, '2023-02-10', '20:15', 2, '2023-02-10');
+
+INSERT INTO Acesso (horario_entrada, casa, entrada, horario_saida, visitante, saida)
+VALUES ('09:45', 103, '2023-03-05', '15:30', 3, '2023-03-05');
+
+INSERT INTO Acesso (horario_entrada, casa, entrada, horario_saida, visitante, saida)
+VALUES ('16:10', 104, '2023-04-20', '22:00', 4, '2023-04-20');
+
+INSERT INTO Acesso (horario_entrada, casa, entrada, horario_saida, visitante, saida)
+VALUES ('11:30', 105, '2023-05-15', '17:45', 5, '2023-05-15');
+
+INSERT INTO Acesso (horario_entrada, casa, entrada, horario_saida, visitante, saida)
+VALUES ('13:45', 101, '2023-06-01', '19:20', 6, '2023-06-01');
+
+
+INSERT INTO Entregas (horario_entrega, casa, observacao, nomeEntregador, entrega, retirada, horario_retirada, status)
+VALUES ('14:30', 102, 'Caixa pequena', 'Ana Oliveira', '2023-03-05', '2023-03-05', '15:45', 'Retirado');
+
+INSERT INTO Entregas (horario_entrega, casa, observacao, nomeEntregador, entrega, retirada, horario_retirada, status)
+VALUES ('10:20', 103, 'Produto frágil', 'Carlos Silva', '2023-04-10', '2023-04-10', '11:40', 'Retirado');
+
+INSERT INTO Entregas (horario_entrega, casa, observacao, nomeEntregador, entrega, retirada, horario_retirada, status)
+VALUES ('17:15', 104, 'Entrega urgente', 'Mariana Santos', '2023-05-20', '2023-05-20', '18:30', 'Retirado');
+
+INSERT INTO Entregas (horario_entrega, casa, observacao, nomeEntregador, entrega, retirada, horario_retirada, status)
+VALUES ('12:00', 105, 'Pacote delicado', 'Pedro Oliveira', '2023-06-15', '2023-06-15', '13:15', 'Retirado');
+
+INSERT INTO Entregas (horario_entrega, casa, observacao, nomeEntregador, entrega, retirada, horario_retirada, status)
+VALUES ('15:40', 101, 'Entrega expressa', 'Camila Silva', '2023-07-01', '2023-07-01', '16:55', 'Retirado');
+
 
 
 

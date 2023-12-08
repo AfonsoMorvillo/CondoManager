@@ -7,6 +7,8 @@ package view;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import controller.LogTracker;
 import controller.ResultSetTableModel;
 import model.Proprietario;
@@ -264,19 +266,23 @@ public class FrmProprietariosGrid extends javax.swing.JFrame {
    private void btnExcluirActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnExcluirActionPerformed
       int linhaSelecionada = jTableProprietarios.getSelectedRow();
       if( linhaSelecionada != -1 ){
-         System.out.println( "Excluir" );
-         data = new Proprietario();
-         int numero = (int)result.getValueAt( linhaSelecionada, 0 );
-         data.setIdProprietario( numero );
-         try{
-            this.data.delete();
 
-         }
-         catch( Exception ex ){
-            ex.printStackTrace();
-         }
-         finally{
-            result.setQuery( getSelect() );
+         int opcao = JOptionPane.showConfirmDialog( this, "Deseja realmente excluir?", "Confirmação de Exclusão", JOptionPane.YES_NO_OPTION );
+
+         if( opcao == JOptionPane.YES_OPTION ){
+            data = new Proprietario();
+            int numero = (int)result.getValueAt( linhaSelecionada, 0 );
+            data.setIdProprietario( numero );
+            try{
+               this.data.delete();
+
+            }
+            catch( Exception ex ){
+               ex.printStackTrace();
+            }
+            finally{
+               result.setQuery( getSelect() );
+            }
          }
       }
    }// GEN-LAST:event_btnExcluirActionPerformed

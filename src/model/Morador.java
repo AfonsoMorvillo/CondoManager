@@ -194,7 +194,10 @@ public class Morador extends DataAccessObject {
       this.email = (String)data.get( 6 );
       this.celular = (String)data.get( 7 );
       this.telefone = (String)data.get( 8 );
-      this.inicioMoradia = (String)data.get( 9 );
+      
+      if( data.get(  9 ) != null ){
+         this.inicioMoradia = (String)data.get(  9 ).toString();
+      }
 
       if( data.get( 10 ) != null ){
 

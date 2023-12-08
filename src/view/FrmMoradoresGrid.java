@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JOptionPane;
+
 import controller.LogTracker;
 import controller.ResultSetTableModel;
 import model.Casa;
@@ -95,7 +97,6 @@ public class FrmMoradoresGrid extends javax.swing.JFrame {
         jTableMoradores = new javax.swing.JTable();
         btnAdicionar = new design.CMButton();
         btnExcluir = new design.CMButton();
-        btnSelecionar = new design.CMButton();
         jPanel1 = new javax.swing.JPanel();
         btnLimparCasa = new javax.swing.JButton();
         fieldCasa = new design.TextField();
@@ -143,13 +144,6 @@ public class FrmMoradoresGrid extends javax.swing.JFrame {
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
-            }
-        });
-
-        btnSelecionar.setText("Selecionar");
-        btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSelecionarActionPerformed(evt);
             }
         });
 
@@ -226,8 +220,6 @@ public class FrmMoradoresGrid extends javax.swing.JFrame {
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(240, 240, 240)
-                        .addComponent(btnSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -246,8 +238,7 @@ public class FrmMoradoresGrid extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
 
@@ -384,19 +375,22 @@ public class FrmMoradoresGrid extends javax.swing.JFrame {
    private void btnExcluirActionPerformed( java.awt.event.ActionEvent evt ) {
       int linhaSelecionada = jTableMoradores.getSelectedRow();
       if( linhaSelecionada != -1 ){
-         System.out.println( "Excluir" );
-         data = new Morador();
-         int numero = (int)result.getValueAt( linhaSelecionada, 0 );
-         data.setCodigo( numero );
-         try{
-            this.data.delete();
+         int opcao = JOptionPane.showConfirmDialog( this, "Deseja realmente excluir?", "Confirmação de Exclusão", JOptionPane.YES_NO_OPTION );
 
-         }
-         catch( Exception ex ){
-            ex.printStackTrace();
-         }
-         finally{
-            result.setQuery( getSelect() );
+         if( opcao == JOptionPane.YES_OPTION ){
+            data = new Morador();
+            int numero = (int)result.getValueAt( linhaSelecionada, 0 );
+            data.setCodigo( numero );
+            try{
+               this.data.delete();
+
+            }
+            catch( Exception ex ){
+               ex.printStackTrace();
+            }
+            finally{
+               result.setQuery( getSelect() );
+            }
          }
       }
    }// GEN-LAST:event_btnExcluirActionPerformed
@@ -468,7 +462,6 @@ public class FrmMoradoresGrid extends javax.swing.JFrame {
     private design.CMButton btnExcluir;
     private design.CMButton btnLimpar;
     private javax.swing.JButton btnLimparCasa;
-    private design.CMButton btnSelecionar;
     private design.CMButton btnSelecionarCasa;
     private design.TextField fieldCasa;
     private design.TextField fieldDataNascimento;

@@ -97,11 +97,11 @@ public class FrmMenuNovo extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonSair);
-        jButtonSair.setBounds(1580, 5, 12, 15);
+        jButtonSair.setBounds(1580, 5, 11, 15);
 
         jButton1.setText("jButton1");
         jPanel1.add(jButton1);
-        jButton1.setBounds(1490, 60, 78, 23);
+        jButton1.setBounds(1490, 60, 75, 22);
 
         jButtonAcesso.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         jButtonAcesso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/acesso.png"))); // NOI18N
@@ -162,7 +162,7 @@ public class FrmMenuNovo extends javax.swing.JFrame {
 
         jButtonCarro.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         jButtonCarro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu/carro.png"))); // NOI18N
-        jButtonCarro.setText("Carro");
+        jButtonCarro.setText("Veículos");
         jButtonCarro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonCarro.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonCarro.addActionListener(new java.awt.event.ActionListener() {

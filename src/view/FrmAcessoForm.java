@@ -7,8 +7,6 @@ package view;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-
 import controller.LogTracker;
 import model.Acesso;
 import model.Casa;
@@ -74,6 +72,8 @@ public class FrmAcessoForm extends javax.swing.JFrame {
       // FormataTextInput.TipoEntrada.EMAIL ) );
       fieldEntrada.setDocument( new FormataTextInput( 10, FormataTextInput.TipoEntrada.DATA ) );
       fieldSaida.setDocument( new FormataTextInput( 10, FormataTextInput.TipoEntrada.DATA ) );
+      fieldHorarioEntrada.setDocument( new FormataTextInput( 5, FormataTextInput.TipoEntrada.HORA ) );
+      fieldHorarioSaida.setDocument( new FormataTextInput( 5, FormataTextInput.TipoEntrada.HORA ) );
    }
 
 
@@ -92,6 +92,8 @@ public class FrmAcessoForm extends javax.swing.JFrame {
         btnSalvar = new design.CMButton();
         btnSelecionarVisitante = new design.CMButton();
         fieldVisitante = new design.TextField();
+        fieldHorarioEntrada = new design.TextField();
+        fieldHorarioSaida = new design.TextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Veículos");
@@ -106,9 +108,9 @@ public class FrmAcessoForm extends javax.swing.JFrame {
             }
         });
 
-        fieldEntrada.setLabelText("Entrada");
+        fieldEntrada.setLabelText("Data entrada");
 
-        fieldSaida.setLabelText("Saída");
+        fieldSaida.setLabelText("Data saída");
 
         btnSalvar.setText("Salvar");
         btnSalvar.setRadius(25);
@@ -129,6 +131,10 @@ public class FrmAcessoForm extends javax.swing.JFrame {
         fieldVisitante.setEditable(false);
         fieldVisitante.setLabelText("Visitante");
 
+        fieldHorarioEntrada.setLabelText("Horário entrada");
+
+        fieldHorarioSaida.setLabelText("Horário saída");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -138,20 +144,27 @@ public class FrmAcessoForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(fieldEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(85, 85, 85))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(fieldCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnSelecionarCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(33, 33, 33)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(fieldEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(85, 85, 85))
+                                .addComponent(fieldHorarioEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(85, 85, 85)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fieldHorarioSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(fieldCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnSelecionarCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(fieldVisitante, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                            .addComponent(fieldSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSelecionarVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fieldVisitante, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                                    .addComponent(fieldSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSelecionarVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -167,7 +180,11 @@ public class FrmAcessoForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fieldSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(198, 198, 198)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fieldHorarioEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldHorarioSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(124, 124, 124)
                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -266,18 +283,31 @@ public class FrmAcessoForm extends javax.swing.JFrame {
          throw new Exception( "Data para entrada inválida, deve estar no formato '##/##/####'" );
       }
 
+      if( !fieldHorarioEntrada.getText().matches( RegexUtils.HORA ) ){
+         fieldHorarioEntrada.setError();
+         fieldHorarioEntrada.requestFocus();
+         throw new Exception( "Hora para entrada inválida, deve estar no formato 'MM:ss'" );
+      }
+
       if( !StringUtils.isEmpty( fieldSaida.getText() ) && !fieldSaida.getText().matches( RegexUtils.DATA ) ){
          fieldSaida.setError();
          fieldSaida.requestFocus();
          throw new Exception( "Data para saída inválida, deve estar no formato '##/##/####'" );
       }
 
+      if( !StringUtils.isEmpty( fieldHorarioSaida.getText() ) && !fieldHorarioSaida.getText().matches( RegexUtils.HORA ) ){
+         fieldHorarioSaida.setError();
+         fieldHorarioSaida.requestFocus();
+         throw new Exception( "Hora para saída inválida, deve estar no formato 'MM:ss'" );
+      }
    }
 
 
    private void fillFields() {
 
-      fieldEntrada.setText( acesso.getEntrada() );
+      if( !StringUtils.isEmpty( acesso.getEntrada() ) ){
+         fieldEntrada.setText( StringUtils.dataParaTela( acesso.getEntrada() ) );
+      }
 
       if( !StringUtils.isEmpty( acesso.getSaida() ) ){
          fieldSaida.setText( StringUtils.dataParaTela( acesso.getSaida() ) );
@@ -291,6 +321,14 @@ public class FrmAcessoForm extends javax.swing.JFrame {
          fieldVisitante.setText( acesso.getVisitante().getNome() );
       }
 
+      if( !StringUtils.isEmpty( acesso.getHorario_entrada() ) ){
+         fieldHorarioEntrada.setText( acesso.getHorario_entrada() );
+      }
+
+      if( !StringUtils.isEmpty( acesso.getHorario_saida() ) ){
+         fieldHorarioSaida.setText( acesso.getHorario_saida() );
+      }
+
    }
 
 
@@ -298,6 +336,8 @@ public class FrmAcessoForm extends javax.swing.JFrame {
 
       acesso.setEntrada( StringUtils.dataParaBanco( fieldEntrada.getText() ) );
       acesso.setSaida( StringUtils.dataParaBanco( fieldSaida.getText() ) );
+      acesso.setHorario_entrada( fieldHorarioEntrada.getText() );
+      acesso.setHorario_saida( fieldHorarioSaida.getText() );
 
       acesso.setCasa( casa );
       acesso.setVisitante( visitante );
@@ -310,6 +350,8 @@ public class FrmAcessoForm extends javax.swing.JFrame {
     private design.CMButton btnSelecionarVisitante;
     private design.TextField fieldCasa;
     private design.TextField fieldEntrada;
+    private design.TextField fieldHorarioEntrada;
+    private design.TextField fieldHorarioSaida;
     private design.TextField fieldSaida;
     private design.TextField fieldVisitante;
     // End of variables declaration//GEN-END:variables

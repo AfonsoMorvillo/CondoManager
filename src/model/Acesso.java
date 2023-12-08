@@ -12,6 +12,8 @@ public class Acesso extends DataAccessObject {
    private String    saida;
    private Casa      casa;
    private Visitante visitante;
+   private String    horario_entrada;
+   private String    horario_saida;
 
    public Acesso() {
       super( "Acesso" );
@@ -43,6 +45,16 @@ public class Acesso extends DataAccessObject {
    }
 
 
+   public String getHorario_entrada() {
+      return horario_entrada;
+   }
+
+
+   public String getHorario_saida() {
+      return horario_saida;
+   }
+
+
    public void setIdAcesso( int idAcesso ) {
       if( idAcesso != this.idAcesso ){
          this.idAcesso = idAcesso;
@@ -59,7 +71,7 @@ public class Acesso extends DataAccessObject {
 
 
    public void setSaida( String saida ) {
-      if( saida != this.saida && !StringUtils.isEmpty( saida )){
+      if( saida != this.saida && !StringUtils.isEmpty( saida ) ){
          this.saida = saida;
          addChange( "saida", this.saida );
       }
@@ -97,6 +109,22 @@ public class Acesso extends DataAccessObject {
             }
 
          }
+      }
+   }
+
+
+   public void setHorario_entrada( String horario_entrada ) {
+      if( !horario_entrada.equals( this.horario_entrada ) ){
+         this.horario_entrada = horario_entrada;
+         addChange( "horario_entrada", this.horario_entrada );
+      }
+   }
+
+
+   public void setHorario_saida( String horario_saida ) {
+      if( !StringUtils.isEmpty( horario_saida ) && !horario_saida.equals( this.horario_saida ) ){
+         this.horario_saida = horario_saida;
+         addChange( "horario_saida", this.horario_saida );
       }
    }
 
@@ -142,12 +170,12 @@ public class Acesso extends DataAccessObject {
    @Override
    protected void fill( ArrayList<Object> data ) throws Exception {
       this.idAcesso = (int)data.get( 0 );
-      if (data.get(1) != null) {
-    	  this.entrada = (String)data.get( 1 ).toString();
+      if( data.get( 1 ) != null ){
+         this.entrada = (String)data.get( 1 ).toString();
       }
 
-      if (data.get(2) != null) {
-    	  this.saida = (String)data.get( 2 ).toString();
+      if( data.get( 2 ) != null ){
+         this.saida = (String)data.get( 2 ).toString();
       }
       if( data.get( 3 ) != null ){
 
@@ -164,6 +192,15 @@ public class Acesso extends DataAccessObject {
          }
          visitante.setIdVisitante( (int)data.get( 4 ) );
          visitante.load();
+      }
+      if( data.get( 5 ) != null ){
+         this.horario_entrada = (String)data.get( 5 ).toString();
+      }
+      if( data.get( 6 ) != null ){
+         this.horario_saida = (String)data.get( 6 ).toString();
+      }
+      else{
+         this.horario_saida = "";
       }
    }
 }

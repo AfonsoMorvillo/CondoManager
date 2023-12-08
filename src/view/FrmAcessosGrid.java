@@ -6,6 +6,8 @@ package view;
 
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import controller.LogTracker;
 import controller.ResultSetTableModel;
 import model.Acesso;
@@ -53,11 +55,8 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnEditar = new design.CMButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProprietarios = new javax.swing.JTable();
-        btnAdicionar = new design.CMButton();
-        btnExcluir = new design.CMButton();
         jPanel1 = new javax.swing.JPanel();
         btnLimparVisitante = new javax.swing.JButton();
         btnLimparCasa1 = new javax.swing.JButton();
@@ -69,6 +68,9 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
         btnSelecionarVisitante = new design.CMButton();
         btnBuscar = new design.CMButton();
         btnLimpar = new design.CMButton();
+        btnExcluir1 = new design.CMButton();
+        btnEditar1 = new design.CMButton();
+        btnAdicionar1 = new design.CMButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta de Acessos");
@@ -76,17 +78,6 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
-            }
-        });
-
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar-texto.png"))); // NOI18N
-        btnEditar.setBorderColor(new java.awt.Color(214, 217, 223));
-        btnEditar.setColor(new java.awt.Color(214, 217, 223));
-        btnEditar.setColorOver(new java.awt.Color(204, 204, 204));
-        btnEditar.setRadius(25);
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
             }
         });
 
@@ -102,28 +93,6 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTableProprietarios);
-
-        btnAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/adicionar.png"))); // NOI18N
-        btnAdicionar.setBorderColor(new java.awt.Color(214, 217, 223));
-        btnAdicionar.setColor(new java.awt.Color(214, 217, 223));
-        btnAdicionar.setColorClick(new java.awt.Color(214, 217, 223));
-        btnAdicionar.setColorOver(new java.awt.Color(204, 204, 204));
-        btnAdicionar.setRadius(25);
-        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdicionarActionPerformed(evt);
-            }
-        });
-
-        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lixeira.png"))); // NOI18N
-        btnExcluir.setBorderColor(new java.awt.Color(214, 217, 223));
-        btnExcluir.setColor(new java.awt.Color(214, 217, 223));
-        btnExcluir.setRadius(25);
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
-            }
-        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtros"));
         jPanel1.setLayout(null);
@@ -154,21 +123,21 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
         fieldCasa.setFocusable(false);
         fieldCasa.setLabelText("Selecione uma casa");
         jPanel1.add(fieldCasa);
-        fieldCasa.setBounds(30, 43, 238, 42);
+        fieldCasa.setBounds(30, 43, 238, 41);
 
         fieldEntrada.setLabelText("Entrada");
         jPanel1.add(fieldEntrada);
-        fieldEntrada.setBounds(658, 43, 85, 42);
+        fieldEntrada.setBounds(658, 43, 85, 41);
 
         fieldSaida.setLabelText("Saída");
         jPanel1.add(fieldSaida);
-        fieldSaida.setBounds(786, 43, 85, 42);
+        fieldSaida.setBounds(786, 43, 85, 41);
 
         fieldVisitante.setEditable(false);
         fieldVisitante.setFocusable(false);
         fieldVisitante.setLabelText("Selecione um visitante");
         jPanel1.add(fieldVisitante);
-        fieldVisitante.setBounds(350, 43, 227, 42);
+        fieldVisitante.setBounds(350, 43, 227, 41);
 
         btnSelecionarCasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pesquisa.png"))); // NOI18N
         btnSelecionarCasa.setRadius(25);
@@ -210,6 +179,30 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
         jPanel1.add(btnLimpar);
         btnLimpar.setBounds(930, 40, 72, 40);
 
+        btnExcluir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lixeira.png"))); // NOI18N
+        btnExcluir1.setRadius(25);
+        btnExcluir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluir1ActionPerformed(evt);
+            }
+        });
+
+        btnEditar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/editar-texto.png"))); // NOI18N
+        btnEditar1.setRadius(25);
+        btnEditar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditar1ActionPerformed(evt);
+            }
+        });
+
+        btnAdicionar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/adicionar.png"))); // NOI18N
+        btnAdicionar1.setRadius(25);
+        btnAdicionar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -217,14 +210,15 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1128, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAdicionar1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnExcluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1206, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -236,15 +230,103 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAdicionar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluir1ActionPerformed
+       int linhaSelecionada = jTableProprietarios.getSelectedRow();
+       if( linhaSelecionada != -1 ){
+          int opcao = JOptionPane.showConfirmDialog( this, "Deseja realmente excluir?", "Confirmação de Exclusão", JOptionPane.YES_NO_OPTION );
+
+          if( opcao == JOptionPane.YES_OPTION ){
+
+             data = new Acesso();
+             int numero = (int)result.getValueAt( linhaSelecionada, 0 );
+             data.setIdAcesso( numero );
+             try{
+                this.data.delete();
+
+             }
+             catch( Exception ex ){
+                ex.printStackTrace();
+             }
+             finally{
+                result.setQuery( getSelect() );
+             }
+          }
+       }
+    }//GEN-LAST:event_btnExcluir1ActionPerformed
+
+    private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
+       int linhaSelecionada = jTableProprietarios.getSelectedRow();
+
+       if( linhaSelecionada != -1 ){
+
+          int id = (Integer)result.getValueAt( linhaSelecionada, 0 );
+
+          data = new Acesso();
+
+          data.setIdAcesso( id );
+
+          try{
+             data.load();
+             System.out.println( data );
+             FrmAcessoForm crud = new FrmAcessoForm( data, false, true );
+             crud.setVisible( true );
+             crud.addWindowListener( new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosed( java.awt.event.WindowEvent evt ) {
+                   try{
+                      System.out.println( "atualizar" );
+                      result.setQuery( getSelect() );
+                   }
+                   catch( Exception e ){
+                      e.printStackTrace();
+                   }
+                }
+             } );
+
+          }
+          catch( Exception e ){
+             e.printStackTrace();
+          }
+       }
+    }//GEN-LAST:event_btnEditar1ActionPerformed
+
+    private void btnAdicionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionar1ActionPerformed
+        // TODO add your handling code here:
+       FrmAcessoForm formularioAcesso;
+
+       try{
+          formularioAcesso = new FrmAcessoForm( null, false, false );
+
+          formularioAcesso.setVisible( true );
+          // ATUALIZAR APENAS SE HOUVE ALTERACAO/EDICAO
+
+          formularioAcesso.addWindowListener( new java.awt.event.WindowAdapter() {
+             @Override
+             public void windowClosed( java.awt.event.WindowEvent evt ) {
+                try{
+                   result.setQuery( getSelect() );
+                }
+                catch( Exception e ){
+                   e.printStackTrace();
+                }
+             }
+          } );
+       }
+       catch( Exception e ){
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+       }
+    }//GEN-LAST:event_btnAdicionar1ActionPerformed
 
 
    private void btnLimparActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnLimparActionPerformed
@@ -423,19 +505,23 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
    private void btnExcluirActionPerformed( java.awt.event.ActionEvent evt ) {// GEN-FIRST:event_btnExcluirActionPerformed
       int linhaSelecionada = jTableProprietarios.getSelectedRow();
       if( linhaSelecionada != -1 ){
-         System.out.println( "Excluir" );
-         data = new Acesso();
-         int numero = (int)result.getValueAt( linhaSelecionada, 0 );
-         data.setIdAcesso( numero );
-         try{
-            this.data.delete();
+         int opcao = JOptionPane.showConfirmDialog( this, "Deseja realmente excluir?", "Confirmação de Exclusão", JOptionPane.YES_NO_OPTION );
 
-         }
-         catch( Exception ex ){
-            ex.printStackTrace();
-         }
-         finally{
-            result.setQuery( getSelect() );
+         if( opcao == JOptionPane.YES_OPTION ){
+
+            data = new Acesso();
+            int numero = (int)result.getValueAt( linhaSelecionada, 0 );
+            data.setIdAcesso( numero );
+            try{
+               this.data.delete();
+
+            }
+            catch( Exception ex ){
+               ex.printStackTrace();
+            }
+            finally{
+               result.setQuery( getSelect() );
+            }
          }
       }
    }
@@ -526,10 +612,10 @@ public class FrmAcessosGrid extends javax.swing.JFrame {
    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private design.CMButton btnAdicionar;
+    private design.CMButton btnAdicionar1;
     private design.CMButton btnBuscar;
-    private design.CMButton btnEditar;
-    private design.CMButton btnExcluir;
+    private design.CMButton btnEditar1;
+    private design.CMButton btnExcluir1;
     private design.CMButton btnLimpar;
     private javax.swing.JButton btnLimparCasa1;
     private javax.swing.JButton btnLimparVisitante;
